@@ -5,20 +5,21 @@
     <title>西鉄電車 発車案内ディスプレイ</title>
     <style>
         body {
-            background-color: #000000;
+            background-color: #050508;
             color: #ffffff;
             font-family: "MS Gothic", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
             margin: 0;
-            padding: 10px;
+            padding: 20px;
             box-sizing: border-box;
         }
 
         .main-board {
             width: 100%;
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
-            border: 3px solid #111;
+            border: 4px solid #1a1a1a;
             background-color: #000000;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
         }
 
         .board-header {
@@ -26,146 +27,183 @@
             justify-content: space-between;
             align-items: center;
             background-color: #000000;
-            padding: 10px 20px;
-            border-bottom: 2px solid #333;
+            padding: 15px 25px;
+            border-bottom: 3px solid #333;
         }
 
         .board-title {
-            font-size: 24pt;
+            font-size: 26pt;
             font-weight: bold;
             color: #00bbff;
             letter-spacing: 2px;
         }
 
         .station-select {
-            background-color: #222;
+            background-color: #111;
             color: #fff;
-            border: 1px solid #555;
-            font-size: 14pt;
-            padding: 4px 8px;
+            border: 1px solid #666;
+            font-size: 16pt;
+            padding: 6px 12px;
             border-radius: 4px;
         }
 
-        /* 列車行（1列車分） */
-        .train-row {
-            display: grid;
-            grid-template-columns: 1fr auto;
-            border-top: 3px solid #444;
-            background-color: #000000;
-            padding: 12px 20px;
-            align-items: center;
+        /* 列車行コンテナ */
+        .train-block {
+            border-bottom: 3px solid #222;
         }
 
-        .left-section {
+        .train-row {
+            display: grid;
+            grid-template-columns: 140px 1fr auto;
+            align-items: center;
+            background: linear-gradient(to bottom, #001133 0%, #000822 100%);
+            padding: 14px 20px;
+            border-top: 2px solid #002266;
+        }
+
+        /* 左側：種別エリア */
+        .type-area {
             display: flex;
             flex-direction: column;
             justify-content: center;
+            align-items: flex-start;
         }
 
-        .type-dest-line {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-bottom: 4px;
-        }
-
-        /* 列車種別のスタイル（指定の配色＋白枠） */
         .train-type {
             font-size: 22pt;
             font-weight: bold;
-            padding: 2px 10px;
+            padding: 2px 8px;
             text-align: center;
-            border: 2px solid #ffffff; /* 白枠 */
+            border: 2px solid #ffffff;
             border-radius: 4px;
-            min-width: 90px;
-        }
-
-        /* 特急：赤背景 */
-        .type-limited {
-            background-color: #ff0000;
-            color: #ffffff;
-        }
-
-        /* 急行：緑背景 */
-        .type-express {
-            background-color: #00aa00;
-            color: #ffffff;
-        }
-
-        /* 普通：青背景 */
-        .type-local {
-            background-color: #0000ff;
-            color: #ffffff;
-        }
-
-        .destination {
-            font-size: 28pt;
-            font-weight: bold;
+            width: 95px;
             letter-spacing: 2px;
         }
 
-        .sub-dest {
-            font-size: 16pt;
-            color: #bbb;
-            margin-left: 115px; /* 種別＋隙間分をオフセット */
+        .type-limited { background-color: #e60012; color: #ffffff; } /* 赤 */
+        .type-express { background-color: #009944; color: #ffffff; } /* 緑 */
+        .type-local   { background-color: #0044cc; color: #ffffff; } /* 青 */
+
+        .sub-type {
+            font-size: 14pt;
+            color: #aaaaaa;
+            margin-top: 4px;
+            margin-left: 2px;
+            font-family: sans-serif;
         }
 
-        .right-section {
+        /* 中央：行先エリア */
+        .destination-area {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-left: 10px;
+        }
+
+        .destination {
+            font-size: 32pt;
+            font-weight: bold;
+            letter-spacing: 3px;
+        }
+
+        .sub-destination {
+            font-size: 16pt;
+            color: #aaaaaa;
+            margin-top: 2px;
+            font-family: sans-serif;
+        }
+
+        /* 右側：時刻・のりば・両数・ドア数エリア */
+        .info-area {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .time-platform-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .time {
+            font-size: 34pt;
+            font-weight: bold;
+            font-family: monospace;
+            letter-spacing: 1px;
+        }
+
+        /* のりばバッジ（本物のスクエア型デザイン） */
+        .platform-box {
+            background-color: #ffffff;
+            color: #000000;
+            border: 2px solid #cccccc;
+            border-radius: 4px;
+            padding: 2px 8px;
+            text-align: center;
+            min-width: 45px;
+        }
+
+        .platform-num {
+            font-size: 24pt;
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        .platform-label {
+            font-size: 9pt;
+            font-weight: bold;
+            display: block;
+        }
+
+        /* 両数・ドア数グループ */
+        .details-group {
             display: flex;
             flex-direction: column;
             align-items: flex-end;
             justify-content: center;
+            min-width: 75px;
+            gap: 4px;
         }
 
-        .time-platform-line {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-bottom: 4px;
-        }
-
-        .time {
-            font-size: 28pt;
-            font-weight: bold;
-            font-family: monospace;
-        }
-
-        .platform-badge {
-            background-color: #0044cc;
+        .cars-text {
+            font-size: 18pt;
             color: #ffffff;
-            font-size: 16pt;
             font-weight: bold;
-            padding: 2px 12px;
-            border-radius: 4px;
-            border: 1px solid #6699ff;
+        }
+
+        /* ドア数バッジ（赤の楕円ピル型枠） */
+        .door-badge {
+            background-color: #e60012;
+            color: #ffffff;
+            font-size: 13pt;
+            font-weight: bold;
+            padding: 1px 8px;
+            border-radius: 12px;
+            border: 1px solid #ff6666;
             text-align: center;
+            white-space: nowrap;
         }
 
-        .cars {
-            font-size: 16pt;
-            color: #bbb;
-            text-align: right;
-        }
-
-        /* 案内メッセージ部分（接続・追越・お知らせなど） */
+        /* 案内メッセージ帯（接続・追越など） */
         .notice-row {
-            background-color: #111;
-            border-top: 1px solid #444;
-            padding: 8px 15px;
-            font-size: 14pt;
+            background-color: #000000;
+            border-top: 1px solid #333333;
+            padding: 8px 20px;
+            font-size: 15pt;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
         }
 
         .notice-badge {
-            background-color: #333;
-            border: 1px solid #777;
-            border-radius: 12px;
-            padding: 2px 10px;
-            font-size: 12pt;
+            background-color: #222222;
+            border: 1px solid #777777;
+            border-radius: 14px;
+            padding: 2px 14px;
+            font-size: 13pt;
             font-weight: bold;
-            color: #fff;
+            color: #ffffff;
             white-space: nowrap;
         }
 
@@ -173,7 +211,7 @@
             color: #ff3333;
             text-align: center;
             font-size: 18pt;
-            padding: 30px;
+            padding: 40px;
         }
     </style>
 </head>
@@ -183,32 +221,28 @@
         <div class="board-header">
             <div class="board-title">発車案内</div>
             <div>
-                <select id="stationSelect" class="station-select" onchange="changeStation()">
+                <select id="stationSelect" class="station-select">
                     <option value="T01">T01: 西鉄福岡（天神）</option>
                 </select>
             </div>
         </div>
 
         <div id="boardContent">
-            <!-- ここに時刻表データが動的に挿入されます -->
+            <!-- データがここに読み込まれます -->
         </div>
     </div>
 
     <script>
-        // 本日の曜日からJSONファイルを自動判別して読み込むロジックなどの既存スクリプトをここに記述
         async function loadTimetable() {
             try {
-                // 土日祝日の判定（例として簡易的に実装、必要に応じてお手元のスクリプトに合わせてね）
                 const today = new Date();
-                const dayOfWeek = today.getDay(); // 0:日曜, 6:土曜
+                const dayOfWeek = today.getDay();
                 const isHoliday = (dayOfWeek === 0 || dayOfWeek === 6);
-                
                 const jsonFileName = isHoliday ? "T01_timetable_holiday.json" : "T01_timetable_weekday.json";
 
                 const response = await fetch(jsonFileName);
-                if (!response.ok) {
-                    throw new Error("ファイルが見つかりません");
-                }
+                if (!response.ok) throw new Error("ファイルが見つかりません");
+                
                 const data = await response.json();
                 renderBoard(data);
             } catch (error) {
@@ -223,35 +257,39 @@
             const container = document.getElementById('boardContent');
             let html = '';
 
-            // データ構造に合わせて描画するループ処理
-            // ※お手元のデータ構造に合わせて調整してください
             if (data.trains && data.trains.length > 0) {
                 data.trains.forEach(train => {
-                    // 種別に応じたCSSクラスの割り当て
                     let typeClass = 'type-local';
                     if (train.type === '特急') typeClass = 'type-limited';
                     else if (train.type === '急行') typeClass = 'type-express';
 
                     html += `
-                        <div class="train-row">
-                            <div class="left-section">
-                                <div class="type-dest-line">
+                        <div class="train-block">
+                            <div class="train-row">
+                                <div class="type-area">
                                     <div class="train-type ${typeClass}">${train.type}</div>
+                                    <div class="sub-type">${train.subType || ''}</div>
+                                </div>
+                                <div class="destination-area">
                                     <div class="destination">${train.destination}</div>
+                                    <div class="sub-destination">${train.subDestination || ''}</div>
                                 </div>
-                                <div class="sub-dest">${train.subDestination || ''}</div>
-                            </div>
-                            <div class="right-section">
-                                <div class="time-platform-line">
-                                    <div class="time">${train.time}</div>
-                                    <div class="platform-badge">${train.platform}番のりば</div>
+                                <div class="info-area">
+                                    <div class="time-platform-group">
+                                        <div class="time">${train.time}</div>
+                                        <div class="platform-box">
+                                            <span class="platform-num">${train.platform}</span>
+                                            <span class="platform-label">のりば</span>
+                                        </div>
+                                    </div>
+                                    <div class="details-group">
+                                        <div class="cars-text">${train.cars || ''}</div>
+                                        ${train.doors ? `<div class="door-badge">${train.doors}</div>` : ''}
+                                    </div>
                                 </div>
-                                <div class="cars">${train.cars || ''}</div>
                             </div>
-                        </div>
                     `;
 
-                    // 案内メッセージがある場合
                     if (train.notice) {
                         html += `
                             <div class="notice-row">
@@ -260,6 +298,8 @@
                             </div>
                         `;
                     }
+
+                    html += `</div>`;
                 });
             } else {
                 html = '<div class="error-message">本日のダイヤはありません</div>';
@@ -268,7 +308,6 @@
             container.innerHTML = html;
         }
 
-        // ページ読み込み時に実行
         window.onload = loadTimetable;
     </script>
 </body>
