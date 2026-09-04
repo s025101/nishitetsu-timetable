@@ -51,7 +51,7 @@
             grid-template-columns: 145px 1fr auto;
             align-items: center;
             background: linear-gradient(to bottom, #001133 0%, #000822 100%);
-            padding: 12px 15px;
+            padding: 14px 15px;
             border-top: 2px solid #002266;
             gap: 15px;
         }
@@ -105,7 +105,7 @@
             white-space: nowrap;
         }
 
-        /* 2文字の駅名（柳川、花畑など）専用の文字間隔調整 */
+        /* 2文字の駅名専用の文字間隔調整 */
         .destination.len-2 {
             letter-spacing: 42px;
             margin-right: -42px;
@@ -119,93 +119,18 @@
             margin-left: 6px;
         }
 
-        /* 3列目：時刻・のりば・両数・ドア数エリア */
+        /* 3列目：時刻エリア */
         .info-area {
             display: flex;
             align-items: center;
-            gap: 20px;
-        }
-
-        .time-platform-group {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            justify-content: center;
-            gap: 4px;
-        }
-
-        .time-row {
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            justify-content: flex-end;
         }
 
         .time {
-            font-size: 34pt;
+            font-size: 38pt;
             font-weight: bold;
             font-family: monospace;
             letter-spacing: 1px;
-        }
-
-        .platform-badge {
-            background-color: #0044cc;
-            color: #ffffff;
-            font-size: 11pt;
-            font-weight: bold;
-            padding: 2px 4px;
-            border-radius: 4px;
-            border: 1px solid #6699ff;
-            text-align: center;
-            line-height: 1.1;
-        }
-
-        .details-row {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            gap: 8px;
-            height: 22px; /* データがない時も高さを維持して2段のレイアウトを保つ */
-        }
-
-        .cars-text {
-            font-size: 14pt;
-            color: #ffffff;
-            font-family: sans-serif;
-            font-weight: bold;
-        }
-
-        .door-badge {
-            background-color: #e60012;
-            color: #ffffff;
-            font-size: 11pt;
-            font-weight: bold;
-            padding: 1px 6px;
-            border-radius: 8px;
-            border: 1px solid #ff6666;
-            text-align: center;
-            white-space: nowrap;
-        }
-
-        /* 案内メッセージ帯 */
-        .notice-row {
-            background-color: #000000;
-            border-top: 1px solid #333333;
-            padding: 6px 15px;
-            font-size: 14pt;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .notice-badge {
-            background-color: #222222;
-            border: 1px solid #777777;
-            border-radius: 12px;
-            padding: 2px 12px;
-            font-size: 12pt;
-            font-weight: bold;
-            color: #ffffff;
-            white-space: nowrap;
         }
 
         .error-message {
@@ -235,12 +160,7 @@
     <script>
         async function loadTimetable() {
             try {
-                const today = new Date();
-                const dayOfWeek = today.getDay();
-                const isHoliday = (dayOfWeek === 0 || dayOfWeek === 6);
-                const jsonFileName = isHoliday ? "T01_timetable_holiday.json" : "T01_timetable_weekday.json";
-
-                const response = await fetch(jsonFileName);
+                const response = await fetch("T01_timetable_holiday.json");
                 if (!response.ok) throw new Error("ファイルが見つかりません");
                 
                 const data = await response.json();
@@ -253,7 +173,6 @@
             }
         }
 
-        // 英語種別を自動で補完する関数
         function getSubType(type) {
             if (type === '特急') return 'Ltd.Exp';
             if (type === '急行') return 'Express';
@@ -261,17 +180,18 @@
             return '';
         }
 
-        // 行先（日本語）からローマ字を自動で補完する関数
         function getSubDestination(dest) {
             const map = {
                 '大牟田': 'Ōmuta',
+                '西鉄柳川': 'Yanagawa',
                 '柳川': 'Yanagawa',
                 '花畑': 'Hanaebata',
                 '大善寺': 'Daizenji',
                 '津福': 'Tsubuku',
                 '小郡': 'Ogōri',
                 '筑紫': 'Chikushi',
-                '二日市': 'Futsukaichi'
+                '二日市': 'Futsukaichi',
+                '太宰府': 'Dazaifu'
             };
             return map[dest] || '';
         }
@@ -295,69 +215,42 @@
                     upcomingTrains = data.trains;
                 }
 
-                const targetTrains = upcomingTrains.slice(0, 3);
+                // 上下2段分（2列車分）を抽出
+                const targetTrains = upcomingTrains.slice(0, 2);
 
                 targetTrains.forEach(train => {
                     let typeClass = 'type-local';
                     if (train.type === '特急') typeClass = 'type-limited';
                     else if (train.type === '急行') typeClass = 'type-express';
 
-                    // 「西鉄柳川」を「柳川」に置き換え
                     let dest = train.destination;
                     if (dest && dest.includes("西鉄柳川")) {
                         dest = "柳川";
                     }
 
-                    // データに英語名やローマ字がない場合は自動補完
-                    const subType = train.subType || getSubType(train.type);
-                    const subDest = train.subDestination || getSubDestination(dest);
-                    const cars = train.cars || '4両'; // デフォルトで4両などを表示
-                    const doors = train.doors || '3ドア'; // デフォルトで3ドアなどを表示
-
-                    // 2文字の駅名の場合は専用クラス（len-2）を付与
+                    const subType = getSubType(train.type);
+                    const subDest = getSubDestination(dest);
                     const lenClass = (dest && dest.length === 2) ? 'len-2' : '';
 
                     html += `
                         <div class="train-block">
                             <div class="train-row">
-                                <!-- 種別エリア（上：日本語、下：英語） -->
                                 <div class="type-area">
                                     <div class="train-type ${typeClass}">${train.type}</div>
                                     <div class="sub-type">${subType}</div>
                                 </div>
 
-                                <!-- 行先エリア（上：日本語、下：ローマ字） -->
                                 <div class="destination-area">
                                     <div class="destination ${lenClass}">${dest}</div>
                                     <div class="sub-destination">${subDest}</div>
                                 </div>
 
-                                <!-- 右側情報エリア（上：時刻・のりば、下：両数・ドア数） -->
                                 <div class="info-area">
-                                    <div class="time-platform-group">
-                                        <div class="time-row">
-                                            <div class="time">${train.time}</div>
-                                            ${train.platform ? `<div class="platform-badge">${train.platform}のりば</div>` : ''}
-                                        </div>
-                                        <div class="details-row">
-                                            <div class="cars-text">${cars}</div>
-                                            <div class="door-badge">${doors}</div>
-                                        </div>
-                                    </div>
+                                    <div class="time">${train.time}</div>
                                 </div>
                             </div>
+                        </div>
                     `;
-
-                    if (train.notice) {
-                        html += `
-                            <div class="notice-row">
-                                <span class="notice-badge">${train.noticeType || '案内'}</span>
-                                <span>${train.notice}</span>
-                            </div>
-                        `;
-                    }
-
-                    html += `</div>`;
                 });
             } else {
                 html = '<div class="error-message">本日のダイヤはありません</div>';
