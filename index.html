@@ -7,10 +7,12 @@
         body {
             background-color: #050508;
             color: #ffffff;
-            font-family: "MS Gothic", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+            /* より駅の電光掲示板っぽく、スッキリした太めの角ゴシックを優先 */
+            font-family: "BIZ UDPGothic", "Meiryo", "Hiragino Kaku Gothic ProN", sans-serif;
             margin: 0;
             padding: 20px;
             box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
         }
 
         .main-board {
@@ -67,7 +69,7 @@
 
         .train-type {
             font-size: 26pt;
-            font-weight: bold;
+            font-weight: 700;
             padding: 1px 2px 1px 8px;
             text-align: center;
             border: 2px solid #ffffff;
@@ -82,11 +84,10 @@
 
         .sub-type {
             font-size: 13pt;
-            color: #ffffff; /* 白文字 */
-            font-family: sans-serif;
+            color: #ffffff;
             letter-spacing: 1px;
             font-weight: bold;
-            text-align: center; /* 中央寄せ */
+            text-align: center;
             width: 100%;
         }
 
@@ -95,13 +96,13 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: flex-start; /* 左寄せにして行先の真下に配置 */
+            align-items: flex-start;
             gap: 2px;
         }
 
         .destination {
             font-size: 32pt;
-            font-weight: bold;
+            font-weight: 700;
             letter-spacing: 12px;
             margin-left: 6px;
             white-space: nowrap;
@@ -116,9 +117,8 @@
         .sub-destination {
             font-size: 13pt;
             color: #ffffff;
-            font-family: sans-serif;
             letter-spacing: 1px;
-            text-align: left; /* 行先の真下（左側）に揃える */
+            text-align: left;
             margin-left: 8px;
         }
 
@@ -131,8 +131,8 @@
 
         .time {
             font-size: 38pt;
-            font-weight: bold;
-            font-family: monospace;
+            font-weight: 700;
+            font-family: "Consolas", "Courier New", monospace;
             letter-spacing: 1px;
         }
 
@@ -194,7 +194,8 @@
                 '小郡': 'Ogōri',
                 '筑紫': 'Chikushi',
                 '二日市': 'Futsukaichi',
-                '太宰府': 'Dazaifu'
+                '太宰府': 'Dazaifu',
+                '西鉄福岡': 'Nishitetsu Fukuoka'
             };
             return map[dest] || '';
         }
@@ -218,7 +219,7 @@
                     upcomingTrains = data.trains;
                 }
 
-                // ★ここで3列車分（3行）に抽出するように変更
+                // 3列車分（3行）に抽出
                 const targetTrains = upcomingTrains.slice(0, 3);
 
                 targetTrains.forEach(train => {
