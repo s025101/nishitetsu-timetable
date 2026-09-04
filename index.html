@@ -15,7 +15,7 @@
 
         .main-board {
             width: 100%;
-            max-width: 1000px;
+            max-width: 900px;
             margin: 0 auto;
             border: 4px solid #1a1a1a;
             background-color: #000000;
@@ -27,7 +27,7 @@
             justify-content: flex-end;
             align-items: center;
             background-color: #000000;
-            padding: 10px 20px;
+            padding: 8px 15px;
             border-bottom: 3px solid #333;
         }
 
@@ -35,8 +35,8 @@
             background-color: #111;
             color: #fff;
             border: 1px solid #666;
-            font-size: 16pt;
-            padding: 6px 12px;
+            font-size: 15pt;
+            padding: 4px 8px;
             border-radius: 4px;
         }
 
@@ -45,14 +45,15 @@
             border-bottom: 3px solid #222;
         }
 
+        /* 行き先と時刻の間隔をさらに狭くするため、グリッドの間隔を調整 */
         .train-row {
             display: grid;
-            grid-template-columns: 130px 1fr auto;
+            grid-template-columns: 120px 1fr auto;
             align-items: center;
             background: linear-gradient(to bottom, #001133 0%, #000822 100%);
-            padding: 12px 20px;
+            padding: 10px 15px;
             border-top: 2px solid #002266;
-            gap: 15px;
+            gap: 10px;
         }
 
         /* 左側：種別エリア */
@@ -66,11 +67,11 @@
         .train-type {
             font-size: 22pt;
             font-weight: bold;
-            padding: 2px 8px;
+            padding: 2px 6px;
             text-align: center;
             border: 2px solid #ffffff;
             border-radius: 4px;
-            width: 95px;
+            width: 90px;
             letter-spacing: 2px;
         }
 
@@ -79,9 +80,9 @@
         .type-local   { background-color: #0044cc; color: #ffffff; } /* 青 */
 
         .sub-type {
-            font-size: 14pt;
+            font-size: 13pt;
             color: #aaaaaa;
-            margin-top: 4px;
+            margin-top: 3px;
             margin-left: 2px;
             font-family: sans-serif;
         }
@@ -100,7 +101,7 @@
         }
 
         .sub-destination {
-            font-size: 16pt;
+            font-size: 15pt;
             color: #aaaaaa;
             margin-top: 2px;
             font-family: sans-serif;
@@ -110,7 +111,7 @@
         .info-area {
             display: flex;
             align-items: center;
-            gap: 30px;
+            gap: 20px; /* 時刻と両数の間隔をコンパクトに */
         }
 
         .time {
@@ -126,12 +127,12 @@
             flex-direction: column;
             align-items: flex-end;
             justify-content: center;
-            min-width: 75px;
-            gap: 4px;
+            min-width: 65px;
+            gap: 2px;
         }
 
         .cars-text {
-            font-size: 18pt;
+            font-size: 17pt;
             color: #ffffff;
             font-weight: bold;
         }
@@ -140,10 +141,10 @@
         .door-badge {
             background-color: #e60012;
             color: #ffffff;
-            font-size: 13pt;
+            font-size: 12pt;
             font-weight: bold;
-            padding: 1px 8px;
-            border-radius: 12px;
+            padding: 1px 6px;
+            border-radius: 10px;
             border: 1px solid #ff6666;
             text-align: center;
             white-space: nowrap;
@@ -153,19 +154,19 @@
         .notice-row {
             background-color: #000000;
             border-top: 1px solid #333333;
-            padding: 8px 20px;
-            font-size: 15pt;
+            padding: 6px 15px;
+            font-size: 14pt;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
         }
 
         .notice-badge {
             background-color: #222222;
             border: 1px solid #777777;
-            border-radius: 14px;
-            padding: 2px 14px;
-            font-size: 13pt;
+            border-radius: 12px;
+            padding: 2px 12px;
+            font-size: 12pt;
             font-weight: bold;
             color: #ffffff;
             white-space: nowrap;
@@ -221,7 +222,27 @@
             let html = '';
 
             if (data.trains && data.trains.length > 0) {
-                data.trains.forEach(train => {
+                // 現在時刻を取得して分単位に変換（例: 4時46分なら 4*60 + 46 = 286）
+                const now = new Date();
+                const currentMinutes = now.getHours() * 60 + now.getMinutes();
+
+                // 現在時刻以降の列車をフィルタリング
+                let upcomingTrains = data.trains.filter(train => {
+                    const parts = train.time.split(':');
+                    if (parts.length !== 2) return false;
+                    const trainMinutes = parseInt(parts[0], 10) * 60 + parseInt(parts[1], 10);
+                    return trainMinutes >= currentMinutes;
+                });
+
+                // もし現在時刻以降の列車が残っていない場合（深夜など）、テスト用に先頭から表示するなどのフォールバック
+                if (upcomingTrains.length === 0) {
+                    upcomingTrains = data.trains;
+                }
+
+                // 最大3本までに絞り込む
+                const targetTrains = upcomingTrains.slice(0, 3);
+
+                targetTrains.forEach(train => {
                     let typeClass = 'type-local';
                     if (train.type === '特急') typeClass = 'type-limited';
                     else if (train.type === '急行') typeClass = 'type-express';
