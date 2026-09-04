@@ -7,7 +7,6 @@
         body {
             background-color: #050508;
             color: #ffffff;
-            /* より駅の電光掲示板っぽく、スッキリした太めの角ゴシックを優先 */
             font-family: "BIZ UDPGothic", "Meiryo", "Hiragino Kaku Gothic ProN", sans-serif;
             margin: 0;
             padding: 20px;
@@ -100,18 +99,19 @@
             gap: 2px;
         }
 
+        /* 行先の幅を固定し、2文字・3文字で綺麗に収まるように調整 */
         .destination {
             font-size: 32pt;
             font-weight: 700;
-            letter-spacing: 12px;
-            margin-left: 6px;
             white-space: nowrap;
+            letter-spacing: 16px;
+            margin-left: 8px;
         }
 
-        /* 2文字の駅名専用の文字間隔調整 */
+        /* 2文字の駅名用（文字幅と間隔を調整して3文字分の見た目幅に合わせる） */
         .destination.len-2 {
-            letter-spacing: 42px;
-            margin-right: -42px;
+            letter-spacing: 56px;
+            margin-right: -56px;
         }
 
         .sub-destination {
@@ -149,7 +149,7 @@
     <div class="main-board">
         <div class="board-header">
             <div>
-                <select id="stationSelect" class="station-select">
+                <select id="stationSelect" class="station-select" onchange="changeStation()">
                     <option value="T01">T01: 西鉄福岡（天神）</option>
                     <option value="T11">T11: 都府楼前</option>
                 </select>
@@ -162,19 +162,27 @@
     </div>
 
     <script>
-        async function loadTimetable() {
+        async function loadTimetable(stationCode) {
             try {
-                const response = await fetch("T01_timetable_holiday.json");
-                if (!response.ok) throw new Error("ファイルが見つかりません");
+                // 選択された駅コードに応じたJSONファイルを読み込む
+                const filename = `${stationCode}_timetable_holiday.json`;
+                const response = await fetch(filename);
+                if (!response.ok) throw new Error("ファイルが見つかりません: " + filename);
                 
                 const data = await response.json();
                 renderBoard(data);
             } catch (error) {
                 console.error(error);
                 document.getElementById('boardContent').innerHTML = `
-                    <div class="error-message">時刻表データの読み込みエラー</div>
+                    <div class="error-message">時刻表データの読み込みエラー (${stationCode})</div>
                 `;
             }
+        }
+
+        function changeStation() {
+            const select = document.getElementById('stationSelect');
+            const stationCode = select.value;
+            loadTimetable(stationCode);
         }
 
         function getSubType(type) {
@@ -264,7 +272,10 @@
             container.innerHTML = html;
         }
 
-        window.onload = loadTimetable;
+        // 初期ロードはT01から
+        window.onload = function() {
+            loadTimetable('T01');
+        };
     </script>
 </body>
 </html>
