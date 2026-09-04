@@ -104,7 +104,7 @@
             font-size: 32pt;
             font-weight: 700;
             white-space: nowrap;
-            letter-spacing: 12px; /* 長い文字用に調整 */
+            letter-spacing: 12px;
             margin-left: 8px;
         }
 
@@ -203,7 +203,8 @@
                 '筑紫': 'Chikushi',
                 '二日市': 'Futsukaichi',
                 '太宰府': 'Dazaifu',
-                '福岡（天神）': 'Fukuoka(Tenjin)'
+                '福岡（天神）': 'Fukuoka(Tenjin)',
+                '西鉄福岡': 'Fukuoka(Tenjin)'
             };
             return map[dest] || '';
         }
@@ -237,7 +238,7 @@
 
                     let dest = train.destination;
                     
-                    // JSONが「西鉄福岡」になっていても自動で「福岡（天神）」に変換する
+                    // JSONが「西鉄福岡」であっても強制的に「福岡（天神）」に置換する
                     if (dest === "西鉄福岡") {
                         dest = "福岡（天神）";
                     }
