@@ -95,7 +95,8 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            gap: 4px;
+            align-items: flex-start; /* 左寄せにして行先の真下に配置 */
+            gap: 2px;
         }
 
         .destination {
@@ -113,12 +114,12 @@
         }
 
         .sub-destination {
-            font-size: 14pt;
-            color: #ffffff; /* 白文字 */
+            font-size: 13pt;
+            color: #ffffff;
             font-family: sans-serif;
             letter-spacing: 1px;
-            text-align: center; /* 中央寄せ */
-            width: 100%;
+            text-align: left; /* 行先の真下（左側）に揃える */
+            margin-left: 8px;
         }
 
         /* 3列目：時刻エリア */
@@ -187,7 +188,7 @@
                 '大牟田': 'Ōmuta',
                 '西鉄柳川': 'Yanagawa',
                 '柳川': 'Yanagawa',
-                '花畑': 'Hanaebata',
+                '花畑': 'Hanabatake',
                 '大善寺': 'Daizenji',
                 '津福': 'Tsubuku',
                 '小郡': 'Ogōri',
@@ -217,8 +218,8 @@
                     upcomingTrains = data.trains;
                 }
 
-                // 上下2段分（2列車分）を抽出
-                const targetTrains = upcomingTrains.slice(0, 2);
+                // ★ここで3列車分（3行）に抽出するように変更
+                const targetTrains = upcomingTrains.slice(0, 3);
 
                 targetTrains.forEach(train => {
                     let typeClass = 'type-local';
