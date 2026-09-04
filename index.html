@@ -55,7 +55,7 @@
             gap: 15px;
         }
 
-        /* 左側：種別エリア（文字サイズを大きく調整） */
+        /* 左側：種別エリア */
         .type-area {
             display: flex;
             flex-direction: column;
@@ -64,14 +64,14 @@
         }
 
         .train-type {
-            font-size: 28pt; /* 種別の文字をさらに大きく */
+            font-size: 28pt;
             font-weight: bold;
             padding: 2px 2px 2px 10px;
             text-align: center;
             border: 2px solid #ffffff;
             border-radius: 4px;
             width: 115px;
-            letter-spacing: 14px; /* 種別の文字間隔 */
+            letter-spacing: 14px;
         }
 
         .type-limited { background-color: #e60012; color: #ffffff; } /* 赤 */
@@ -87,7 +87,7 @@
             letter-spacing: 1px;
         }
 
-        /* 中央：行先エリア（3文字分の幅・バランスに調整） */
+        /* 中央：行先エリア */
         .destination-area {
             display: flex;
             flex-direction: column;
@@ -97,8 +97,15 @@
         .destination {
             font-size: 32pt;
             font-weight: bold;
-            letter-spacing: 12px; /* 3文字幅のバランスに合わせた文字間隔 */
+            letter-spacing: 12px; /* 3文字用の標準文字間隔 */
             margin-left: 6px;
+            white-space: nowrap;
+        }
+
+        /* 2文字の駅名（柳川、花畑など）専用：文字間を広げて3文字分の幅に合わせる */
+        .destination.len-2 {
+            letter-spacing: 42px;
+            margin-right: -42px;
         }
 
         .sub-destination {
@@ -124,7 +131,6 @@
             letter-spacing: 1px;
         }
 
-        /* 両数・ドア数グループ */
         .details-group {
             display: flex;
             flex-direction: column;
@@ -140,7 +146,6 @@
             font-weight: bold;
         }
 
-        /* ドア数バッジ（赤の楕円ピル型枠） */
         .door-badge {
             background-color: #e60012;
             color: #ffffff;
@@ -153,7 +158,6 @@
             white-space: nowrap;
         }
 
-        /* 案内メッセージ帯（接続・追越など） */
         .notice-row {
             background-color: #000000;
             border-top: 1px solid #333333;
@@ -248,9 +252,12 @@
 
                     // 「西鉄柳川」を「柳川」に置き換え
                     let dest = train.destination;
-                    if (dest === "西鉄柳川") {
+                    if (dest && dest.includes("西鉄柳川")) {
                         dest = "柳川";
                     }
+
+                    // 2文字の駅名の場合は専用クラス（len-2）を付与して幅を調整
+                    const lenClass = (dest && dest.length === 2) ? 'len-2' : '';
 
                     html += `
                         <div class="train-block">
@@ -260,7 +267,7 @@
                                     <div class="sub-type">${train.subType || ''}</div>
                                 </div>
                                 <div class="destination-area">
-                                    <div class="destination">${dest}</div>
+                                    <div class="destination ${lenClass}">${dest}</div>
                                     ${train.subDestination ? `<div class="sub-destination">${train.subDestination}</div>` : ''}
                                 </div>
                                 <div class="info-area">
