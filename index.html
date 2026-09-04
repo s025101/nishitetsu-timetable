@@ -52,7 +52,7 @@
             background: linear-gradient(to bottom, #001133 0%, #000822 100%);
             padding: 10px 15px;
             border-top: 2px solid #002266;
-            gap: 15px; /* 行き先と時刻の間隔をさらに狭く調整 */
+            gap: 15px;
         }
 
         /* 左側：種別エリア */
@@ -87,7 +87,7 @@
             letter-spacing: 1px;
         }
 
-        /* 中央：行先エリア（文字数に関わらず幅を統一して均等配置） */
+        /* 中央：行先エリア（自然な文字間隔に修正） */
         .destination-area {
             display: flex;
             flex-direction: column;
@@ -97,9 +97,7 @@
         .destination {
             font-size: 32pt;
             font-weight: bold;
-            display: flex;
-            justify-content: space-between;
-            width: 210px; /* 3文字分の基準幅（2文字でもこの幅に綺麗に引き伸ばされます） */
+            letter-spacing: 6px; /* 文字と文字の間に適度なスペースを持たせる */
         }
 
         .sub-destination {
@@ -107,9 +105,7 @@
             color: #aaaaaa;
             margin-top: 2px;
             font-family: sans-serif;
-            display: flex;
-            justify-content: space-between;
-            width: 180px; /* ハングルの幅合わせ */
+            letter-spacing: 2px;
         }
 
         /* 右側：時刻・両数・ドア数エリア */
@@ -222,12 +218,6 @@
             }
         }
 
-        // 文字を1つずつ<span>で囲んで均等配置させるヘルパー関数
-        function createDistributedText(text) {
-            if (!text) return '';
-            return text.split('').map(char => `<span>${char}</span>`).join('');
-        }
-
         function renderBoard(data) {
             const container = document.getElementById('boardContent');
             let html = '';
@@ -254,9 +244,6 @@
                     if (train.type === '特急') typeClass = 'type-limited';
                     else if (train.type === '急行') typeClass = 'type-express';
 
-                    const formattedDest = createDistributedText(train.destination);
-                    const formattedSubDest = createDistributedText(train.subDestination);
-
                     html += `
                         <div class="train-block">
                             <div class="train-row">
@@ -265,8 +252,8 @@
                                     <div class="sub-type">${train.subType || ''}</div>
                                 </div>
                                 <div class="destination-area">
-                                    <div class="destination">${formattedDest}</div>
-                                    ${formattedSubDest ? `<div class="sub-destination">${formattedSubDest}</div>` : ''}
+                                    <div class="destination">${train.destination}</div>
+                                    ${train.subDestination ? `<div class="sub-destination">${train.subDestination}</div>` : ''}
                                 </div>
                                 <div class="info-area">
                                     <div class="time">${train.time}</div>
