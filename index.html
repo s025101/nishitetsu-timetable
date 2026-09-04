@@ -104,11 +104,11 @@
             font-size: 32pt;
             font-weight: 700;
             white-space: nowrap;
-            letter-spacing: 16px;
+            letter-spacing: 12px; /* 長い文字用に調整 */
             margin-left: 8px;
         }
 
-        /* 2文字の駅名用（文字幅と間隔を調整して3文字分の見た目幅に合わせる） */
+        /* 2文字の駅名用 */
         .destination.len-2 {
             letter-spacing: 56px;
             margin-right: -56px;
@@ -236,6 +236,11 @@
                     else if (train.type === '急行') typeClass = 'type-express';
 
                     let dest = train.destination;
+                    
+                    // JSONが「西鉄福岡」になっていても自動で「福岡（天神）」に変換する
+                    if (dest === "西鉄福岡") {
+                        dest = "福岡（天神）";
+                    }
                     if (dest && dest.includes("西鉄柳川")) {
                         dest = "柳川";
                     }
