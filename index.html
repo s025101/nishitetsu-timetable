@@ -99,7 +99,7 @@
             gap: 2px;
         }
 
-        /* 行先の幅を固定し、2文字・3文字で綺麗に収まるように調整 */
+        /* 行先の幅を固定し、文字数で綺麗に収まるように調整 */
         .destination {
             font-size: 32pt;
             font-weight: 700;
@@ -164,7 +164,6 @@
     <script>
         async function loadTimetable(stationCode) {
             try {
-                // 選択された駅コードに応じたJSONファイルを読み込む
                 const filename = `${stationCode}_timetable_holiday.json`;
                 const response = await fetch(filename);
                 if (!response.ok) throw new Error("ファイルが見つかりません: " + filename);
@@ -204,7 +203,7 @@
                 '筑紫': 'Chikushi',
                 '二日市': 'Futsukaichi',
                 '太宰府': 'Dazaifu',
-                '西鉄福岡': 'Nishitetsu Fukuoka'
+                '福岡（天神）': 'Fukuoka(Tenjin)'
             };
             return map[dest] || '';
         }
