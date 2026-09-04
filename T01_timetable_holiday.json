@@ -1,218 +1,169 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <title>西鉄電車 発車案内ディスプレイ</title>
-    <style>
-        body {
-            background-color: #000000;
-            color: #ffffff;
-            font-family: "MS Gothic", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
-            margin: 0;
-            padding: 10px;
-            box-sizing: border-box;
-        }
-        .main-board {
-            width: 100%;
-            max-width: 900px;
-            margin: 0 auto;
-            border: 3px solid #111;
-            background-color: #000000;
-        }
-        /* ヘッダー */
-        .board-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #000000;
-            padding: 10px 20px;
-            border-bottom: 2px solid #333;
-        }
-        .board-title {
-            font-size: 24pt;
-            font-weight: bold;
-            color: #0055ff;
-            letter-spacing: 2px;
-        }
-        /* 駅選択セレクトボックス */
-        .station-select {
-            background-color: #222;
-            color: #fff;
-            border: 1px solid #555;
-            font-size: 14pt;
-            padding: 4px 8px;
-            font-family: inherit;
-            border-radius: 4px;
-        }
-        
-        /* 列車行（1行分） */
-        .train-row {
-            display: grid;
-            grid-template-columns: 1fr auto;
-            border-top: 3px solid #ffffff;
-            background-color: #000000;
-            padding: 12px 20px;
-            align-items: center;
-        }
-        .left-section {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        .type-dest-line {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-bottom: 4px;
-        }
-        .train-type {
-            font-size: 22pt;
-            font-weight: bold;
-            padding: 2px 12px;
-            text-align: center;
-            border-radius: 4px;
-            min-width: 90px;
-        }
-        .type-limited {
-            background-color: #ff0000;
-            color: #ffffff;
-        }
-        .type-express {
-            background-color: #00aa00;
-            color: #ffffff;
-        }
-        .type-normal {
-            background-color: #ffcc00;
-            color: #000000;
-        }
-        .type-other {
-            background-color: #0088ff;
-            color: #ffffff;
-        }
-        .train-dest {
-            font-size: 32pt;
-            font-weight: bold;
-            color: #ffffff;
-            letter-spacing: 4px;
-        }
-        .right-section {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-        }
-        .train-time {
-            font-size: 42pt;
-            font-weight: bold;
-            color: #ffffff;
-            letter-spacing: 2px;
-        }
-        .no-train {
-            text-align: center;
-            font-size: 20pt;
-            padding: 40px;
-            color: #888888;
-        }
-    </style>
-</head>
-<body>
-
-<div class="main-board">
-    <div class="board-header">
-        <div class="board-title" id="station-title">発車案内</div>
-        <!-- 駅変更用のセレクトボックス -->
-        <select id="stationSelect" class="station-select" onchange="loadTimetable()">
-            <option value="T01">T01: 西鉄福岡（天神）</option>
-            <!-- 駅を追加する場合はここに option を増やせます -->
-            <!-- <option value="T02">T02: 薬院</option> -->
-        </select>
-    </div>
-
-    <!-- ここに動的に列車行が挿入されます -->
-    <div id="timetable-container">
-        <div class="no-train">読み込み中...</div>
-    </div>
-</div>
-
-<script>
-async function loadTimetable() {
-    try {
-        // 選択された駅番号を取得 (例: "T01")
-        const stationId = document.getElementById('stationSelect').value;
-
-        // 曜日判定（土曜・日曜は休日、それ以外は平日）
-        const now = new Date();
-        const day = now.getDay();
-        const dayType = (day === 0 || day === 6) ? 'holiday' : 'weekday';
-
-        // ファイル名を組み立て (例: T01_timetable_weekday.json)
-        const jsonFile = `${stationId}_timetable_${dayType}.json`;
-
-        const response = await fetch(jsonFile);
-        if (!response.ok) {
-            throw new Error('時刻表ファイルが見つかりません');
-        }
-        const data = await response.json();
-
-        // ヘルパーのタイトルを駅名に連動させる
-        document.getElementById('station-title').textContent = data.station || '発車案内';
-
-        // 現在時刻を "HH:MM" 形式で取得
-        const hours = String(now.getHours()).padStart(2, '0');
-        const minutes = String(now.getMinutes()).padStart(2, '0');
-        const currentTimeStr = `${hours}:${minutes}`;
-
-        // 現在時刻以降の電車をフィルタリング
-        const upcomingTrains = data.trains.filter(train => train.time >= currentTimeStr);
-
-        const container = document.getElementById('timetable-container');
-        container.innerHTML = '';
-
-        if (upcomingTrains.length === 0) {
-            container.innerHTML = '<div class="no-train">本日の以降の運行情報はありません</div>';
-            return;
-        }
-
-        // 先頭から最大5件を表示
-        const displayTrains = upcomingTrains.slice(0, 5);
-
-        displayTrains.forEach(train => {
-            let typeClass = 'type-other';
-            if (train.type === '特急') {
-                typeClass = 'type-limited';
-            } else if (train.type === '急行') {
-                typeClass = 'type-express';
-            } else if (train.type === '普通') {
-                typeClass = 'type-normal';
-            }
-
-            const row = document.createElement('div');
-            row.className = 'train-row';
-            row.innerHTML = `
-                <div class="left-section">
-                    <div class="type-dest-line">
-                        <div class="train-type ${typeClass}">${train.type}</div>
-                        <div class="train-dest">${train.destination}</div>
-                    </div>
-                </div>
-                <div class="right-section">
-                    <div class="train-time">${train.time}</div>
-                </div>
-            `;
-            container.appendChild(row);
-        });
-
-    } catch (error) {
-        console.error('時刻表の読み込みに失敗しました:', error);
-        document.getElementById('timetable-container').innerHTML = '<div class="no-train">時刻表データの読み込みエラー</div>';
-    }
+{
+  "station": "西鉄福岡（天神）",
+  "direction": "大牟田方面",
+  "type": "休日",
+  "trains": [
+    { "time": "05:12", "type": "普通", "destination": "西鉄柳川" },
+    { "time": "05:32", "type": "普通", "destination": "花畑" },
+    { "time": "05:56", "type": "普通", "destination": "花畑" },
+    { "time": "06:00", "type": "特急", "destination": "大牟田" },
+    { "time": "06:13", "type": "普通", "destination": "花畑" },
+    { "time": "06:25", "type": "普通", "destination": "小郡" },
+    { "time": "06:30", "type": "特急", "destination": "大牟田" },
+    { "time": "06:37", "type": "急行", "destination": "花畑" },
+    { "time": "06:40", "type": "普通", "destination": "筑紫" },
+    { "time": "06:46", "type": "普通", "destination": "大善寺" },
+    { "time": "06:55", "type": "普通", "destination": "小郡" },
+    { "time": "07:00", "type": "特急", "destination": "大牟田" },
+    { "time": "07:07", "type": "急行", "destination": "花畑" },
+    { "time": "07:11", "type": "普通", "destination": "筑紫" },
+    { "time": "07:16", "type": "普通", "destination": "筑紫" },
+    { "time": "07:25", "type": "特急", "destination": "大牟田" },
+    { "time": "07:30", "type": "普通", "destination": "小郡" },
+    { "time": "07:37", "type": "急行", "destination": "花畑" },
+    { "time": "07:42", "type": "普通", "destination": "二日市" },
+    { "time": "07:46", "type": "普通", "destination": "大善寺" },
+    { "time": "07:55", "type": "普通", "destination": "小郡" },
+    { "time": "08:00", "type": "特急", "destination": "大牟田" },
+    { "time": "08:02", "type": "普通", "destination": "二日市" },
+    { "time": "08:07", "type": "急行", "destination": "花畑" },
+    { "time": "08:14", "type": "普通", "destination": "大善寺" },
+    { "time": "08:18", "type": "急行", "destination": "太宰府" },
+    { "time": "08:25", "type": "普通", "destination": "筑紫" },
+    { "time": "08:30", "type": "特急", "destination": "大牟田" },
+    { "time": "08:32", "type": "普通", "destination": "二日市" },
+    { "time": "08:37", "type": "急行", "destination": "花畑" },
+    { "time": "08:44", "type": "普通", "destination": "大善寺" },
+    { "time": "08:48", "type": "急行", "destination": "太宰府" },
+    { "time": "08:55", "type": "普通", "destination": "筑紫" },
+    { "time": "09:00", "type": "特急", "destination": "大牟田" },
+    { "time": "09:02", "type": "普通", "destination": "二日市" },
+    { "time": "09:07", "type": "急行", "destination": "花畑" },
+    { "time": "09:14", "type": "普通", "destination": "大善寺" },
+    { "time": "09:18", "type": "急行", "destination": "太宰府" },
+    { "time": "09:25", "type": "普通", "destination": "筑紫" },
+    { "time": "09:30", "type": "特急", "destination": "大牟田" },
+    { "time": "09:32", "type": "普通", "destination": "二日市" },
+    { "time": "09:37", "type": "急行", "destination": "花畑" },
+    { "time": "09:44", "type": "普通", "destination": "大善寺" },
+    { "time": "09:48", "type": "急行", "destination": "太宰府" },
+    { "time": "09:55", "type": "普通", "destination": "筑紫" },
+    { "time": "10:00", "type": "特急", "destination": "大牟田" },
+    { "time": "10:02", "type": "普通", "destination": "筑紫" },
+    { "time": "10:07", "type": "急行", "destination": "花畑" },
+    { "time": "10:14", "type": "普通", "destination": "大善寺" },
+    { "time": "10:18", "type": "急行", "destination": "太宰府" },
+    { "time": "10:25", "type": "普通", "destination": "筑紫" },
+    { "time": "10:30", "type": "特急", "destination": "大牟田" },
+    { "time": "10:32", "type": "普通", "destination": "二日市" },
+    { "time": "10:37", "type": "急行", "destination": "花畑" },
+    { "time": "10:44", "type": "普通", "destination": "大善寺" },
+    { "time": "10:48", "type": "急行", "destination": "太宰府" },
+    { "time": "10:55", "type": "普通", "destination": "筑紫" },
+    { "time": "11:00", "type": "特急", "destination": "大牟田" },
+    { "time": "11:02", "type": "普通", "destination": "二日市" },
+    { "time": "11:07", "type": "急行", "destination": "花畑" },
+    { "time": "11:14", "type": "普通", "destination": "大善寺" },
+    { "time": "11:18", "type": "急行", "destination": "太宰府" },
+    { "time": "11:25", "type": "普通", "destination": "筑紫" },
+    { "time": "11:30", "type": "特急", "destination": "大牟田" },
+    { "time": "11:32", "type": "普通", "destination": "二日市" },
+    { "time": "11:37", "type": "急行", "destination": "花畑" },
+    { "time": "11:44", "type": "普通", "destination": "大善寺" },
+    { "time": "11:48", "type": "急行", "destination": "太宰府" },
+    { "time": "11:55", "type": "普通", "destination": "筑紫" },
+    { "time": "12:00", "type": "特急", "destination": "大牟田" },
+    { "time": "12:02", "type": "普通", "destination": "二日市" },
+    { "time": "12:07", "type": "急行", "destination": "花畑" },
+    { "time": "12:14", "type": "普通", "destination": "大善寺" },
+    { "time": "12:18", "type": "普通", "destination": "筑紫" },
+    { "time": "12:25", "type": "特急", "destination": "大牟田" },
+    { "time": "12:30", "type": "普通", "destination": "二日市" },
+    { "time": "12:37", "type": "急行", "destination": "花畑" },
+    { "time": "12:44", "type": "普通", "destination": "大善寺" },
+    { "time": "12:48", "type": "普通", "destination": "筑紫" },
+    { "time": "12:55", "type": "特急", "destination": "大牟田" },
+    { "time": "13:00", "type": "普通", "destination": "二日市" },
+    { "time": "13:07", "type": "急行", "destination": "花畑" },
+    { "time": "13:14", "type": "普通", "destination": "大善寺" },
+    { "time": "13:18", "type": "普通", "destination": "筑紫" },
+    { "time": "13:25", "type": "特急", "destination": "大牟田" },
+    { "time": "13:30", "type": "普通", "destination": "二日市" },
+    { "time": "13:37", "type": "急行", "destination": "花畑" },
+    { "time": "13:44", "type": "普通", "destination": "大善寺" },
+    { "time": "13:48", "type": "普通", "destination": "筑紫" },
+    { "time": "13:55", "type": "特急", "destination": "大牟田" },
+    { "time": "14:00", "type": "普通", "destination": "二日市" },
+    { "time": "14:07", "type": "急行", "destination": "花畑" },
+    { "time": "14:14", "type": "普通", "destination": "大善寺" },
+    { "time": "14:18", "type": "普通", "destination": "筑紫" },
+    { "time": "14:25", "type": "特急", "destination": "大牟田" },
+    { "time": "14:30", "type": "普通", "destination": "二日市" },
+    { "time": "14:37", "type": "急行", "destination": "花畑" },
+    { "time": "14:44", "type": "普通", "destination": "大善寺" },
+    { "time": "14:48", "type": "普通", "destination": "筑紫" },
+    { "time": "14:55", "type": "特急", "destination": "大牟田" },
+    { "time": "15:00", "type": "普通", "destination": "二日市" },
+    { "time": "15:07", "type": "急行", "destination": "花畑" },
+    { "time": "15:14", "type": "普通", "destination": "大善寺" },
+    { "time": "15:18", "type": "普通", "destination": "筑紫" },
+    { "time": "15:25", "type": "特急", "destination": "大牟田" },
+    { "time": "15:30", "type": "普通", "destination": "二日市" },
+    { "time": "15:37", "type": "急行", "destination": "花畑" },
+    { "time": "15:44", "type": "普通", "destination": "大善寺" },
+    { "time": "15:48", "type": "普通", "destination": "筑紫" },
+    { "time": "15:55", "type": "特急", "destination": "大牟田" },
+    { "time": "16:00", "type": "普通", "destination": "大善寺" },
+    { "time": "16:02", "type": "普通", "destination": "花畑" },
+    { "time": "16:07", "type": "筑紫", "destination": "筑紫" },
+    { "time": "16:14", "type": "特急", "destination": "大牟田" },
+    { "time": "16:18", "type": "普通", "destination": "二日市" },
+    { "time": "16:25", "type": "特急", "destination": "大牟田" },
+    { "time": "16:30", "type": "普通", "destination": "筑紫" },
+    { "time": "16:32", "type": "急行", "destination": "花畑" },
+    { "time": "17:00", "type": "特急", "destination": "大牟田" },
+    { "time": "17:02", "type": "普通", "destination": "筑紫" },
+    { "time": "17:07", "type": "急行", "destination": "花畑" },
+    { "time": "17:14", "type": "普通", "destination": "大善寺" },
+    { "time": "17:18", "type": "普通", "destination": "筑紫" },
+    { "time": "17:25", "type": "特急", "destination": "大牟田" },
+    { "time": "17:30", "type": "普通", "destination": "筑紫" },
+    { "time": "18:00", "type": "特急", "destination": "大牟田" },
+    { "time": "18:03", "type": "普通", "destination": "筑紫" },
+    { "time": "18:07", "type": "急行", "destination": "花畑" },
+    { "time": "18:15", "type": "普通", "destination": "大善寺" },
+    { "time": "18:25", "type": "普通", "destination": "小郡" },
+    { "time": "18:30", "type": "特急", "destination": "大牟田" },
+    { "time": "18:33", "type": "普通", "destination": "筑紫" },
+    { "time": "18:37", "type": "急行", "destination": "花畑" },
+    { "time": "20:00", "type": "特急", "destination": "大牟田" },
+    { "time": "20:02", "type": "普通", "destination": "小郡" },
+    { "time": "20:06", "type": "急行", "destination": "花畑" },
+    { "time": "20:15", "type": "普通", "destination": "花畑" },
+    { "time": "20:30", "type": "特急", "destination": "大牟田" },
+    { "time": "20:32", "type": "普通", "destination": "小郡" },
+    { "time": "20:40", "type": "急行", "destination": "花畑" },
+    { "time": "20:45", "type": "普通", "destination": "西鉄柳川" },
+    { "time": "21:00", "type": "特急", "destination": "大牟田" },
+    { "time": "21:02", "type": "普通", "destination": "小郡" },
+    { "time": "21:06", "type": "急行", "destination": "花畑" },
+    { "time": "21:15", "type": "普通", "destination": "花畑" },
+    { "time": "21:30", "type": "特急", "destination": "大牟田" },
+    { "time": "21:32", "type": "普通", "destination": "小郡" },
+    { "time": "21:40", "type": "急行", "destination": "花畑" },
+    { "time": "21:45", "type": "普通", "destination": "西鉄柳川" },
+    { "time": "22:00", "type": "特急", "destination": "大牟田" },
+    { "time": "22:02", "type": "普通", "destination": "筑紫" },
+    { "time": "22:15", "type": "急行", "destination": "大牟田" },
+    { "time": "22:17", "type": "普通", "destination": "小郡" },
+    { "time": "22:30", "type": "急行", "destination": "花畑" },
+    { "time": "22:32", "type": "普通", "destination": "筑紫" },
+    { "time": "22:45", "type": "特急", "destination": "大牟田" },
+    { "time": "22:48", "type": "普通", "destination": "花畑" },
+    { "time": "23:00", "type": "急行", "destination": "西鉄柳川" },
+    { "time": "23:05", "type": "普通", "destination": "筑紫" },
+    { "time": "23:17", "type": "普通", "destination": "筑紫" },
+    { "time": "23:30", "type": "急行", "destination": "花畑" },
+    { "time": "23:35", "type": "普通", "destination": "筑紫" }
+  ]
 }
-
-// ページ読み込み時に実行
-loadTimetable();
-
-// 1分ごとに自動で更新
-setInterval(loadTimetable, 60000);
-</script>
-
-</body>
-</html>
