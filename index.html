@@ -24,18 +24,11 @@
 
         .board-header {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end;
             align-items: center;
             background-color: #000000;
-            padding: 15px 25px;
+            padding: 10px 20px;
             border-bottom: 3px solid #333;
-        }
-
-        .board-title {
-            font-size: 26pt;
-            font-weight: bold;
-            color: #00bbff;
-            letter-spacing: 2px;
         }
 
         .station-select {
@@ -54,11 +47,12 @@
 
         .train-row {
             display: grid;
-            grid-template-columns: 140px 1fr auto;
+            grid-template-columns: 130px 1fr auto;
             align-items: center;
             background: linear-gradient(to bottom, #001133 0%, #000822 100%);
-            padding: 14px 20px;
+            padding: 12px 20px;
             border-top: 2px solid #002266;
+            gap: 15px;
         }
 
         /* 左側：種別エリア */
@@ -97,7 +91,6 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding-left: 10px;
         }
 
         .destination {
@@ -113,17 +106,11 @@
             font-family: sans-serif;
         }
 
-        /* 右側：時刻・のりば・両数・ドア数エリア */
+        /* 右側：時刻・両数・ドア数エリア */
         .info-area {
             display: flex;
             align-items: center;
-            gap: 20px;
-        }
-
-        .time-platform-group {
-            display: flex;
-            align-items: center;
-            gap: 12px;
+            gap: 30px;
         }
 
         .time {
@@ -131,29 +118,6 @@
             font-weight: bold;
             font-family: monospace;
             letter-spacing: 1px;
-        }
-
-        /* のりばバッジ（本物のスクエア型デザイン） */
-        .platform-box {
-            background-color: #ffffff;
-            color: #000000;
-            border: 2px solid #cccccc;
-            border-radius: 4px;
-            padding: 2px 8px;
-            text-align: center;
-            min-width: 45px;
-        }
-
-        .platform-num {
-            font-size: 24pt;
-            font-weight: bold;
-            line-height: 1;
-        }
-
-        .platform-label {
-            font-size: 9pt;
-            font-weight: bold;
-            display: block;
         }
 
         /* 両数・ドア数グループ */
@@ -219,7 +183,6 @@
 
     <div class="main-board">
         <div class="board-header">
-            <div class="board-title">発車案内</div>
             <div>
                 <select id="stationSelect" class="station-select">
                     <option value="T01">T01: 西鉄福岡（天神）</option>
@@ -275,13 +238,7 @@
                                     <div class="sub-destination">${train.subDestination || ''}</div>
                                 </div>
                                 <div class="info-area">
-                                    <div class="time-platform-group">
-                                        <div class="time">${train.time}</div>
-                                        <div class="platform-box">
-                                            <span class="platform-num">${train.platform}</span>
-                                            <span class="platform-label">のりば</span>
-                                        </div>
-                                    </div>
+                                    <div class="time">${train.time}</div>
                                     <div class="details-group">
                                         <div class="cars-text">${train.cars || ''}</div>
                                         ${train.doors ? `<div class="door-badge">${train.doors}</div>` : ''}
