@@ -81,11 +81,12 @@
         .type-local   { background-color: #0044cc; color: #ffffff; } /* 青：普通 */
 
         .sub-type {
-            font-size: 14pt;
-            color: #ffffff;
+            font-size: 13pt;
+            color: #88bbff;
             font-family: sans-serif;
             letter-spacing: 1px;
             margin-left: 2px;
+            font-weight: bold;
         }
 
         /* 2列目：行先エリア（上下2段） */
@@ -93,7 +94,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            gap: 2px;
+            gap: 4px;
         }
 
         .destination {
@@ -111,11 +112,11 @@
         }
 
         .sub-destination {
-            font-size: 15pt;
-            color: #aaaaaa;
+            font-size: 14pt;
+            color: #88bbff;
             font-family: sans-serif;
             letter-spacing: 1px;
-            margin-left: 4px;
+            margin-left: 6px;
         }
 
         /* 3列目：時刻・のりば・両数・ドア数エリア */
@@ -125,13 +126,12 @@
             gap: 20px;
         }
 
-        /* 上段（時刻＋のりば） */
         .time-platform-group {
             display: flex;
             flex-direction: column;
             align-items: flex-end;
             justify-content: center;
-            gap: 2px;
+            gap: 4px;
         }
 
         .time-row {
@@ -147,7 +147,6 @@
             letter-spacing: 1px;
         }
 
-        /* のりば番号バッジ（青背景に白文字の角丸四角） */
         .platform-badge {
             background-color: #0044cc;
             color: #ffffff;
@@ -160,34 +159,34 @@
             line-height: 1.1;
         }
 
-        /* 下段（両数＋ドア数） */
         .details-row {
             display: flex;
             align-items: center;
             justify-content: flex-end;
             gap: 8px;
+            height: 22px; /* データがない時も高さを維持して2段のレイアウトを保つ */
         }
 
         .cars-text {
-            font-size: 15pt;
+            font-size: 14pt;
             color: #ffffff;
             font-family: sans-serif;
+            font-weight: bold;
         }
 
-        /* ドア数バッジ（赤の楕円ピル型枠） */
         .door-badge {
             background-color: #e60012;
             color: #ffffff;
-            font-size: 12pt;
+            font-size: 11pt;
             font-weight: bold;
-            padding: 1px 8px;
-            border-radius: 10px;
+            padding: 1px 6px;
+            border-radius: 8px;
             border: 1px solid #ff6666;
             text-align: center;
             white-space: nowrap;
         }
 
-        /* 案内メッセージ帯（接続・追越など） */
+        /* 案内メッセージ帯 */
         .notice-row {
             background-color: #000000;
             border-top: 1px solid #333333;
@@ -254,6 +253,29 @@
             }
         }
 
+        // 英語種別を自動で補完する関数
+        function getSubType(type) {
+            if (type === '特急') return 'Ltd.Exp';
+            if (type === '急行') return 'Express';
+            if (type === '普通') return 'Local';
+            return '';
+        }
+
+        // 行先（日本語）からローマ字を自動で補完する関数
+        function getSubDestination(dest) {
+            const map = {
+                '大牟田': 'Ōmuta',
+                '柳川': 'Yanagawa',
+                '花畑': 'Hanaebata',
+                '大善寺': 'Daizenji',
+                '津福': 'Tsubuku',
+                '小郡': 'Ogōri',
+                '筑紫': 'Chikushi',
+                '二日市': 'Futsukaichi'
+            };
+            return map[dest] || '';
+        }
+
         function renderBoard(data) {
             const container = document.getElementById('boardContent');
             let html = '';
@@ -286,6 +308,12 @@
                         dest = "柳川";
                     }
 
+                    // データに英語名やローマ字がない場合は自動補完
+                    const subType = train.subType || getSubType(train.type);
+                    const subDest = train.subDestination || getSubDestination(dest);
+                    const cars = train.cars || '4両'; // デフォルトで4両などを表示
+                    const doors = train.doors || '3ドア'; // デフォルトで3ドアなどを表示
+
                     // 2文字の駅名の場合は専用クラス（len-2）を付与
                     const lenClass = (dest && dest.length === 2) ? 'len-2' : '';
 
@@ -295,16 +323,16 @@
                                 <!-- 種別エリア（上：日本語、下：英語） -->
                                 <div class="type-area">
                                     <div class="train-type ${typeClass}">${train.type}</div>
-                                    <div class="sub-type">${train.subType || ''}</div>
+                                    <div class="sub-type">${subType}</div>
                                 </div>
 
                                 <!-- 行先エリア（上：日本語、下：ローマ字） -->
                                 <div class="destination-area">
                                     <div class="destination ${lenClass}">${dest}</div>
-                                    <div class="sub-destination">${train.subDestination || ''}</div>
+                                    <div class="sub-destination">${subDest}</div>
                                 </div>
 
-                                <!-- 右側情報エリア -->
+                                <!-- 右側情報エリア（上：時刻・のりば、下：両数・ドア数） -->
                                 <div class="info-area">
                                     <div class="time-platform-group">
                                         <div class="time-row">
@@ -312,8 +340,8 @@
                                             ${train.platform ? `<div class="platform-badge">${train.platform}のりば</div>` : ''}
                                         </div>
                                         <div class="details-row">
-                                            <div class="cars-text">${train.cars || ''}</div>
-                                            ${train.doors ? `<div class="door-badge">${train.doors}</div>` : ''}
+                                            <div class="cars-text">${cars}</div>
+                                            <div class="door-badge">${doors}</div>
                                         </div>
                                     </div>
                                 </div>
