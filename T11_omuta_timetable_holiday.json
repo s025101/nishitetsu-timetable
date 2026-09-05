@@ -7,7 +7,7 @@
     {
       "hour": 5,
       "trains": [
-        { "minute": 35, "type": "普通", "destination": "西鉄柳川", "note": null },
+        { "minute": 35, "type": "普通", "destination": "大牟田", "note": null },
         { "minute": 55, "type": "普通", "destination": "花畑", "note": null }
       ]
     },
