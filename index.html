@@ -23,7 +23,7 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.8);
         }
 
-        /* ヘッダー（駅・方面選択エリア） */
+        /* ヘッダー（選択エリア） */
         .board-header {
             display: flex;
             justify-content: space-between;
@@ -54,7 +54,7 @@
             border-radius: 4px;
         }
 
-        /* 写真のようなディスプレイ上部の方面表示エリア */
+        /* ディスプレイ上部の方面表示エリア（JSONから動的に表示） */
         .board-top-title {
             background-color: #000000;
             text-align: center;
@@ -93,7 +93,7 @@
             gap: 15px;
         }
 
-        /* 1列目：種別エリア（上下2段） */
+        /* 1列目：種別エリア */
         .type-area {
             display: flex;
             flex-direction: column;
@@ -126,7 +126,7 @@
             width: 100%;
         }
 
-        /* 2列目：行先エリア（上下2段） */
+        /* 2列目：行先エリア */
         .destination-area {
             display: flex;
             flex-direction: column;
@@ -181,18 +181,18 @@
 <body>
 
     <div class="main-board">
-        <!-- 上部コントロール（駅・方面選択） -->
+        <!-- 上部コントロール（JSONの切り替え） -->
         <div class="board-header">
             <div class="select-group">
                 <span class="select-label">駅:</span>
-                <select id="stationSelect" class="station-select" onchange="onStationChange()">
+                <select id="stationSelect" class="station-select" onchange="loadSelectedTimetable()">
                     <option value="T01">T01: 西鉄福岡（天神）</option>
                     <option value="T11">T11: 都府楼前</option>
                 </select>
             </div>
             <div class="select-group">
                 <span class="select-label">方面:</span>
-                <select id="directionSelect" class="station-select" onchange="updateBoard()">
+                <select id="directionSelect" class="station-select" onchange="loadSelectedTimetable()">
                     <option value="fukuoka">福岡（天神） 方面</option>
                     <option value="omuta">久留米・大牟田 方面</option>
                     <option value="dazaifu">太宰府 方面</option>
@@ -200,10 +200,10 @@
             </div>
         </div>
 
-        <!-- 写真のようなトップ方面タイトル -->
+        <!-- JSONから読み込んだ方面タイトルを表示するエリア -->
         <div class="board-top-title">
-            <div id="dirTitleJa" class="direction-ja">福岡（天神） 方面</div>
-            <div id="dirTitleEn" class="direction-en">Fukuoka(Tenjin)</div>
+            <div id="dirTitleJa" class="direction-ja">読み込み中...</div>
+            <div id="dirTitleEn" class="direction-en">--</div>
         </div>
 
         <div id="boardContent">
@@ -214,25 +214,36 @@
     <script>
         let currentTimetableData = null;
 
-        async function loadTimetable(stationCode) {
+        async function loadSelectedTimetable() {
+            const stationCode = document.getElementById('stationSelect').value;
+            const direction = document.getElementById('directionSelect').value;
+            
+            // 選択された駅と方面に応じたJSONファイルを指定
+            // 例: T01_fukuoka_timetable_holiday.json など
+            const filename = `${stationCode}_${direction}_timetable_holiday.json`;
+
             try {
-                const filename = `${stationCode}_timetable_holiday.json`;
                 const response = await fetch(filename);
                 if (!response.ok) throw new Error("ファイルが見つかりません: " + filename);
                 
                 currentTimetableData = await response.json();
-                updateBoard();
+                renderBoard(currentTimetableData);
             } catch (error) {
                 console.error(error);
-                document.getElementById('boardContent').innerHTML = `
-                    <div class="error-message">時刻表データの読み込みエラー (${stationCode})</div>
-                `;
+                // ファイルが見つからない場合のフォールバック（従来のファイル名でも試すなど）
+                try {
+                    const fallbackResponse = await fetch(`${stationCode}_timetable_holiday.json`);
+                    if (!fallbackResponse.ok) throw new Error();
+                    currentTimetableData = await fallbackResponse.json();
+                    renderBoard(currentTimetableData);
+                } catch (e) {
+                    document.getElementById('boardContent').innerHTML = `
+                        <div class="error-message">時刻表データが見つかりません (${filename})</div>
+                    `;
+                    document.getElementById('dirTitleJa').textContent = 'データなし';
+                    document.getElementById('dirTitleEn').textContent = 'No Data';
+                }
             }
-        }
-
-        function onStationChange() {
-            const stationCode = document.getElementById('stationSelect').value;
-            loadTimetable(stationCode);
         }
 
         function getSubType(type) {
@@ -260,55 +271,21 @@
             return map[dest] || '';
         }
 
-        function updateBoard() {
-            if (!currentTimetableData) return;
-
-            const directionVal = document.getElementById('directionSelect').value;
-            
-            // トップタイトルの切り替え
-            const titleJa = document.getElementById('dirTitleJa');
-            const titleEn = document.getElementById('dirTitleEn');
-            if (directionVal === 'fukuoka') {
-                titleJa.textContent = '福岡（天神） 方面';
-                titleEn.textContent = 'Fukuoka (Tenjin)';
-            } else if (directionVal === 'omuta') {
-                titleJa.textContent = '久留米・大牟田 方面';
-                titleEn.textContent = 'Kurume / Ōmuta';
-            } else if (directionVal === 'dazaifu') {
-                titleJa.textContent = '太宰府 方面';
-                titleEn.textContent = 'Dazaifu';
-            }
-
-            renderBoard(currentTimetableData, directionVal);
-        }
-
-        function renderBoard(data, directionVal) {
+        function renderBoard(data) {
             const container = document.getElementById('boardContent');
             let html = '';
 
+            // JSON内に記述されている方面をトップタイトルに反映
+            const titleJa = document.getElementById('dirTitleJa');
+            const titleEn = document.getElementById('dirTitleEn');
+            titleJa.textContent = data.direction || '方面別案内';
+            titleEn.textContent = data.directionEn || '';
+
             if (data && data.trains && data.trains.length > 0) {
-                // 方面に応じたフィルタリング（必要に応じて条件を調整してね）
-                let filteredTrains = data.trains.filter(train => {
-                    let dest = train.destination === "西鉄福岡" ? "福岡（天神）" : train.destination;
-                    if (directionVal === 'fukuoka') {
-                        return dest.includes('福岡') || dest.includes('天神');
-                    } else if (directionVal === 'omuta') {
-                        return dest.includes('大牟田') || dest.includes('柳川') || dest.includes('花畑') || dest.includes('大善寺') || dest.includes('小郡') || dest.includes('筑紫') || dest.includes('二日市');
-                    } else if (directionVal === 'dazaifu') {
-                        return dest.includes('太宰府');
-                    }
-                    return true;
-                });
-
-                // 該当する列車がない場合は全列車からフォールバック
-                if (filteredTrains.length === 0) {
-                    filteredTrains = data.trains;
-                }
-
                 const now = new Date();
                 const currentMinutes = now.getHours() * 60 + now.getMinutes();
 
-                let upcomingTrains = filteredTrains.filter(train => {
+                let upcomingTrains = data.trains.filter(train => {
                     const parts = train.time.split(':');
                     if (parts.length !== 2) return false;
                     const trainMinutes = parseInt(parts[0], 10) * 60 + parseInt(parts[1], 10);
@@ -316,7 +293,7 @@
                 });
 
                 if (upcomingTrains.length === 0) {
-                    upcomingTrains = filteredTrains;
+                    upcomingTrains = data.trains;
                 }
 
                 // 3列車分（3行）に抽出
@@ -368,11 +345,13 @@
 
         // 初回ロード
         window.onload = function() {
-            loadTimetable('T01');
+            loadSelectedTimetable();
 
             // 10秒ごとに自動更新
             setInterval(() => {
-                updateBoard();
+                if (currentTimetableData) {
+                    renderBoard(currentTimetableData);
+                }
             }, 10000);
         };
     </script>
