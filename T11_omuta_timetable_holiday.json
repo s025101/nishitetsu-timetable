@@ -35,7 +35,7 @@
         { "minute": 10, "type": "普通", "destination": "大善寺", "note": null },
         { "minute": 27, "type": "普通", "destination": "西鉄小郡", "note": null },
         { "minute": 34, "type": "普通", "destination": "筑紫", "note": null },
-        { "minute": 39, "type": "普通", "destination": "筑紫", "note": null },
+        { "minute": 39, "type": "普通", "destination": "大善寺", "note": null },
         { "minute": 57, "type": "普通", "destination": "西鉄小郡", "note": null }
       ]
     },
