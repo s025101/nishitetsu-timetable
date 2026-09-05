@@ -249,7 +249,6 @@
                 '花畑': 'Hanabatake',
                 '大善寺': 'Daizenji',
                 '津福': 'Tsubuku',
-                '西鉄小郡': 'Ogōri',
                 '小郡': 'Ogōri',
                 '筑紫': 'Chikushi',
                 '西鉄二日市': 'Futsukaichi',
@@ -270,13 +269,11 @@
             const titleJa = document.getElementById('dirTitleJa');
             const titleEn = document.getElementById('dirTitleEn');
             
-            // 方面タイトルの設定（data.direction または data.station等から補正）
             let rawDir = data.direction || '方面別案内';
             rawDir = rawDir.replace('西鉄福岡', '福岡');
             titleJa.textContent = convertBrackets(rawDir);
             titleEn.textContent = data.directionEn || '';
 
-            // スケジュールデータの抽出 (schedules.weekday/weekend または 直接の timetable に対応)
             let rawTimetable = null;
             if (data.schedules) {
                 const now = new Date();
@@ -333,6 +330,9 @@
                     }
                     if (dest && dest.includes('西鉄柳川')) {
                         dest = '柳川';
+                    }
+                    if (dest && dest.includes('西鉄小郡')) {
+                        dest = '小郡';
                     }
 
                     dest = convertBrackets(dest);
