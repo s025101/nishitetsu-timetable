@@ -178,8 +178,8 @@
             <div class="select-group">
                 <span class="select-label">駅:</span>
                 <select id="stationSelect" class="station-select" onchange="loadTimetable()">
-                    <option value="T01">T01: 西鉄福岡(天神)</option>
-                    <option value="T11" selected>T11: 都府楼前</option>
+                    <option value="T01" selected>T01: 西鉄福岡(天神)</option>
+                    <option value="T11">T11: 都府楼前</option>
                 </select>
             </div>
             <div class="select-group">
@@ -202,7 +202,6 @@
     <script>
         let currentTimetableData = null;
 
-        // 全角カッコを半角に置換する関数
         function convertBrackets(str) {
             if (!str) return '';
             return str.replace(/（/g, '(').replace(/）/g, ')');
@@ -212,7 +211,6 @@
             const stationCode = document.getElementById('stationSelect').value;
             const directionVal = document.getElementById('directionSelect').value; 
             
-            // 本日の曜日を自動判定 (0は日曜、6は土曜)
             const now = new Date();
             const dayOfWeek = now.getDay();
             const dayType = (dayOfWeek === 0 || dayOfWeek === 6) ? 'holiday' : 'weekday';
@@ -272,16 +270,25 @@
             const titleJa = document.getElementById('dirTitleJa');
             const titleEn = document.getElementById('dirTitleEn');
             
-            // 方面タイトルの設定
+            // 方面タイトルの設定（data.direction または data.station等から補正）
             let rawDir = data.direction || '方面別案内';
             rawDir = rawDir.replace('西鉄福岡', '福岡');
             titleJa.textContent = convertBrackets(rawDir);
             titleEn.textContent = data.directionEn || '';
 
-            // timetable構造（trains配列）をフラットな列車リストに変換する処理
+            // スケジュールデータの抽出 (schedules.weekday/weekend または 直接の timetable に対応)
+            let rawTimetable = null;
+            if (data.schedules) {
+                const now = new Date();
+                const isWeekend = (now.getDay() === 0 || now.getDay() === 6);
+                rawTimetable = isWeekend ? data.schedules.weekend : data.schedules.weekday;
+            } else if (data.timetable) {
+                rawTimetable = data.timetable;
+            }
+
             let trains = [];
-            if (data && data.timetable) {
-                data.timetable.forEach(hourGroup => {
+            if (rawTimetable) {
+                rawTimetable.forEach(hourGroup => {
                     const h = hourGroup.hour;
                     if (hourGroup.trains) {
                         hourGroup.trains.forEach(dep => {
