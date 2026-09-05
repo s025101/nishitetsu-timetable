@@ -1,6 +1,7 @@
 {
   "station": "西鉄福岡（天神）",
   "direction": "大牟田方面",
+  "directionEn": "Omuta",
   "type": "休日",
   "trains": [
     { "time": "05:12", "type": "普通", "destination": "西鉄柳川" },
