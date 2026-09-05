@@ -23,7 +23,6 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.8);
         }
 
-        /* ヘッダー（選択エリア） */
         .board-header {
             display: flex;
             justify-content: space-between;
@@ -54,7 +53,6 @@
             border-radius: 4px;
         }
 
-        /* ディスプレイ上部の方面表示エリア */
         .board-top-title {
             background-color: #000000;
             text-align: center;
@@ -77,12 +75,10 @@
             font-family: "Consolas", "Courier New", monospace;
         }
 
-        /* 列車行コンテナ */
         .train-block {
             border-bottom: 3px solid #222;
         }
 
-        /* 上下2段構成のメイン行 */
         .train-row {
             display: grid;
             grid-template-columns: 145px 1fr auto;
@@ -93,7 +89,6 @@
             gap: 15px;
         }
 
-        /* 1列目：種別エリア */
         .type-area {
             display: flex;
             flex-direction: column;
@@ -113,9 +108,9 @@
             letter-spacing: 12px;
         }
 
-        .type-limited { background-color: #e60012; color: #ffffff; } /* 赤：特急 */
-        .type-express { background-color: #009944; color: #ffffff; } /* 緑：急行 */
-        .type-local   { background-color: #0044cc; color: #ffffff; } /* 青：普通 */
+        .type-limited { background-color: #e60012; color: #ffffff; }
+        .type-express { background-color: #009944; color: #ffffff; }
+        .type-local   { background-color: #0044cc; color: #ffffff; }
 
         .sub-type {
             font-size: 13pt;
@@ -126,7 +121,6 @@
             width: 100%;
         }
 
-        /* 2列目：行先エリア */
         .destination-area {
             display: flex;
             flex-direction: column;
@@ -156,7 +150,6 @@
             margin-left: 8px;
         }
 
-        /* 3列目：時刻エリア */
         .info-area {
             display: flex;
             align-items: center;
@@ -181,7 +174,6 @@
 <body>
 
     <div class="main-board">
-        <!-- 上部コントロール（駅・方面の選択） -->
         <div class="board-header">
             <div class="select-group">
                 <span class="select-label">駅:</span>
@@ -192,22 +184,19 @@
             </div>
             <div class="select-group">
                 <span class="select-label">方面:</span>
-                <select id="directionSelect" class="station-select" onchange="updateBoard()">
+                <select id="directionSelect" class="station-select" onchange="loadTimetable()">
                     <option value="fukuoka">福岡（天神） 方面</option>
                     <option value="omuta">久留米・大牟田 方面</option>
                 </select>
             </div>
         </div>
 
-        <!-- トップタイトル表示エリア -->
         <div class="board-top-title">
-            <div id="dirTitleJa" class="direction-ja">福岡（天神） 方面</div>
-            <div id="dirTitleEn" class="direction-en">Fukuoka(Tenjin)</div>
+            <div id="dirTitleJa" class="direction-ja">読み込み中...</div>
+            <div id="dirTitleEn" class="direction-en">--</div>
         </div>
 
-        <div id="boardContent">
-            <!-- データがここに読み込まれます -->
-        </div>
+        <div id="boardContent"></div>
     </div>
 
     <script>
@@ -215,39 +204,26 @@
 
         async function loadTimetable() {
             const stationCode = document.getElementById('stationSelect').value;
-            const filename = `${stationCode}_timetable_holiday.json`;
+            const directionVal = document.getElementById('directionSelect').value; // 'fukuoka' または 'omuta'
+            
+            // リポジトリのファイル名規則 (例: T01_omuta_timetable_holiday.json) に完全に合わせる
+            const filename = `${stationCode}_${directionVal}_timetable_holiday.json`;
 
             try {
                 const response = await fetch(filename);
                 if (!response.ok) throw new Error("ファイルが見つかりません: " + filename);
                 
                 currentTimetableData = await response.json();
-                updateBoard();
+                renderBoard(currentTimetableData);
             } catch (error) {
                 console.error(error);
+                currentTimetableData = null;
                 document.getElementById('boardContent').innerHTML = `
-                    <div class="error-message">時刻表データの読み込みエラー (${stationCode})</div>
+                    <div class="error-message">指定された方面のデータがありません (${filename})</div>
                 `;
+                document.getElementById('dirTitleJa').textContent = 'データなし';
+                document.getElementById('dirTitleEn').textContent = 'No Data';
             }
-        }
-
-        function updateBoard() {
-            if (!currentTimetableData) return;
-
-            const directionVal = document.getElementById('directionSelect').value;
-            const titleJa = document.getElementById('dirTitleJa');
-            const titleEn = document.getElementById('dirTitleEn');
-
-            // 方面ごとのタイトル設定
-            if (directionVal === 'fukuoka') {
-                titleJa.textContent = '福岡（天神） 方面';
-                titleEn.textContent = 'Fukuoka(Tenjin)';
-            } else {
-                titleJa.textContent = '久留米・大牟田 方面';
-                titleEn.textContent = 'Kurume / Ōmuta';
-            }
-
-            renderBoard(currentTimetableData, directionVal);
         }
 
         function getSubType(type) {
@@ -275,33 +251,20 @@
             return map[dest] || '';
         }
 
-        function renderBoard(data, directionVal) {
+        function renderBoard(data) {
             const container = document.getElementById('boardContent');
             let html = '';
 
+            const titleJa = document.getElementById('dirTitleJa');
+            const titleEn = document.getElementById('dirTitleEn');
+            titleJa.textContent = data.direction || '方面別案内';
+            titleEn.textContent = data.directionEn || '';
+
             if (data && data.trains && data.trains.length > 0) {
-                // 方面に応じたフィルタリング
-                let filteredTrains = data.trains.filter(train => {
-                    let dest = train.destination;
-                    if (dest === "西鉄福岡") dest = "福岡（天神）";
-
-                    if (directionVal === 'fukuoka') {
-                        // 福岡（天神）方面の行先
-                        return dest.includes('福岡') || dest.includes('天神');
-                    } else {
-                        // 久留米・大牟田方面の行先（大牟田、柳川、花畑、大善寺、小郡、筑紫、二日市など）
-                        return !dest.includes('福岡') && !dest.includes('天神');
-                    }
-                });
-
-                if (filteredTrains.length === 0) {
-                    filteredTrains = data.trains;
-                }
-
                 const now = new Date();
                 const currentMinutes = now.getHours() * 60 + now.getMinutes();
 
-                let upcomingTrains = filteredTrains.filter(train => {
+                let upcomingTrains = data.trains.filter(train => {
                     const parts = train.time.split(':');
                     if (parts.length !== 2) return false;
                     const trainMinutes = parseInt(parts[0], 10) * 60 + parseInt(parts[1], 10);
@@ -309,10 +272,9 @@
                 });
 
                 if (upcomingTrains.length === 0) {
-                    upcomingTrains = filteredTrains;
+                    upcomingTrains = data.trains;
                 }
 
-                // 3列車分（3行）に抽出
                 const targetTrains = upcomingTrains.slice(0, 3);
 
                 targetTrains.forEach(train => {
@@ -321,12 +283,8 @@
                     else if (train.type === '急行') typeClass = 'type-express';
 
                     let dest = train.destination;
-                    if (dest === "西鉄福岡") {
-                        dest = "福岡（天神）";
-                    }
-                    if (dest && dest.includes("西鉄柳川")) {
-                        dest = "柳川";
-                    }
+                    if (dest === "西鉄福岡") dest = "福岡（天神）";
+                    if (dest && dest.includes("西鉄柳川")) dest = "柳川";
 
                     const subType = getSubType(train.type);
                     const subDest = getSubDestination(dest);
@@ -353,19 +311,19 @@
                     `;
                 });
             } else {
-                html = '<div class="error-message">本日のダイヤはありません</div>';
+                html = `<div class="error-message">本日のダイヤはありません</div>`;
             }
 
             container.innerHTML = html;
         }
 
-        // 初回ロード
         window.onload = function() {
             loadTimetable();
 
-            // 10秒ごとに自動更新
             setInterval(() => {
-                updateBoard();
+                if (currentTimetableData) {
+                    renderBoard(currentTimetableData);
+                }
             }, 10000);
         };
     </script>
