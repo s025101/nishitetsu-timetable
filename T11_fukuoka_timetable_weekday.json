@@ -11,39 +11,47 @@
         {"minute": 23, "destination": "西鉄福岡", "type": "普通"},
         {"minute": 37, "destination": "西鉄福岡", "type": "普通"},
         {"minute": 49, "destination": "西鉄福岡", "type": "普通"}
+        {"minute": 54, "destination": "西鉄福岡", "type": "普通"}
       ]
     },
     {
       "hour": 6,
       "departures": [
+        {"minute": 4, "destination": "西鉄福岡", "type": "普通"},
         {"minute": 16, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 32, "destination": "西鉄福岡", "type": "普通"},
+        {"minute": 27, "destination": "西鉄福岡", "type": "普通"},
         {"minute": 38, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 46, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 53, "destination": "西鉄福岡", "type": "普通"}
+        {"minute": 47, "destination": "西鉄福岡", "type": "普通"},
+        {"minute": 56, "destination": "西鉄福岡", "type": "普通"}
       ]
     },
     {
       "hour": 7,
       "departures": [
         {"minute": 5, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 10, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 22, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 33, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 38, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 49, "destination": "西鉄福岡", "type": "普通"}
+        {"minute": 9, "destination": "西鉄福岡", "type": "普通"},
+        {"minute": 16, "destination": "西鉄福岡", "type": "普通"},
+        {"minute": 23, "destination": "西鉄福岡", "type": "普通"},
+        {"minute": 30, "destination": "西鉄福岡", "type": "普通"},
+        {"minute": 36, "destination": "西鉄福岡", "type": "普通"}
+        {"minute": 42, "destination": "西鉄福岡", "type": "普通"} 
+        {"minute": 48, "destination": "西鉄福岡", "type": "普通"} 
+        {"minute": 54, "destination": "西鉄福岡", "type": "普通"}        
       ]
     },
     {
       "hour": 8,
       "departures": [
+        {"minute": 0, "destination": "西鉄福岡", "type": "普通"},
         {"minute": 6, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 16, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 30, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 42, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 47, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 57, "destination": "西鉄福岡", "type": "普通"}
-      ]
+        {"minute": 12, "destination": "西鉄福岡", "type": "普通"},
+        {"minute": 18, "destination": "西鉄福岡", "type": "普通"},
+        {"minute": 24, "destination": "西鉄福岡", "type": "普通"},
+        {"minute": 31, "destination": "西鉄福岡", "type": "普通"},
+        {"minute": 42, "destination": "西鉄福岡", "type": "普通"} 
+        {"minute": 42, "destination": "西鉄福岡", "type": "普通"}
+        {"minute": 51, "destination": "西鉄福岡", "type": "普通"}
+        {"minute": 57, "destination": "西鉄福岡", "type": "普通"}]
     },
     {
       "hour": 9,
@@ -60,7 +68,7 @@
       "hour": 10,
       "departures": [
         {"minute": 12, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 17, "destination": "西鉄福岡", "type": "普通"},
+        {"minute": 24, "destination": "西鉄福岡", "type": "普通"},
         {"minute": 27, "destination": "西鉄福岡", "type": "普通"},
         {"minute": 42, "destination": "西鉄福岡", "type": "普通"},
         {"minute": 47, "destination": "西鉄福岡", "type": "普通"},
@@ -128,66 +136,82 @@
         {"minute": 12, "destination": "西鉄福岡", "type": "普通"},
         {"minute": 17, "destination": "西鉄福岡", "type": "普通"},
         {"minute": 27, "destination": "西鉄福岡", "type": "普通"},
+        {"minute": 34, "destination": "西鉄福岡", "type": "普通"},
         {"minute": 42, "destination": "西鉄福岡", "type": "普通"},
         {"minute": 47, "destination": "西鉄福岡", "type": "普通"},
+        {"minute": 54, "destination": "西鉄福岡", "type": "普通"},
         {"minute": 57, "destination": "西鉄福岡", "type": "普通"}
       ]
     },
     {
       "hour": 17,
       "departures": [
+        {"minute": 4, "destination": "西鉄福岡", "type": "普通"},
         {"minute": 12, "destination": "西鉄福岡", "type": "普通"},
         {"minute": 17, "destination": "西鉄福岡", "type": "普通"},
+        {"minute": 24, "destination": "西鉄福岡", "type": "普通"},
         {"minute": 27, "destination": "西鉄福岡", "type": "普通"},
+        {"minute": 34, "destination": "西鉄福岡", "type": "普通"}
         {"minute": 42, "destination": "西鉄福岡", "type": "普通"},
         {"minute": 47, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 57, "destination": "西鉄福岡", "type": "普通"}
+        {"minute": 54, "destination": "西鉄福岡", "type": "普通"},
+        {"minute": 57, "destination": "西鉄福岡", "type": "普通"},
       ]
     },
     {
       "hour": 18,
       "departures": [
         {"minute": 12, "destination": "西鉄福岡", "type": "普通"},
+        {"minute": 14, "destination": "西鉄福岡", "type": "普通"},
         {"minute": 17, "destination": "西鉄福岡", "type": "普通"},
+        {"minute": 24, "destination": "西鉄福岡", "type": "普通"},
         {"minute": 27, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 45, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 50, "destination": "西鉄福岡", "type": "普通"},
+        {"minute": 42, "destination": "西鉄福岡", "type": "普通"}
+        {"minute": 52, "destination": "西鉄福岡", "type": "普通"},
         {"minute": 56, "destination": "西鉄福岡", "type": "普通"}
       ]
     },
     {
       "hour": 19,
       "departures": [
-        {"minute": 15, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 26, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 45, "destination": "西鉄福岡", "type": "普通"},
+        {"minute": 5, "destination": "西鉄福岡", "type": "普通"},
+        {"minute": 12, "destination": "西鉄福岡", "type": "普通"},
+        {"minute": 22, "destination": "西鉄福岡", "type": "普通"},
+        {"minute": 26, "destination": "西鉄福岡", "type": "普通"}
+        {"minute": 42, "destination": "西鉄福岡", "type": "普通"},
+        {"minute": 47, "destination": "西鉄福岡", "type": "普通"},
         {"minute": 56, "destination": "西鉄福岡", "type": "普通"}
       ]
     },
     {
       "hour": 20,
       "departures": [
-        {"minute": 15, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 26, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 45, "destination": "西鉄福岡", "type": "普通"},
+        {"minute": 7, "destination": "西鉄福岡", "type": "普通"},
+        {"minute": 17, "destination": "西鉄福岡", "type": "普通"},
+        {"minute": 27, "destination": "西鉄福岡", "type": "普通"},
+        {"minute": 42, "destination": "西鉄福岡", "type": "普通"}
+        {"minute": 47, "destination": "西鉄福岡", "type": "普通"},
         {"minute": 56, "destination": "西鉄福岡", "type": "普通"}
       ]
     },
     {
       "hour": 21,
       "departures": [
-        {"minute": 15, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 26, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 45, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 56, "destination": "西鉄福岡", "type": "普通"}
+        {"minute": 12, "destination": "西鉄福岡", "type": "普通"},
+        {"minute": 20, "destination": "西鉄福岡", "type": "普通"},
+        {"minute": 27, "destination": "西鉄福岡", "type": "普通"},
+        {"minute": 45, "destination": "西鉄福岡", "type": "普通"}
+        {"minute": 50, "destination": "西鉄福岡", "type": "普通"},
       ]
     },
     {
       "hour": 22,
       "departures": [
+        {"minute": 5, "destination": "西鉄福岡", "type": "普通"},
         {"minute": 15, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 26, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 39, "destination": "西鉄福岡", "type": "普通"}
+        {"minute": 21, "destination": "西鉄福岡", "type": "普通"}
+        {"minute": 35, "destination": "西鉄福岡", "type": "普通"},
+        {"minute": 51, "destination": "西鉄福岡", "type": "普通"}
       ]
     },
     {
