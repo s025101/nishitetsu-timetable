@@ -202,7 +202,7 @@
     <script>
         let currentTimetableData = null;
 
-        // 全角カッコを半角に強制変換する関数
+        // JSONの中身をいじらず、ここで全角カッコを半角に強制変換する関数
         function toHalfWidthBracket(str) {
             if (!str) return '';
             return str.replace(/（/g, '(').replace(/）/g, ')');
@@ -263,7 +263,7 @@
             const titleJa = document.getElementById('dirTitleJa');
             const titleEn = document.getElementById('dirTitleEn');
             
-            // 取得した方向のタイトルも強制的に半角カッコへ変換
+            // JSONから読み込んだ方向のタイトルをここで強制的に半角カッコへ変換！
             titleJa.textContent = toHalfWidthBracket(data.direction || '方面別案内');
             titleEn.textContent = data.directionEn || '';
 
@@ -290,10 +290,10 @@
                     else if (train.type === '急行') typeClass = 'type-express';
 
                     let dest = train.destination;
-                    if (dest === "西鉄福岡" || dest === "西鉄福岡（天神）") dest = "福岡(天神)";
+                    if (dest === "西鉄福岡") dest = "福岡(天神)";
                     if (dest && dest.includes("西鉄柳川")) dest = "柳川";
                     
-                    // 行先名も念のため全角カッコがあれば半角に統一
+                    // 行先名もここで強制的に半角カッコへ変換！
                     dest = toHalfWidthBracket(dest);
 
                     const subType = getSubType(train.type);
