@@ -99,19 +99,19 @@
             gap: 2px;
         }
 
-        /* 行先の幅を固定し、文字数で綺麗に収まるように調整 */
+        /* 行先の基本設定（3文字などの標準用） */
         .destination {
             font-size: 32pt;
             font-weight: 700;
             white-space: nowrap;
-            letter-spacing: 12px;
+            letter-spacing: 16px;
             margin-left: 8px;
         }
 
-        /* 2文字の駅名用 */
+        /* 2文字の駅名用（文字間隔を広げて3文字分の幅に合わせる） */
         .destination.len-2 {
-            letter-spacing: 56px;
-            margin-right: -56px;
+            letter-spacing: 72px;
+            margin-right: -72px;
         }
 
         .sub-destination {
@@ -162,14 +162,16 @@
     </div>
 
     <script>
+        let currentTimetableData = null;
+
         async function loadTimetable(stationCode) {
             try {
                 const filename = `${stationCode}_timetable_holiday.json`;
                 const response = await fetch(filename);
                 if (!response.ok) throw new Error("ファイルが見つかりません: " + filename);
                 
-                const data = await response.json();
-                renderBoard(data);
+                currentTimetableData = await response.json();
+                renderBoard(currentTimetableData);
             } catch (error) {
                 console.error(error);
                 document.getElementById('boardContent').innerHTML = `
@@ -213,7 +215,7 @@
             const container = document.getElementById('boardContent');
             let html = '';
 
-            if (data.trains && data.trains.length > 0) {
+            if (data && data.trains && data.trains.length > 0) {
                 const now = new Date();
                 const currentMinutes = now.getHours() * 60 + now.getMinutes();
 
@@ -238,7 +240,6 @@
 
                     let dest = train.destination;
                     
-                    // JSONが「西鉄福岡」であっても強制的に「福岡（天神）」に置換する
                     if (dest === "西鉄福岡") {
                         dest = "福岡（天神）";
                     }
@@ -277,9 +278,16 @@
             container.innerHTML = html;
         }
 
-        // 初期ロードはT01から
+        // 初回ロード
         window.onload = function() {
             loadTimetable('T01');
+
+            // 10秒ごとに自動更新
+            setInterval(() => {
+                if (currentTimetableData) {
+                    renderBoard(currentTimetableData);
+                }
+            }, 10000);
         };
     </script>
 </body>
