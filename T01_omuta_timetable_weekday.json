@@ -1,8 +1,7 @@
 {
-  "station": "西鉄福岡(天神) 駅 時刻表",
+  "station": "西鉄福岡(天神)",
   "direction": "大牟田方面",
   "directionEn": "Omuta",
-  "day_type": "平日",
   "timetable": [
     {
       "hour": 5,
@@ -31,7 +30,7 @@
         { "minute": 3, "type": "普通", "destination": "筑紫", "note": null },
         { "minute": 7, "type": "急行", "destination": "花畑", "note": "花畑で下り普通に接続" },
         { "minute": 12, "type": "普通", "destination": "二日市", "note": null },
-        { "minute": 18, "type": "急行", "destination": "大宰府", "note": null },
+        { "minute": 18, "type": "急行", "destination": "太宰府", "note": null },
         { "minute": 22, "type": "普通", "destination": "筑紫", "note": null },
         { "minute": 26, "type": "急行", "destination": "小郡", "note": null },
         { "minute": 30, "type": "特急", "destination": "大牟田", "note": null },
@@ -56,7 +55,7 @@
         { "minute": 35, "type": "急行", "destination": "花畑", "note": "花畑で下り普通に接続" },
         { "minute": 40, "type": "普通", "destination": "二日市", "note": null },
         { "minute": 46, "type": "普通", "destination": "大善寺", "note": null },
-        { "minute": 53, "type": "急行", "destination": "大宰府", "note": null },
+        { "minute": 53, "type": "急行", "destination": "太宰府", "note": null },
         { "minute": 56, "type": "普通", "destination": "筑紫", "note": null }
       ]
     },
@@ -66,13 +65,13 @@
         { "minute": 0, "type": "特急", "destination": "大牟田", "note": null },
         { "minute": 5, "type": "急行", "destination": "花畑", "note": "花畑で下り普通に接続" },
         { "minute": 10, "type": "普通", "destination": "二日市", "note": null },
-        { "minute": 17, "type": "急行", "destination": "大宰府", "note": null },
+        { "minute": 17, "type": "急行", "destination": "太宰府", "note": null },
         { "minute": 21, "type": "普通", "destination": "大善寺", "note": null },
         { "minute": 27, "type": "普通", "destination": "筑紫", "note": null },
         { "minute": 30, "type": "特急", "destination": "大牟田", "note": null },
         { "minute": 36, "type": "急行", "destination": "花畑", "note": "花畑で下り普通に接続" },
         { "minute": 41, "type": "普通", "destination": "二日市", "note": null },
-        { "minute": 48, "type": "急行", "destination": "大宰府", "note": null },
+        { "minute": 48, "type": "急行", "destination": "太宰府", "note": null },
         { "minute": 52, "type": "普通", "destination": "大善寺", "note": null },
         { "minute": 57, "type": "普通", "destination": "筑紫", "note": null }
       ]
@@ -82,11 +81,11 @@
       "trains": [
         { "minute": 0, "type": "特急", "destination": "大牟田", "note": null },
         { "minute": 6, "type": "急行", "destination": "花畑", "note": "花畑で下り普通に接続" },
-        { "minute": 18, "type": "急行", "destination": "大宰府", "note": null },
+        { "minute": 18, "type": "急行", "destination": "太宰府", "note": null },
         { "minute": 23, "type": "普通", "destination": "大善寺", "note": null },
         { "minute": 30, "type": "特急", "destination": "大牟田", "note": null },
         { "minute": 36, "type": "急行", "destination": "花畑", "note": "花畑で下り普通に接続" },
-        { "minute": 48, "type": "急行", "destination": "大宰府", "note": null },
+        { "minute": 48, "type": "急行", "destination": "太宰府", "note": null },
         { "minute": 53, "type": "普通", "destination": "大善寺", "note": null }
       ]
     },
@@ -95,11 +94,10 @@
       "trains": [
         { "minute": 0, "type": "特急", "destination": "大牟田", "note": null },
         { "minute": 6, "type": "急行", "destination": "花畑", "note": "花畑で下り普通に接続" },
-        { "minute": 18, "type": "急行", "destination": "大宰府", "note": null },
+        { "minute": 18, "type": "急行", "destination": "太宰府", "note": null },
         { "minute": 23, "type": "普通", "destination": "大善寺", "note": null },
         { "minute": 30, "type": "特急", "destination": "大牟田", "note": null },
         { "minute": 36, "type": "急行", "destination": "花畑", "note": "花畑で下り普通に接続" },
-        { "minute": 48, "type": "急行", "destination": "大宰府", "note": null },
         { "minute": 53, "type": "普通", "destination": "大善寺", "note": null }
       ]
     },
@@ -108,11 +106,9 @@
       "trains": [
         { "minute": 0, "type": "特急", "destination": "大牟田", "note": null },
         { "minute": 6, "type": "急行", "destination": "花畑", "note": "花畑で下り普通に接続" },
-        { "minute": 18, "type": "急行", "destination": "大宰府", "note": null },
         { "minute": 23, "type": "普通", "destination": "大善寺", "note": null },
         { "minute": 30, "type": "特急", "destination": "大牟田", "note": null },
         { "minute": 36, "type": "急行", "destination": "花畑", "note": "花畑で下り普通に接続" },
-        { "minute": 48, "type": "急行", "destination": "大宰府", "note": null },
         { "minute": 53, "type": "普通", "destination": "大善寺", "note": null }
       ]
     },
@@ -121,11 +117,9 @@
       "trains": [
         { "minute": 0, "type": "特急", "destination": "大牟田", "note": null },
         { "minute": 6, "type": "急行", "destination": "花畑", "note": "花畑で下り普通に接続" },
-        { "minute": 18, "type": "急行", "destination": "大宰府", "note": null },
         { "minute": 23, "type": "普通", "destination": "大善寺", "note": null },
         { "minute": 30, "type": "特急", "destination": "大牟田", "note": null },
         { "minute": 36, "type": "急行", "destination": "花畑", "note": "花畑で下り普通に接続" },
-        { "minute": 48, "type": "急行", "destination": "大宰府", "note": null },
         { "minute": 53, "type": "普通", "destination": "大善寺", "note": null }
       ]
     },
@@ -134,11 +128,9 @@
       "trains": [
         { "minute": 0, "type": "特急", "destination": "大牟田", "note": null },
         { "minute": 6, "type": "急行", "destination": "花畑", "note": "花畑で下り普通に接続" },
-        { "minute": 18, "type": "急行", "destination": "大宰府", "note": null },
         { "minute": 23, "type": "普通", "destination": "大善寺", "note": null },
         { "minute": 30, "type": "特急", "destination": "大牟田", "note": null },
         { "minute": 36, "type": "急行", "destination": "花畑", "note": "花畑で下り普通に接続" },
-        { "minute": 48, "type": "急行", "destination": "大宰府", "note": null },
         { "minute": 53, "type": "普通", "destination": "大善寺", "note": null }
       ]
     },
@@ -147,11 +139,9 @@
       "trains": [
         { "minute": 0, "type": "特急", "destination": "大牟田", "note": null },
         { "minute": 6, "type": "急行", "destination": "花畑", "note": "花畑で下り普通に接続" },
-        { "minute": 18, "type": "急行", "destination": "大宰府", "note": null },
         { "minute": 23, "type": "普通", "destination": "大善寺", "note": null },
         { "minute": 30, "type": "特急", "destination": "大牟田", "note": null },
         { "minute": 36, "type": "急行", "destination": "花畑", "note": "花畑で下り普通に接続" },
-        { "minute": 48, "type": "急行", "destination": "大宰府", "note": null },
         { "minute": 53, "type": "普通", "destination": "大善寺", "note": null }
       ]
     },
@@ -160,14 +150,10 @@
       "trains": [
         { "minute": 0, "type": "特急", "destination": "大牟田", "note": null },
         { "minute": 6, "type": "急行", "destination": "花畑", "note": "花畑で下り普通に接続" },
-        { "minute": 15, "type": "普通", "destination": "筑紫", "note": null },
-        { "minute": 22, "type": "急行", "destination": "小郡", "note": null },
-        { "minute": 26, "type": "普通", "destination": "大善寺", "note": null },
+        { "minute": 23, "type": "普通", "destination": "大善寺", "note": null },
         { "minute": 30, "type": "特急", "destination": "大牟田", "note": null },
-        { "minute": 37, "type": "急行", "destination": "花畑", "note": "花畑で下り普通に接続" },
-        { "minute": 45, "type": "普通", "destination": "筑紫", "note": null },
-        { "minute": 52, "type": "急行", "destination": "小郡", "note": null },
-        { "minute": 56, "type": "普通", "destination": "大善寺", "note": null }
+        { "minute": 36, "type": "急行", "destination": "花畑", "note": "花畑で下り普通に接続" },
+        { "minute": 53, "type": "普通", "destination": "大善寺", "note": null }
       ]
     },
     {
