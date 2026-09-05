@@ -1,6 +1,7 @@
 {
   "station": "都府楼前",
   "direction": "西鉄福岡（天神）方面",
+  "directionEn": "Fukuoka (Tenjin)",
   "daytype": "平日",
   "trains": [
     { "time": "05:23", "type": "普通", "destination": "西鉄福岡" },
