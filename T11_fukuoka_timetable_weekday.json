@@ -217,7 +217,7 @@
     {
       "hour": 23,
       "departures": [
-        {"minute": 3, "destination": "西鉄福岡", "type": "普通"},
+        {"minute": 4, "destination": "西鉄福岡", "type": "普通"},
         {"minute": 29, "destination": "西鉄福岡", "type": "普通"}
       ]
     }
