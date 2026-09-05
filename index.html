@@ -212,7 +212,12 @@
             const stationCode = document.getElementById('stationSelect').value;
             const directionVal = document.getElementById('directionSelect').value; 
             
-            const filename = `${stationCode}_${directionVal}_timetable_holiday.json`;
+            // 本日の曜日を自動判定 (0は日曜、6は土曜)
+            const now = new Date();
+            const dayOfWeek = now.getDay();
+            const dayType = (dayOfWeek === 0 || dayOfWeek === 6) ? 'holiday' : 'weekday';
+            
+            const filename = `${stationCode}_${directionVal}_timetable_${dayType}.json`;
 
             try {
                 const response = await fetch(filename);
@@ -246,8 +251,10 @@
                 '花畑': 'Hanabatake',
                 '大善寺': 'Daizenji',
                 '津福': 'Tsubuku',
+                '西鉄小郡': 'Ogōri',
                 '小郡': 'Ogōri',
                 '筑紫': 'Chikushi',
+                '西鉄二日市': 'Futsukaichi',
                 '二日市': 'Futsukaichi',
                 '太宰府': 'Dazaifu',
                 '福岡(天神)': 'Fukuoka(Tenjin)',
@@ -269,15 +276,15 @@
             let rawDir = data.direction || '方面別案内';
             rawDir = rawDir.replace('西鉄福岡', '福岡');
             titleJa.textContent = convertBrackets(rawDir);
-            titleEn.textContent = data.directionEn || (data.direction && data.direction.includes('大牟田') ? 'for Futsukaichi, Ogori & Omuta' : 'for Nishitetsu Fukuoka (Tenjin)');
+            titleEn.textContent = data.directionEn || '';
 
-            // timetable構造をフラットな列車リストに変換する処理
+            // timetable構造（trains配列）をフラットな列車リストに変換する処理
             let trains = [];
             if (data && data.timetable) {
                 data.timetable.forEach(hourGroup => {
                     const h = hourGroup.hour;
-                    if (hourGroup.departures) {
-                        hourGroup.departures.forEach(dep => {
+                    if (hourGroup.trains) {
+                        hourGroup.trains.forEach(dep => {
                             const minStr = String(dep.minute).padStart(2, '0');
                             const hourStr = String(h).padStart(2, '0');
                             trains.push({
