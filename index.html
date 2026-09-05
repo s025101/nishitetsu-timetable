@@ -23,22 +23,58 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.8);
         }
 
+        /* ヘッダー（駅・方面選択エリア） */
         .board-header {
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-between;
             align-items: center;
             background-color: #000000;
-            padding: 8px 15px;
+            padding: 10px 15px;
             border-bottom: 3px solid #333;
+            gap: 10px;
+        }
+
+        .select-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .select-label {
+            font-size: 11pt;
+            color: #aaa;
         }
 
         .station-select {
             background-color: #111;
             color: #fff;
             border: 1px solid #666;
-            font-size: 15pt;
+            font-size: 14pt;
             padding: 4px 8px;
             border-radius: 4px;
+        }
+
+        /* 写真のようなディスプレイ上部の方面表示エリア */
+        .board-top-title {
+            background-color: #000000;
+            text-align: center;
+            padding: 10px 0 6px 0;
+            border-bottom: 2px solid #222;
+        }
+
+        .direction-ja {
+            font-size: 18pt;
+            font-weight: 700;
+            letter-spacing: 4px;
+            color: #ffffff;
+        }
+
+        .direction-en {
+            font-size: 10pt;
+            color: #888;
+            letter-spacing: 1px;
+            margin-top: 2px;
+            font-family: "Consolas", "Courier New", monospace;
         }
 
         /* 列車行コンテナ */
@@ -99,7 +135,6 @@
             gap: 2px;
         }
 
-        /* 行先の基本設定（3文字などの標準用） */
         .destination {
             font-size: 32pt;
             font-weight: 700;
@@ -108,7 +143,6 @@
             margin-left: 8px;
         }
 
-        /* 2文字の駅名用（文字間隔を広げて3文字分の幅に合わせる） */
         .destination.len-2 {
             letter-spacing: 72px;
             margin-right: -72px;
@@ -147,13 +181,29 @@
 <body>
 
     <div class="main-board">
+        <!-- 上部コントロール（駅・方面選択） -->
         <div class="board-header">
-            <div>
-                <select id="stationSelect" class="station-select" onchange="changeStation()">
+            <div class="select-group">
+                <span class="select-label">駅:</span>
+                <select id="stationSelect" class="station-select" onchange="onStationChange()">
                     <option value="T01">T01: 西鉄福岡（天神）</option>
                     <option value="T11">T11: 都府楼前</option>
                 </select>
             </div>
+            <div class="select-group">
+                <span class="select-label">方面:</span>
+                <select id="directionSelect" class="station-select" onchange="updateBoard()">
+                    <option value="fukuoka">福岡（天神） 方面</option>
+                    <option value="omuta">久留米・大牟田 方面</option>
+                    <option value="dazaifu">太宰府 方面</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- 写真のようなトップ方面タイトル -->
+        <div class="board-top-title">
+            <div id="dirTitleJa" class="direction-ja">福岡（天神） 方面</div>
+            <div id="dirTitleEn" class="direction-en">Fukuoka(Tenjin)</div>
         </div>
 
         <div id="boardContent">
@@ -171,7 +221,7 @@
                 if (!response.ok) throw new Error("ファイルが見つかりません: " + filename);
                 
                 currentTimetableData = await response.json();
-                renderBoard(currentTimetableData);
+                updateBoard();
             } catch (error) {
                 console.error(error);
                 document.getElementById('boardContent').innerHTML = `
@@ -180,9 +230,8 @@
             }
         }
 
-        function changeStation() {
-            const select = document.getElementById('stationSelect');
-            const stationCode = select.value;
+        function onStationChange() {
+            const stationCode = document.getElementById('stationSelect').value;
             loadTimetable(stationCode);
         }
 
@@ -211,15 +260,55 @@
             return map[dest] || '';
         }
 
-        function renderBoard(data) {
+        function updateBoard() {
+            if (!currentTimetableData) return;
+
+            const directionVal = document.getElementById('directionSelect').value;
+            
+            // トップタイトルの切り替え
+            const titleJa = document.getElementById('dirTitleJa');
+            const titleEn = document.getElementById('dirTitleEn');
+            if (directionVal === 'fukuoka') {
+                titleJa.textContent = '福岡（天神） 方面';
+                titleEn.textContent = 'Fukuoka (Tenjin)';
+            } else if (directionVal === 'omuta') {
+                titleJa.textContent = '久留米・大牟田 方面';
+                titleEn.textContent = 'Kurume / Ōmuta';
+            } else if (directionVal === 'dazaifu') {
+                titleJa.textContent = '太宰府 方面';
+                titleEn.textContent = 'Dazaifu';
+            }
+
+            renderBoard(currentTimetableData, directionVal);
+        }
+
+        function renderBoard(data, directionVal) {
             const container = document.getElementById('boardContent');
             let html = '';
 
             if (data && data.trains && data.trains.length > 0) {
+                // 方面に応じたフィルタリング（必要に応じて条件を調整してね）
+                let filteredTrains = data.trains.filter(train => {
+                    let dest = train.destination === "西鉄福岡" ? "福岡（天神）" : train.destination;
+                    if (directionVal === 'fukuoka') {
+                        return dest.includes('福岡') || dest.includes('天神');
+                    } else if (directionVal === 'omuta') {
+                        return dest.includes('大牟田') || dest.includes('柳川') || dest.includes('花畑') || dest.includes('大善寺') || dest.includes('小郡') || dest.includes('筑紫') || dest.includes('二日市');
+                    } else if (directionVal === 'dazaifu') {
+                        return dest.includes('太宰府');
+                    }
+                    return true;
+                });
+
+                // 該当する列車がない場合は全列車からフォールバック
+                if (filteredTrains.length === 0) {
+                    filteredTrains = data.trains;
+                }
+
                 const now = new Date();
                 const currentMinutes = now.getHours() * 60 + now.getMinutes();
 
-                let upcomingTrains = data.trains.filter(train => {
+                let upcomingTrains = filteredTrains.filter(train => {
                     const parts = train.time.split(':');
                     if (parts.length !== 2) return false;
                     const trainMinutes = parseInt(parts[0], 10) * 60 + parseInt(parts[1], 10);
@@ -227,7 +316,7 @@
                 });
 
                 if (upcomingTrains.length === 0) {
-                    upcomingTrains = data.trains;
+                    upcomingTrains = filteredTrains;
                 }
 
                 // 3列車分（3行）に抽出
@@ -239,7 +328,6 @@
                     else if (train.type === '急行') typeClass = 'type-express';
 
                     let dest = train.destination;
-                    
                     if (dest === "西鉄福岡") {
                         dest = "福岡（天神）";
                     }
@@ -284,9 +372,7 @@
 
             // 10秒ごとに自動更新
             setInterval(() => {
-                if (currentTimetableData) {
-                    renderBoard(currentTimetableData);
-                }
+                updateBoard();
             }, 10000);
         };
     </script>
