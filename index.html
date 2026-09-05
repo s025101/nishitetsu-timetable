@@ -179,14 +179,14 @@
                 <span class="select-label">駅:</span>
                 <select id="stationSelect" class="station-select" onchange="loadTimetable()">
                     <option value="T01">T01: 西鉄福岡(天神)</option>
-                    <option value="T11">T11: 都府楼前</option>
+                    <option value="T11" selected>T11: 都府楼前</option>
                 </select>
             </div>
             <div class="select-group">
                 <span class="select-label">方面:</span>
                 <select id="directionSelect" class="station-select" onchange="loadTimetable()">
                     <option value="fukuoka">福岡(天神) 方面</option>
-                    <option value="omuta">大牟田 方面</option>
+                    <option value="omuta" selected>大牟田 方面</option>
                 </select>
             </div>
         </div>
@@ -202,12 +202,10 @@
     <script>
         let currentTimetableData = null;
 
-        // 文字列中の全角カッコをすべて半角に強制置換する関数
+        // 全角カッコを半角に置換する関数
         function convertBrackets(str) {
             if (!str) return '';
-            return str
-                .replace(/（/g, '(')
-                .replace(/）/g, ')');
+            return str.replace(/（/g, '(').replace(/）/g, ')');
         }
 
         async function loadTimetable() {
@@ -226,7 +224,7 @@
                 console.error(error);
                 currentTimetableData = null;
                 document.getElementById('boardContent').innerHTML = `
-                    <div class="error-message">指定された方面のデータがありません (${filename})</div>
+                    <div class="error-message">ファイルが見つかりません (${filename})</div>
                 `;
                 document.getElementById('dirTitleJa').textContent = 'データなし';
                 document.getElementById('dirTitleEn').textContent = 'No Data';
@@ -267,17 +265,36 @@
             const titleJa = document.getElementById('dirTitleJa');
             const titleEn = document.getElementById('dirTitleEn');
             
-            // 方面タイトル：「西鉄福岡」を「福岡」に変えてから、カッコ全体を半角にする
+            // 方面タイトルの設定
             let rawDir = data.direction || '方面別案内';
             rawDir = rawDir.replace('西鉄福岡', '福岡');
             titleJa.textContent = convertBrackets(rawDir);
-            titleEn.textContent = data.directionEn || '';
+            titleEn.textContent = data.directionEn || (data.direction && data.direction.includes('大牟田') ? 'for Futsukaichi, Ogori & Omuta' : 'for Nishitetsu Fukuoka (Tenjin)');
 
-            if (data && data.trains && data.trains.length > 0) {
+            // timetable構造をフラットな列車リストに変換する処理
+            let trains = [];
+            if (data && data.timetable) {
+                data.timetable.forEach(hourGroup => {
+                    const h = hourGroup.hour;
+                    if (hourGroup.departures) {
+                        hourGroup.departures.forEach(dep => {
+                            const minStr = String(dep.minute).padStart(2, '0');
+                            const hourStr = String(h).padStart(2, '0');
+                            trains.push({
+                                type: dep.type || '普通',
+                                destination: dep.destination,
+                                time: `${hourStr}:${minStr}`
+                            });
+                        });
+                    }
+                });
+            }
+
+            if (trains.length > 0) {
                 const now = new Date();
                 const currentMinutes = now.getHours() * 60 + now.getMinutes();
 
-                let upcomingTrains = data.trains.filter(train => {
+                let upcomingTrains = trains.filter(train => {
                     const parts = train.time.split(':');
                     if (parts.length !== 2) return false;
                     const trainMinutes = parseInt(parts[0], 10) * 60 + parseInt(parts[1], 10);
@@ -285,7 +302,7 @@
                 });
 
                 if (upcomingTrains.length === 0) {
-                    upcomingTrains = data.trains;
+                    upcomingTrains = trains;
                 }
 
                 const targetTrains = upcomingTrains.slice(0, 3);
@@ -297,7 +314,6 @@
 
                     let dest = train.destination;
                     
-                    // 「西鉄福岡」が含まれていたら「福岡(天神)」に置き換える
                     if (dest && dest.includes('西鉄福岡')) {
                         dest = '福岡(天神)';
                     }
@@ -305,7 +321,6 @@
                         dest = '柳川';
                     }
 
-                    // 念のためすべての文字の全角カッコを半角に強制置換
                     dest = convertBrackets(dest);
 
                     const subType = getSubType(train.type);
