@@ -202,11 +202,16 @@
     <script>
         let currentTimetableData = null;
 
+        // 全角カッコを半角に強制変換する関数
+        function toHalfWidthBracket(str) {
+            if (!str) return '';
+            return str.replace(/（/g, '(').replace(/）/g, ')');
+        }
+
         async function loadTimetable() {
             const stationCode = document.getElementById('stationSelect').value;
-            const directionVal = document.getElementById('directionSelect').value; // 'fukuoka' または 'omuta'
+            const directionVal = document.getElementById('directionSelect').value; 
             
-            // リポジトリのファイル名規則 (例: T01_omuta_timetable_holiday.json) に完全に合わせる
             const filename = `${stationCode}_${directionVal}_timetable_holiday.json`;
 
             try {
@@ -257,7 +262,9 @@
 
             const titleJa = document.getElementById('dirTitleJa');
             const titleEn = document.getElementById('dirTitleEn');
-            titleJa.textContent = data.direction || '方面別案内';
+            
+            // 取得した方向のタイトルも強制的に半角カッコへ変換
+            titleJa.textContent = toHalfWidthBracket(data.direction || '方面別案内');
             titleEn.textContent = data.directionEn || '';
 
             if (data && data.trains && data.trains.length > 0) {
@@ -283,8 +290,11 @@
                     else if (train.type === '急行') typeClass = 'type-express';
 
                     let dest = train.destination;
-                    if (dest === "西鉄福岡") dest = "福岡(天神)";
+                    if (dest === "西鉄福岡" || dest === "西鉄福岡（天神）") dest = "福岡(天神)";
                     if (dest && dest.includes("西鉄柳川")) dest = "柳川";
+                    
+                    // 行先名も念のため全角カッコがあれば半角に統一
+                    dest = toHalfWidthBracket(dest);
 
                     const subType = getSubType(train.type);
                     const subDest = getSubDestination(dest);
