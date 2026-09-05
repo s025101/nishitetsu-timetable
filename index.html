@@ -202,14 +202,12 @@
     <script>
         let currentTimetableData = null;
 
-        // 全角カッコを強制的に半角にする補助関数
-        function toHalfWidthBracket(str) {
+        // 文字列中の全角カッコをすべて半角に強制置換する関数
+        function convertBrackets(str) {
             if (!str) return '';
             return str
                 .replace(/（/g, '(')
-                .replace(/）/g, ')')
-                .replace(/\uFF08/g, '(')
-                .replace(/\uFF09/g, ')');
+                .replace(/）/g, ')');
         }
 
         async function loadTimetable() {
@@ -255,7 +253,9 @@
                 '二日市': 'Futsukaichi',
                 '太宰府': 'Dazaifu',
                 '福岡(天神)': 'Fukuoka(Tenjin)',
-                '西鉄福岡': 'Fukuoka(Tenjin)'
+                '西鉄福岡': 'Fukuoka(Tenjin)',
+                '西鉄福岡(天神)': 'Fukuoka(Tenjin)',
+                '西鉄福岡（天神）': 'Fukuoka(Tenjin)'
             };
             return map[dest] || '';
         }
@@ -267,12 +267,10 @@
             const titleJa = document.getElementById('dirTitleJa');
             const titleEn = document.getElementById('dirTitleEn');
             
-            // タイトルに「西鉄福岡」が含まれていたら「福岡(天神)」に置き換えてカッコも半角にする
+            // 方面タイトル：「西鉄福岡」を「福岡」に変えてから、カッコ全体を半角にする
             let rawDir = data.direction || '方面別案内';
-            if (rawDir.includes('西鉄福岡')) {
-                rawDir = rawDir.replace('西鉄福岡', '福岡');
-            }
-            titleJa.textContent = toHalfWidthBracket(rawDir);
+            rawDir = rawDir.replace('西鉄福岡', '福岡');
+            titleJa.textContent = convertBrackets(rawDir);
             titleEn.textContent = data.directionEn || '';
 
             if (data && data.trains && data.trains.length > 0) {
@@ -299,16 +297,16 @@
 
                     let dest = train.destination;
                     
-                    // 「西鉄福岡」が含まれていれば問答無用で「福岡(天神)」にする！
+                    // 「西鉄福岡」が含まれていたら「福岡(天神)」に置き換える
                     if (dest && dest.includes('西鉄福岡')) {
                         dest = '福岡(天神)';
                     }
-                    if (dest && dest.includes("西鉄柳川")) {
-                        dest = "柳川";
+                    if (dest && dest.includes('西鉄柳川')) {
+                        dest = '柳川';
                     }
 
-                    // 念のため他の場所でもカッコがあれば半角に統一
-                    dest = toHalfWidthBracket(dest);
+                    // 念のためすべての文字の全角カッコを半角に強制置換
+                    dest = convertBrackets(dest);
 
                     const subType = getSubType(train.type);
                     const subDest = getSubDestination(dest);
