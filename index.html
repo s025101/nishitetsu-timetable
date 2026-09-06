@@ -100,6 +100,11 @@
     width: 280px;
     white-space: nowrap;
   }
+  /* 2文字の場合、3文字分の幅いっぱいに文字間を広げる */
+  .dest-main.two-chars {
+    display: flex;
+    justify-content: space-between;
+  }
   .dest-en {
     font-size: 16px;
     color: #cccccc;
@@ -139,7 +144,7 @@
     font-weight: bold;
     letter-spacing: 2px;
   }
-  /* 2行目：黒から青へのグラデーション背景（1行目と左右のパディングを完全に一致させて幅を合わせる） */
+  /* 2行目：黒から青へのグラデーション背景 */
   .notice-row {
     background: linear-gradient(to bottom, #000000, #0a2347);
     color: #ffffff;
@@ -177,7 +182,7 @@
     <span class="direction-subtitle">Omuta</span>
   </div>
 
-  <!-- 1本目：急行 花畑 -->
+  <!-- 1本目：急行 花畑 (2文字・文字間を広げる) -->
   <div class="train-item">
     <div class="train-row">
       <div class="type-area">
@@ -185,7 +190,7 @@
         <div class="type-en">Express</div>
       </div>
       <div class="dest-area">
-        <div class="dest-main">花畑</div>
+        <div class="dest-main two-chars"><span>花</span><span>畑</span></div>
         <div class="dest-en">Hanabatake</div>
       </div>
       <div class="specs-area">
@@ -200,7 +205,7 @@
     </div>
   </div>
 
-  <!-- 2本目：普通 大善寺 -->
+  <!-- 2本目：普通 大善寺 (3文字) -->
   <div class="train-item">
     <div class="train-row">
       <div class="type-area">
@@ -219,7 +224,7 @@
     </div>
   </div>
 
-  <!-- 3本目：特急 大牟田 -->
+  <!-- 3本目：特急 大牟田 (3文字) -->
   <div class="train-item">
     <div class="train-row">
       <div class="type-area">
