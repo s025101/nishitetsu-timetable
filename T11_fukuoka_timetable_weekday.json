@@ -1,224 +1,256 @@
 {
-  "station": "都府楼前駅",
-  "line": "西鉄天神大牟田線",
-  "direction": "西鉄福岡（天神）方面",
-  "directionEn": "Fukuoka (Tenjin)",
-  "day_type": "平日",
+  "station": "西鉄福岡(天神)",
+  "direction": "大牟田方面",
+  "directionEn": "Omuta",
   "timetable": [
     {
       "hour": 5,
-      "departures": [
-        {"minute": 23, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 37, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 49, "destination": "西鉄福岡", "type": "普通"}
-        {"minute": 54, "destination": "西鉄福岡", "type": "普通"}
+      "trains": [
+        { "minute": 16, "type": "普通", "destination": "筑紫", "model": "3000", "cars": 5, "doors": 3, "note": null },
+        { "minute": 32, "type": "普通", "destination": "花畑", "model": "7000", "cars": 3, "doors": 3, "note": null },
+        { "minute": 56, "type": "普通", "destination": "花畑", "model": "3000", "cars": 5, "doors": 3, "note": null }
       ]
     },
     {
       "hour": 6,
-      "departures": [
-        {"minute": 4, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 16, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 27, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 38, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 47, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 56, "destination": "西鉄福岡", "type": "普通"}
+      "trains": [
+        { "minute": 13, "type": "普通", "destination": "花畑", "model": "3000", "cars": 5, "doors": 3, "note": null },
+        { "minute": 23, "type": "普通", "destination": "筑紫", "model": "3000", "cars": 5, "doors": 3, "note": null },
+        { "minute": 30, "type": "特急", "destination": "大牟田", "model": "3000", "cars": 7, "doors": 3, "note": null },
+        { "minute": 36, "type": "急行", "destination": "花畑", "model": "3000", "cars": 6, "doors": 3, "note": null },
+        { "minute": 44, "type": "急行", "destination": "筑紫", "model": "3000", "cars": 6, "doors": 3, "note": "二日市から各駅停車" },
+        { "minute": 46, "type": "普通", "destination": "大善寺", "model": "3000", "cars": 5, "doors": 3, "note": null },
+        { "minute": 55, "type": "普通", "destination": "西鉄小郡", "model": "3000", "cars": 5, "doors": 3, "note": null }
       ]
     },
     {
       "hour": 7,
-      "departures": [
-        {"minute": 5, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 9, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 16, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 23, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 30, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 36, "destination": "西鉄福岡", "type": "普通"}
-        {"minute": 42, "destination": "西鉄福岡", "type": "普通"} 
-        {"minute": 48, "destination": "西鉄福岡", "type": "普通"} 
-        {"minute": 54, "destination": "西鉄福岡", "type": "普通"}        
+      "trains": [
+        { "minute": 0, "type": "特急", "destination": "大牟田", "model": "3000", "cars": 7, "doors": 3, "note": null },
+        { "minute": 3, "type": "普通", "destination": "筑紫", "model": "3000", "cars": 5, "doors": 3, "note": null },
+        { "minute": 7, "type": "急行", "destination": "花畑", "model": "3000", "cars": 6, "doors": 3, "note": "花畑で下り普通に接続" },
+        { "minute": 12, "type": "普通", "destination": "西鉄二日市", "model": "3000", "cars": 5, "doors": 3, "note": null },
+        { "minute": 18, "type": "急行", "destination": "太宰府", "model": "3000", "cars": 6, "doors": 3, "note": null },
+        { "minute": 22, "type": "普通", "destination": "筑紫", "model": "3000", "cars": 5, "doors": 3, "note": null },
+        { "minute": 26, "type": "急行", "destination": "西鉄小郡", "model": "3000", "cars": 6, "doors": 3, "note": null },
+        { "minute": 30, "type": "特急", "destination": "大牟田", "model": "3000", "cars": 7, "doors": 3, "note": null },
+        { "minute": 33, "type": "普通", "destination": "大善寺", "model": "3000", "cars": 5, "doors": 3, "note": null },
+        { "minute": 37, "type": "急行", "destination": "花畑", "model": "3000", "cars": 6, "doors": 3, "note": "花畑で下り普通に接続" },
+        { "minute": 42, "type": "普通", "destination": "筑紫", "model": "3000", "cars": 5, "doors": 3, "note": null },
+        { "minute": 48, "type": "急行", "destination": "久留米", "model": "3000", "cars": 6, "doors": 3, "note": null },
+        { "minute": 52, "type": "普通", "destination": "西鉄二日市", "model": "3000", "cars": 5, "doors": 3, "note": null }
       ]
     },
     {
       "hour": 8,
-      "departures": [
-        {"minute": 0, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 6, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 12, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 18, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 24, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 31, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 42, "destination": "西鉄福岡", "type": "普通"} 
-        {"minute": 42, "destination": "西鉄福岡", "type": "普通"}
-        {"minute": 51, "destination": "西鉄福岡", "type": "普通"}
-        {"minute": 57, "destination": "西鉄福岡", "type": "普通"}]
+      "trains": [
+        { "minute": 0, "type": "特急", "destination": "大牟田", "model": "3000", "cars": 7, "doors": 3, "note": null },
+        { "minute": 3, "type": "急行", "destination": "花畑", "model": "3000", "cars": 6, "doors": 3, "note": "花畑で下り普通に接続" },
+        { "minute": 8, "type": "普通", "destination": "筑紫", "model": "3000", "cars": 5, "doors": 3, "note": null },
+        { "minute": 13, "type": "急行", "destination": "西鉄小郡", "model": "3000", "cars": 6, "doors": 3, "note": null },
+        { "minute": 17, "type": "普通", "destination": "大善寺", "model": "3000", "cars": 5, "doors": 3, "note": null },
+        { "minute": 22, "type": "急行", "destination": "花畑", "model": "3000", "cars": 6, "doors": 3, "note": null },
+        { "minute": 27, "type": "普通", "destination": "筑紫", "model": "3000", "cars": 5, "doors": 3, "note": null },
+        { "minute": 30, "type": "特急", "destination": "大牟田", "model": "3000", "cars": 7, "doors": 3, "note": null },
+        { "minute": 35, "type": "急行", "destination": "花畑", "model": "3000", "cars": 6, "doors": 3, "note": "花畑で下り普通に接続" },
+        { "minute": 40, "type": "普通", "destination": "西鉄二日市", "model": "3000", "cars": 5, "doors": 3, "note": null },
+        { "minute": 46, "type": "普通", "destination": "大善寺", "model": "3000", "cars": 5, "doors": 3, "note": null },
+        { "minute": 53, "type": "急行", "destination": "太宰府", "model": "3000", "cars": 6, "doors": 3, "note": null },
+        { "minute": 56, "type": "普通", "destination": "筑紫", "model": "3000", "cars": 5, "doors": 3, "note": null }
+      ]
     },
     {
       "hour": 9,
-      "departures": [
-        {"minute": 12, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 17, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 27, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 42, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 47, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 57, "destination": "西鉄福岡", "type": "普通"}
+      "trains": [
+        { "minute": 0, "type": "特急", "destination": "大牟田", "model": "3000", "cars": 7, "doors": 3, "note": null },
+        { "minute": 5, "type": "急行", "destination": "花畑", "model": "3000", "cars": 6, "doors": 3, "note": "花畑で下り普通に接続" },
+        { "minute": 10, "type": "普通", "destination": "西鉄二日市", "model": "3000", "cars": 5, "doors": 3, "note": null },
+        { "minute": 17, "type": "急行", "destination": "太宰府", "model": "3000", "cars": 6, "doors": 3, "note": null },
+        { "minute": 21, "type": "普通", "destination": "大善寺", "model": "3000", "cars": 5, "doors": 3, "note": null },
+        { "minute": 27, "type": "普通", "destination": "筑紫", "model": "3000", "cars": 5, "doors": 3, "note": null },
+        { "minute": 30, "type": "特急", "destination": "大牟田", "model": "3000", "cars": 7, "doors": 3, "note": null },
+        { "minute": 36, "type": "急行", "destination": "花畑", "model": "3000", "cars": 6, "doors": 3, "note": "花畑で下り普通に接続" },
+        { "minute": 41, "type": "普通", "destination": "西鉄二日市", "model": "3000", "cars": 5, "doors": 3, "note": null },
+        { "minute": 48, "type": "急行", "destination": "太宰府", "model": "3000", "cars": 6, "doors": 3, "note": null },
+        { "minute": 52, "type": "普通", "destination": "大善寺", "model": "3000", "cars": 5, "doors": 3, "note": null },
+        { "minute": 57, "type": "普通", "destination": "筑紫", "model": "3000", "cars": 5, "doors": 3, "note": null }
       ]
     },
     {
       "hour": 10,
-      "departures": [
-        {"minute": 12, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 24, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 27, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 42, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 47, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 57, "destination": "西鉄福岡", "type": "普通"}
+      "trains": [
+        { "minute": 0, "type": "特急", "destination": "大牟田", "model": "3000", "cars": 7, "doors": 3, "note": null },
+        { "minute": 6, "type": "急行", "destination": "花畑", "model": "3000", "cars": 6, "doors": 3, "note": "花畑で下り普通に接続" },
+        { "minute": 18, "type": "急行", "destination": "太宰府", "model": "3000", "cars": 6, "doors": 3, "note": null },
+        { "minute": 23, "type": "普通", "destination": "大善寺", "model": "3000", "cars": 5, "doors": 3, "note": null },
+        { "minute": 30, "type": "特急", "destination": "大牟田", "model": "3000", "cars": 7, "doors": 3, "note": null },
+        { "minute": 36, "type": "急行", "destination": "花畑", "model": "3000", "cars": 6, "doors": 3, "note": "花畑で下り普通に接続" },
+        { "minute": 48, "type": "急行", "destination": "太宰府", "model": "3000", "cars": 6, "doors": 3, "note": null },
+        { "minute": 53, "type": "普通", "destination": "大善寺", "model": "3000", "cars": 5, "doors": 3, "note": null }
       ]
     },
     {
       "hour": 11,
-      "departures": [
-        {"minute": 12, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 17, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 27, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 42, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 47, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 57, "destination": "西鉄福岡", "type": "普通"}
+      "trains": [
+        { "minute": 0, "type": "特急", "destination": "大牟田", "model": "3000", "cars": 7, "doors": 3, "note": null },
+        { "minute": 6, "type": "急行", "destination": "花畑", "model": "3000", "cars": 6, "doors": 3, "note": "花畑で下り普通に接続" },
+        { "minute": 18, "type": "急行", "destination": "太宰府", "model": "3000", "cars": 6, "doors": 3, "note": null },
+        { "minute": 23, "type": "普通", "destination": "大善寺", "model": "3000", "cars": 5, "doors": 3, "note": null },
+        { "minute": 30, "type": "特急", "destination": "大牟田", "model": "3000", "cars": 7, "doors": 3, "note": null },
+        { "minute": 36, "type": "急行", "destination": "花畑", "model": "3000", "cars": 6, "doors": 3, "note": "花畑で下り普通に接続" },
+        { "minute": 53, "type": "普通", "destination": "大善寺", "model": "3000", "cars": 5, "doors": 3, "note": null }
       ]
     },
     {
       "hour": 12,
-      "departures": [
-        {"minute": 12, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 17, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 27, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 42, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 47, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 57, "destination": "西鉄福岡", "type": "普通"}
+      "trains": [
+        { "minute": 0, "type": "特急", "destination": "大牟田", "model": "3000", "cars": 7, "doors": 3, "note": null },
+        { "minute": 6, "type": "急行", "destination": "花畑", "model": "3000", "cars": 6, "doors": 3, "note": "花畑で下り普通に接続" },
+        { "minute": 23, "type": "普通", "destination": "大善寺", "model": "3000", "cars": 5, "doors": 3, "note": null },
+        { "minute": 30, "type": "特急", "destination": "大牟田", "model": "3000", "cars": 7, "doors": 3, "note": null },
+        { "minute": 36, "type": "急行", "destination": "花畑", "model": "3000", "cars": 6, "doors": 3, "note": "花畑で下り普通に接続" },
+        { "minute": 53, "type": "普通", "destination": "大善寺", "model": "3000", "cars": 5, "doors": 3, "note": null }
       ]
     },
     {
       "hour": 13,
-      "departures": [
-        {"minute": 12, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 17, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 27, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 42, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 47, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 57, "destination": "西鉄福岡", "type": "普通"}
+      "trains": [
+        { "minute": 0, "type": "特急", "destination": "大牟田", "model": "3000", "cars": 7, "doors": 3, "note": null },
+        { "minute": 6, "type": "急行", "destination": "花畑", "model": "3000", "cars": 6, "doors": 3, "note": "花畑で下り普通に接続" },
+        { "minute": 23, "type": "普通", "destination": "大善寺", "model": "3000", "cars": 5, "doors": 3, "note": null },
+        { "minute": 30, "type": "特急", "destination": "大牟田", "model": "3000", "cars": 7, "doors": 3, "note": null },
+        { "minute": 36, "type": "急行", "destination": "花畑", "model": "3000", "cars": 6, "doors": 3, "note": "花畑で下り普通に接続" },
+        { "minute": 53, "type": "普通", "destination": "大善寺", "model": "3000", "cars": 5, "doors": 3, "note": null }
       ]
     },
     {
       "hour": 14,
-      "departures": [
-        {"minute": 12, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 17, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 27, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 42, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 47, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 57, "destination": "西鉄福岡", "type": "普通"}
+      "trains": [
+        { "minute": 0, "type": "特急", "destination": "大牟田", "model": "3000", "cars": 7, "doors": 3, "note": null },
+        { "minute": 6, "type": "急行", "destination": "花畑", "model": "3000", "cars": 6, "doors": 3, "note": "花畑で下り普通に接続" },
+        { "minute": 23, "type": "普通", "destination": "大善寺", "model": "3000", "cars": 5, "doors": 3, "note": null },
+        { "minute": 30, "type": "特急", "destination": "大牟田", "model": "3000", "cars": 7, "doors": 3, "note": null },
+        { "minute": 36, "type": "急行", "destination": "花畑", "model": "3000", "cars": 6, "doors": 3, "note": "花畑で下り普通に接続" },
+        { "minute": 53, "type": "普通", "destination": "大善寺", "model": "3000", "cars": 5, "doors": 3, "note": null }
       ]
     },
     {
       "hour": 15,
-      "departures": [
-        {"minute": 12, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 17, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 27, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 42, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 47, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 57, "destination": "西鉄福岡", "type": "普通"}
+      "trains": [
+        { "minute": 0, "type": "特急", "destination": "大牟田", "model": "3000", "cars": 7, "doors": 3, "note": null },
+        { "minute": 6, "type": "急行", "destination": "花畑", "model": "3000", "cars": 6, "doors": 3, "note": "花畑で下り普通に接続" },
+        { "minute": 23, "type": "普通", "destination": "大善寺", "model": "3000", "cars": 5, "doors": 3, "note": null },
+        { "minute": 30, "type": "特急", "destination": "大牟田", "model": "3000", "cars": 7, "doors": 3, "note": null },
+        { "minute": 36, "type": "急行", "destination": "花畑", "model": "3000", "cars": 6, "doors": 3, "note": "花畑で下り普通に接続" },
+        { "minute": 53, "type": "普通", "destination": "大善寺", "model": "3000", "cars": 5, "doors": 3, "note": null }
       ]
     },
     {
       "hour": 16,
-      "departures": [
-        {"minute": 12, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 17, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 27, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 34, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 42, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 47, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 54, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 57, "destination": "西鉄福岡", "type": "普通"}
+      "trains": [
+        { "minute": 0, "type": "特急", "destination": "大牟田", "model": "3000", "cars": 7, "doors": 3, "note": null },
+        { "minute": 6, "type": "急行", "destination": "花畑", "model": "3000", "cars": 6, "doors": 3, "note": "花畑で下り普通に接続" },
+        { "minute": 23, "type": "普通", "destination": "大善寺", "model": "3000", "cars": 5, "doors": 3, "note": null },
+        { "minute": 30, "type": "特急", "destination": "大牟田", "model": "3000", "cars": 7, "doors": 3, "note": null },
+        { "minute": 36, "type": "急行", "destination": "花畑", "model": "3000", "cars": 6, "doors": 3, "note": "花畑で下り普通に接続" },
+        { "minute": 53, "type": "普通", "destination": "大善寺", "model": "3000", "cars": 5, "doors": 3, "note": null }
       ]
     },
     {
       "hour": 17,
-      "departures": [
-        {"minute": 4, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 12, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 17, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 24, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 27, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 34, "destination": "西鉄福岡", "type": "普通"}
-        {"minute": 42, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 47, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 54, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 57, "destination": "西鉄福岡", "type": "普通"},
+      "trains": [
+        { "minute": 0, "type": "特急", "destination": "大牟田", "model": "3000", "cars": 7, "doors": 3, "note": null },
+        { "minute": 7, "type": "急行", "destination": "花畑", "model": "3000", "cars": 6, "doors": 3, "note": "花畑で下り普通に接続" },
+        { "minute": 15, "type": "普通", "destination": "筑紫", "model": "3000", "cars": 5, "doors": 3, "note": null },
+        { "minute": 22, "type": "急行", "destination": "西鉄小郡", "model": "3000", "cars": 6, "doors": 3, "note": null },
+        { "minute": 26, "type": "普通", "destination": "大善寺", "model": "3000", "cars": 5, "doors": 3, "note": null },
+        { "minute": 30, "type": "特急", "destination": "大牟田", "model": "3000", "cars": 7, "doors": 3, "note": null },
+        { "minute": 37, "type": "急行", "destination": "花畑", "model": "3000", "cars": 6, "doors": 3, "note": "花畑で下り普通に接続" },
+        { "minute": 45, "type": "普通", "destination": "筑紫", "model": "3000", "cars": 5, "doors": 3, "note": null },
+        { "minute": 52, "type": "急行", "destination": "西鉄小郡", "model": "3000", "cars": 6, "doors": 3, "note": null },
+        { "minute": 56, "type": "普通", "destination": "大善寺", "model": "3000", "cars": 5, "doors": 3, "note": null }
       ]
     },
     {
       "hour": 18,
-      "departures": [
-        {"minute": 12, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 14, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 17, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 24, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 27, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 42, "destination": "西鉄福岡", "type": "普通"}
-        {"minute": 52, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 56, "destination": "西鉄福岡", "type": "普通"}
+      "trains": [
+        { "minute": 0, "type": "特急", "destination": "大牟田", "model": "3000", "cars": 7, "doors": 3, "note": null },
+        { "minute": 7, "type": "急行", "destination": "花畑", "model": "3000", "cars": 6, "doors": 3, "note": "花畑で下り普通に接続" },
+        { "minute": 15, "type": "普通", "destination": "筑紫", "model": "3000", "cars": 5, "doors": 3, "note": null },
+        { "minute": 22, "type": "急行", "destination": "西鉄小郡", "model": "3000", "cars": 6, "doors": 3, "note": null },
+        { "minute": 26, "type": "普通", "destination": "大善寺", "model": "3000", "cars": 5, "doors": 3, "note": null },
+        { "minute": 30, "type": "特急", "destination": "大牟田", "model": "3000", "cars": 7, "doors": 3, "note": null },
+        { "minute": 37, "type": "急行", "destination": "花畑", "model": "3000", "cars": 6, "doors": 3, "note": "花畑で下り普通に接続" },
+        { "minute": 45, "type": "普通", "destination": "筑紫", "model": "3000", "cars": 5, "doors": 3, "note": null },
+        { "minute": 52, "type": "急行", "destination": "西鉄小郡", "model": "3000", "cars": 6, "doors": 3, "note": null },
+        { "minute": 56, "type": "普通", "destination": "大善寺", "model": "3000", "cars": 5, "doors": 3, "note": null }
       ]
     },
     {
       "hour": 19,
-      "departures": [
-        {"minute": 5, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 12, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 22, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 26, "destination": "西鉄福岡", "type": "普通"}
-        {"minute": 42, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 47, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 56, "destination": "西鉄福岡", "type": "普通"}
+      "trains": [
+        { "minute": 0, "type": "特急", "destination": "大牟田", "model": "3000", "cars": 7, "doors": 3, "note": null },
+        { "minute": 7, "type": "急行", "destination": "花畑", "model": "3000", "cars": 6, "doors": 3, "note": "花畑で下り普通に接続" },
+        { "minute": 15, "type": "普通", "destination": "筑紫", "model": "3000", "cars": 5, "doors": 3, "note": null },
+        { "minute": 22, "type": "急行", "destination": "西鉄小郡", "model": "3000", "cars": 6, "doors": 3, "note": null },
+        { "minute": 26, "type": "普通", "destination": "大善寺", "model": "3000", "cars": 5, "doors": 3, "note": null },
+        { "minute": 30, "type": "特急", "destination": "大牟田", "model": "3000", "cars": 7, "doors": 3, "note": null },
+        { "minute": 37, "type": "急行", "destination": "花畑", "model": "3000", "cars": 6, "doors": 3, "note": "花畑で下り普通に接続" },
+        { "minute": 45, "type": "普通", "destination": "筑紫", "model": "3000", "cars": 5, "doors": 3, "note": null },
+        { "minute": 52, "type": "急行", "destination": "西鉄柳川", "model": "3000", "cars": 6, "doors": 3, "note": null },
+        { "minute": 56, "type": "普通", "destination": "大善寺", "model": "3000", "cars": 5, "doors": 3, "note": null }
       ]
     },
     {
       "hour": 20,
-      "departures": [
-        {"minute": 7, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 17, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 27, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 42, "destination": "西鉄福岡", "type": "普通"}
-        {"minute": 47, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 56, "destination": "西鉄福岡", "type": "普通"}
+      "trains": [
+        { "minute": 0, "type": "特急", "destination": "大牟田", "model": "3000", "cars": 7, "doors": 3, "note": null },
+        { "minute": 7, "type": "急行", "destination": "花畑", "model": "3000", "cars": 6, "doors": 3, "note": "花畑で下り普通に接続" },
+        { "minute": 15, "type": "普通", "destination": "筑紫", "model": "3000", "cars": 5, "doors": 3, "note": null },
+        { "minute": 22, "type": "急行", "destination": "花畑", "model": "3000", "cars": 6, "doors": 3, "note": null },
+        { "minute": 26, "type": "普通", "destination": "大善寺", "model": "3000", "cars": 5, "doors": 3, "note": null },
+        { "minute": 30, "type": "特急", "destination": "大牟田", "model": "3000", "cars": 7, "doors": 3, "note": null },
+        { "minute": 37, "type": "急行", "destination": "花畑", "model": "3000", "cars": 6, "doors": 3, "note": "花畑で下り普通に接続" },
+        { "minute": 46, "type": "普通", "destination": "筑紫", "model": "3000", "cars": 5, "doors": 3, "note": null },
+        { "minute": 52, "type": "急行", "destination": "西鉄柳川", "model": "3000", "cars": 6, "doors": 3, "note": null },
+        { "minute": 56, "type": "普通", "destination": "大善寺", "model": "3000", "cars": 5, "doors": 3, "note": null }
       ]
     },
     {
       "hour": 21,
-      "departures": [
-        {"minute": 12, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 20, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 27, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 45, "destination": "西鉄福岡", "type": "普通"}
-        {"minute": 50, "destination": "西鉄福岡", "type": "普通"},
+      "trains": [
+        { "minute": 0, "type": "特急", "destination": "大牟田", "model": "3000", "cars": 7, "doors": 3, "note": null },
+        { "minute": 7, "type": "急行", "destination": "花畑", "model": "3000", "cars": 6, "doors": 3, "note": "花畑で下り普通に接続" },
+        { "minute": 16, "type": "普通", "destination": "大善寺", "model": "3000", "cars": 5, "doors": 3, "note": null },
+        { "minute": 24, "type": "急行", "destination": "筑紫", "model": "3000", "cars": 6, "doors": 3, "note": "二日市から各駅停車" },
+        { "minute": 30, "type": "特急", "destination": "大牟田", "model": "3000", "cars": 7, "doors": 3, "note": null },
+        { "minute": 37, "type": "急行", "destination": "花畑", "model": "3000", "cars": 6, "doors": 3, "note": "花畑で下り普通に接続" },
+        { "minute": 46, "type": "普通", "destination": "大善寺", "model": "3000", "cars": 5, "doors": 3, "note": null },
+        { "minute": 54, "type": "急行", "destination": "筑紫", "model": "3000", "cars": 6, "doors": 3, "note": "二日市から各駅停車" }
       ]
     },
     {
       "hour": 22,
-      "departures": [
-        {"minute": 5, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 15, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 21, "destination": "西鉄福岡", "type": "普通"}
-        {"minute": 35, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 51, "destination": "西鉄福岡", "type": "普通"}
+      "trains": [
+        { "minute": 0, "type": "特急", "destination": "大牟田", "model": "3000", "cars": 7, "doors": 3, "note": null },
+        { "minute": 8, "type": "普通", "destination": "大善寺", "model": "3000", "cars": 5, "doors": 3, "note": null },
+        { "minute": 16, "type": "急行", "destination": "花畑", "model": "3000", "cars": 6, "doors": 3, "note": null },
+        { "minute": 24, "type": "普通", "destination": "筑紫", "model": "3000", "cars": 5, "doors": 3, "note": null },
+        { "minute": 32, "type": "急行", "destination": "西鉄柳川", "model": "3000", "cars": 6, "doors": 3, "note": "筑紫から各駅停車" },
+        { "minute": 40, "type": "普通", "destination": "大善寺", "model": "3000", "cars": 5, "doors": 3, "note": null },
+        { "minute": 48, "type": "急行", "destination": "花畑", "model": "3000", "cars": 6, "doors": 3, "note": null },
+        { "minute": 56, "type": "普通", "destination": "筑紫", "model": "3000", "cars": 5, "doors": 3, "note": null }
       ]
     },
     {
       "hour": 23,
-      "departures": [
-        {"minute": 4, "destination": "西鉄福岡", "type": "普通"},
-        {"minute": 29, "destination": "西鉄福岡", "type": "普通"}
+      "trains": [
+        { "minute": 4, "type": "急行", "destination": "大牟田", "model": "3000", "cars": 6, "doors": 3, "note": "筑紫から各駅停車" },
+        { "minute": 12, "type": "普通", "destination": "大善寺", "model": "3000", "cars": 5, "doors": 3, "note": null },
+        { "minute": 20, "type": "急行", "destination": "花畑", "model": "3000", "cars": 6, "doors": 3, "note": "二日市から各駅停車" },
+        { "minute": 30, "type": "普通", "destination": "筑紫", "model": "3000", "cars": 5, "doors": 3, "note": null },
+        { "minute": 40, "type": "普通", "destination": "西鉄二日市", "model": "3000", "cars": 5, "doors": 3, "note": null },
+        { "minute": 55, "type": "普通", "destination": "筑紫", "model": "3000", "cars": 5, "doors": 3, "note": null }
       ]
     }
   ]
