@@ -49,14 +49,15 @@
     text-align: center;
     font-weight: normal;
   }
-  /* 列車行（1行分をまとめるラッパー） */
+  /* 列車行（1行分） */
   .train-item {
-    background: linear-gradient(to bottom, #0a1b38, #040e20);
     border-bottom: 2px solid #162c50;
   }
+  /* 1行目：黒背景 */
   .train-row {
     display: flex;
     align-items: center;
+    background-color: #000000;
     padding: 14px 20px;
   }
   /* 種別エリア */
@@ -74,12 +75,12 @@
     border-radius: 4px;
     text-align: center;
     letter-spacing: 2px;
-    border: 2px solid transparent;
+    border: 2px solid #ffffff;
   }
-  /* 種別ごとの背景・文字色 */
-  .type-badge.express { background-color: #2e7d32; color: #ffffff; border-color: #ffffff; } /* 急行：緑 */
-  .type-badge.local   { background-color: #ffffff; color: #000000; border-color: #ffffff; } /* 普通：白 */
-  .type-badge.ltd-exp { background-color: #d32f2f; color: #ffffff; border-color: #ffffff; } /* 特急：赤 */
+  /* 種別ごとの色（普通は青、急行は緑、特急は赤） */
+  .type-badge.express { background-color: #2e7d32; color: #ffffff; }
+  .type-badge.local   { background-color: #1565c0; color: #ffffff; }
+  .type-badge.ltd-exp { background-color: #d32f2f; color: #ffffff; }
 
   .type-en {
     font-size: 14px;
@@ -87,7 +88,7 @@
     margin-top: 4px;
     letter-spacing: 1px;
   }
-  /* 行先エリア（3文字分の幅を完全に固定して2文字も綺麗に配置） */
+  /* 行先エリア */
   .dest-area {
     display: flex;
     flex-direction: column;
@@ -96,10 +97,13 @@
   .dest-main {
     font-size: 38px;
     font-weight: bold;
-    width: 280px; /* 3文字分が収まる固定幅 */
-    display: flex;
-    justify-content: space-between; /* 2文字や3文字を綺麗に分散・固定配置 */
+    width: 280px;
     white-space: nowrap;
+  }
+  /* 2文字のときのみ3文字分の幅（均等配置）にするクラス */
+  .dest-main.two-chars {
+    display: flex;
+    justify-content: space-between;
   }
   .dest-en {
     font-size: 16px;
@@ -130,7 +134,7 @@
     font-size: 13px;
     font-weight: bold;
     padding: 2px 12px;
-    border-radius: 20px; /* 楕円 */
+    border-radius: 20px;
     text-align: center;
     white-space: nowrap;
   }
@@ -140,9 +144,9 @@
     font-weight: bold;
     letter-spacing: 2px;
   }
-  /* 下段：接続案内（備考） */
+  /* 2行目：黒から青へのグラデーション背景 */
   .notice-row {
-    background-color: #061327;
+    background: linear-gradient(to bottom, #000000, #0a2347);
     color: #ffffff;
     font-size: 13px;
     padding: 6px 20px 8px 20px;
@@ -177,7 +181,7 @@
     <span class="direction-subtitle">Omuta</span>
   </div>
 
-  <!-- 1本目：急行 花畑 (2文字) -->
+  <!-- 1本目：急行 花畑 (2文字なので幅を調整) -->
   <div class="train-item">
     <div class="train-row">
       <div class="type-area">
@@ -185,7 +189,7 @@
         <div class="type-en">Express</div>
       </div>
       <div class="dest-area">
-        <div class="dest-main"><span>花</span><span>畑</span><span> </span></div>
+        <div class="dest-main two-chars"><span>花</span><span>畑</span></div>
         <div class="dest-en">Hanabatake</div>
       </div>
       <div class="specs-area">
@@ -200,7 +204,7 @@
     </div>
   </div>
 
-  <!-- 2本目：普通 大善寺 (3文字) -->
+  <!-- 2本目：普通 大善寺 (3文字は調整なし) -->
   <div class="train-item">
     <div class="train-row">
       <div class="type-area">
@@ -208,7 +212,7 @@
         <div class="type-en">Local</div>
       </div>
       <div class="dest-area">
-        <div class="dest-main"><span>大</span><span>善</span><span>寺</span></div>
+        <div class="dest-main">大善寺</div>
         <div class="dest-en">Daizenji</div>
       </div>
       <div class="specs-area">
@@ -219,7 +223,7 @@
     </div>
   </div>
 
-  <!-- 3本目：特急 大牟田 (3文字) -->
+  <!-- 3本目：特急 大牟田 (3文字は調整なし) -->
   <div class="train-item">
     <div class="train-row">
       <div class="type-area">
@@ -227,7 +231,7 @@
         <div class="type-en">Ltd.Exp</div>
       </div>
       <div class="dest-area">
-        <div class="dest-main"><span>大</span><span>牟</span><span>田</span></div>
+        <div class="dest-main">大牟田</div>
         <div class="dest-en">Ōmuta</div>
       </div>
       <div class="specs-area">
