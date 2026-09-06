@@ -304,4 +304,107 @@
     try {
       const response = await fetch(filename);
       if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-      current
+      currentTimetableData = await response.json();
+      updateDisplay();
+    } catch (e) {
+      console.error('JSON読み込みエラー:', e);
+      document.getElementById('train-screen').innerHTML = `<div class="no-trains">データの読み込みに失敗しました<br><small>${filename}</small></div>`;
+    }
+  }
+
+  function updateDisplay() {
+    if (!currentTimetableData || !currentTimetableData.timetable) return;
+
+    const now = new Date();
+    const currentHour = now.getHours();
+    const currentMinute = now.getMinutes();
+    const currentTimeValue = currentHour * 60 + currentMinute;
+
+    let allTrains = [];
+    currentTimetableData.timetable.forEach(slot => {
+      if (slot.trains) {
+        slot.trains.forEach(train => {
+          allTrains.push({
+            hour: slot.hour,
+            minute: train.minute,
+            type: train.type,
+            destination: train.destination,
+            cars: train.cars,
+            doors: train.doors,
+            note: train.note
+          });
+        });
+      }
+    });
+
+    const upcomingTrains = allTrains.filter(train => {
+      const trainTimeValue = train.hour * 60 + train.minute;
+      return trainTimeValue >= currentTimeValue;
+    }).slice(0, 3);
+
+    const screenContainer = document.getElementById('train-screen');
+    screenContainer.innerHTML = '';
+
+    if (upcomingTrains.length === 0) {
+      screenContainer.innerHTML = '<div class="no-trains">本日の運行は終了しました</div>';
+      return;
+    }
+
+    upcomingTrains.forEach(train => {
+      const typeInfo = getTypeInfo(train.type);
+      const timeStr = `${String(train.hour).padStart(2, '0')}:${String(train.minute).padStart(2, '0')}`;
+      const destEn = destEnglish[train.destination] || train.destination;
+
+      const formattedType = formatType(train.type);
+      const destObj = formatDestination(train.destination);
+      const destClass = destObj.isSpaced ? 'dest-main spaced' : 'dest-main normal';
+
+      let noticeHtml = '';
+      if (train.note) {
+        noticeHtml = `
+          <div class="notice-row">
+            <div class="notice-line">
+              <span class="notice-badge">案内</span>
+              ${train.note}
+            </div>
+          </div>
+        `;
+      }
+
+      const rowHtml = `
+        <div class="train-row">
+          <div class="train-main">
+            <div class="type-area">
+              <div class="type-badge ${typeInfo.cls}">${formattedType}</div>
+              <div class="type-sub">${typeInfo.en}</div>
+            </div>
+            <div class="dest-area">
+              <div class="${destClass}">${destObj.text}</div>
+              <div class="dest-sub">${destEn}</div>
+            </div>
+            <div class="right-group">
+              <div class="specs-area">
+                <div class="cars-box">${train.cars} 両</div>
+                <div class="doors-badge">${train.doors || 3}ドア</div>
+              </div>
+              <div class="time-area">${timeStr}</div>
+            </div>
+          </div>
+          ${noticeHtml}
+        </div>
+      `;
+      screenContainer.innerHTML += rowHtml;
+    });
+  }
+
+  const fileSelect = document.getElementById('fileSelect');
+  fileSelect.addEventListener('change', (e) => {
+    loadTimetable(e.target.value);
+  });
+
+  loadTimetable(fileSelect.value);
+  setInterval(updateDisplay, 10000);
+</script>
+
+</body>
+</html>
