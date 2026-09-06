@@ -2,250 +2,257 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>西鉄福岡(天神) 発車標</title>
+<title>西鉄 発車標風ディスプレイ</title>
 <style>
   body {
-    background-color: #0b1d3a;
+    background-color: #1a1a1a;
     color: #ffffff;
-    font-family: sans-serif;
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
     margin: 0;
     padding: 20px;
-  }
-  .container {
-    width: 900px;
-    background-color: #000000;
-    border: 2px solid #222;
-    padding: 10px;
-  }
-  /* コントロールヘッダー */
-  .control-header {
     display: flex;
-    justify-content: space-between;
-    background-color: #111;
-    padding: 10px;
-    border: 1px solid #333;
-    margin-bottom: 10px;
-    font-size: 14px;
+    justify-content: center;
   }
-  .control-header select {
-    background-color: #222;
-    color: #fff;
-    border: 1px solid #555;
-    padding: 4px 8px;
-    font-size: 14px;
+  .monitor-frame {
+    width: 900px;
+    background-color: #2b2b2b;
+    border: 6px solid #444;
+    border-radius: 6px;
+    padding: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
   }
-  /* 方面タイトル */
-  .direction-title {
-    text-align: center;
-    font-size: 24px;
+  /* 上部「のりば」表示枠 */
+  .platform-header {
+    background-color: #1c1c1c;
+    border: 2px solid #333;
+    padding: 8px 16px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .platform-num {
+    font-size: 32px;
     font-weight: bold;
-    padding: 10px 0;
-    border-bottom: 2px solid #222;
-    margin-bottom: 5px;
+    line-height: 1;
   }
-  .direction-subtitle {
-    font-size: 12px;
-    color: #aaa;
-    text-align: center;
-    font-weight: normal;
+  .platform-text {
+    font-size: 14px;
+    color: #bbb;
+    letter-spacing: 1px;
   }
-  /* 列車行（1行分） */
-  .train-item {
-    border-bottom: 2px solid #162c50;
+
+  /* 画面本体（青グラデーション背景） */
+  .screen {
+    background: linear-gradient(to bottom, #001254 0%, #000824 100%);
+    border: 2px solid #002b80;
+    display: flex;
+    flex-direction: column;
   }
-  /* 1行目：黒背景 */
-  .train-row {
+
+  /* 1列分のコンテナ */
+  .train-row-container {
+    border-bottom: 2px solid #00247d;
+    display: flex;
+    flex-direction: column;
+  }
+  .train-row-container:last-child {
+    border-bottom: none;
+  }
+
+  /* メイン行（1行目：種別・行先・両数・時刻） */
+  .train-main {
     display: flex;
     align-items: center;
-    background-color: #000000;
-    padding: 12px 20px;
+    padding: 12px 16px;
   }
+
   /* 種別エリア */
   .type-area {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-right: 25px;
-    min-width: 95px;
+    margin-right: 24px;
+    min-width: 90px;
   }
   .type-badge {
-    font-size: 26px;
+    font-size: 22px;
     font-weight: bold;
-    padding: 4px 16px;
-    border-radius: 4px;
+    padding: 2px 12px;
+    border-radius: 3px;
     text-align: center;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     border: 2px solid #ffffff;
   }
-  /* 種別ごとの色 */
   .type-badge.express { background-color: #2e7d32; color: #ffffff; }
   .type-badge.local   { background-color: #1565c0; color: #ffffff; }
   .type-badge.ltd-exp { background-color: #d32f2f; color: #ffffff; }
 
   .type-en {
-    font-size: 14px;
-    color: #ffffff;
-    margin-top: 4px;
-    letter-spacing: 1px;
+    font-size: 12px;
+    color: #e0e0e0;
+    margin-top: 2px;
   }
-  /* 行先エリア（幅をスリムに調整） */
+
+  /* 行先エリア */
   .dest-area {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
   }
   .dest-main {
-    font-size: 38px;
+    font-size: 34px;
     font-weight: bold;
-    width: 200px; /* 幅を狭めてすっきりさせる */
+    letter-spacing: 4px;
     white-space: nowrap;
   }
-  /* 2文字の場合は間にスペースを空けて3文字分ほどの幅感にする */
+  /* 2文字の場合のスペース調整 */
   .dest-main.spaced {
-    letter-spacing: 24px;
+    letter-spacing: 22px;
   }
   .dest-en {
-    font-size: 16px;
+    font-size: 14px;
     color: #cccccc;
-    margin-top: 2px;
-    letter-spacing: 1px;
+    margin-top: 0px;
+    letter-spacing: 0.5px;
   }
-  /* 両数・ドア数エリア */
+
+  /* 両数・ドア数エリア（上下に並ぶ白い枠と赤い楕円） */
   .specs-area {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-right: 35px;
-    gap: 6px;
+    margin-right: 30px;
+    gap: 4px;
   }
   .cars-box {
     background-color: #ffffff;
     color: #000000;
-    font-size: 16px;
+    font-size: 13px;
     font-weight: bold;
-    padding: 2px 10px;
+    padding: 1px 8px;
     border-radius: 2px;
-    border: 1px solid #999;
   }
   .doors-badge {
     background-color: #d32f2f;
     color: #ffffff;
-    font-size: 13px;
-    font-weight: bold;
-    padding: 2px 12px;
-    border-radius: 20px;
-    text-align: center;
-    white-space: nowrap;
-  }
-  /* 時刻エリア */
-  .time-area {
-    font-size: 46px;
-    font-weight: bold;
-    letter-spacing: 2px;
-  }
-  /* 2行目：黒から青へのグラデーション背景（1行目と全く同じ高さをキープ） */
-  .notice-row {
-    background: linear-gradient(to bottom, #000000, #0a2347);
-    color: #ffffff;
-    font-size: 13px;
-    padding: 12px 20px; /* 1行目のtrain-rowと上下パディングを完全に一致 */
-    display: flex;
-    align-items: center;
-    box-sizing: border-box;
-    border-top: 1px solid #112544;
-  }
-  .notice-badge {
-    background-color: #1976d2;
-    color: #ffffff;
     font-size: 11px;
     font-weight: bold;
-    padding: 2px 8px;
+    padding: 1px 8px;
     border-radius: 10px;
-    margin-right: 12px;
+    white-space: nowrap;
+  }
+
+  /* 時刻エリア */
+  .time-area {
+    font-size: 40px;
+    font-weight: bold;
     letter-spacing: 1px;
+  }
+
+  /* 備考・接続案内行（2行目） */
+  .notice-row {
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 4px 16px 8px 16px;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    color: #ffffff;
+  }
+  .notice-badge {
+    background-color: #1565c0;
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 1px 6px;
+    border-radius: 3px;
+    margin-right: 10px;
+    border: 1px solid #42a5f5;
   }
 </style>
 </head>
 <body>
 
-<div class="container">
-  <!-- 上部コントロール -->
-  <div class="control-header">
-    <div>駅: <select><option>T01: 西鉄福岡(天神)</option></select></div>
-    <div>方面: <select><option>大牟田 方面</option></select></div>
+<div class="monitor-frame">
+  <!-- のりばヘッダー -->
+  <div class="platform-header">
+    <span class="platform-num">2</span>
+    <span class="platform-text">のりば / Departures</span>
   </div>
 
-  <!-- 方面ヘッダー -->
-  <div class="direction-title">
-    大牟田方面<br>
-    <span class="direction-subtitle">Omuta</span>
-  </div>
+  <!-- 画面部分 -->
+  <div class="screen">
 
-  <!-- 1本目：急行 花畑 (2文字・間にスペース) -->
-  <div class="train-item">
-    <div class="train-row">
-      <div class="type-area">
-        <div class="type-badge express">急 行</div>
-        <div class="type-en">Express</div>
+    <!-- 1本目：普通 筑紫 (7両 3ドア) -->
+    <div class="train-row-container">
+      <div class="train-main">
+        <div class="type-area">
+          <div class="type-badge local">普 通</div>
+          <div class="type-en">Local</div>
+        </div>
+        <div class="dest-area">
+          <div class="dest-main">筑紫</div>
+          <div class="dest-en">Chikushi</div>
+        </div>
+        <div class="specs-area">
+          <div class="cars-box">7 両</div>
+          <div class="doors-badge">3ドア</div>
+        </div>
+        <div class="time-area">10:02</div>
       </div>
-      <div class="dest-area">
-        <div class="dest-main spaced">花畑</div>
-        <div class="dest-en">Hanabatake</div>
+      <div class="notice-row">
+        <span class="notice-badge">接続案内</span>
+        大橋であとの急行が先に発車します
       </div>
-      <div class="specs-area">
-        <div class="cars-box">6 両</div>
-        <div class="doors-badge">3ドア</div>
-      </div>
-      <div class="time-area">15:36</div>
     </div>
-    <div class="notice-row">
-      <span class="notice-badge">接続案内</span>
-      花畑で下り普通に接続します
-    </div>
-  </div>
 
-  <!-- 2本目：普通 大善寺 (3文字・そのまま) -->
-  <div class="train-item">
-    <div class="train-row">
-      <div class="type-area">
-        <div class="type-badge local">普 通</div>
-        <div class="type-en">Local</div>
+    <!-- 2本目：普通 大善寺 (4両 3ドア) -->
+    <div class="train-row-container">
+      <div class="train-main">
+        <div class="type-area">
+          <div class="type-badge local">普 通</div>
+          <div class="type-en">Local</div>
+        </div>
+        <div class="dest-area">
+          <div class="dest-main">大善寺</div>
+          <div class="dest-en">Daizenji</div>
+        </div>
+        <div class="specs-area">
+          <div class="cars-box">4 両</div>
+          <div class="doors-badge">3ドア</div>
+        </div>
+        <div class="time-area">10:11</div>
       </div>
-      <div class="dest-area">
-        <div class="dest-main">大善寺</div>
-        <div class="dest-en">Daizenji</div>
+      <div class="notice-row">
+        <span class="notice-badge">接続案内</span>
+        大橋であとの急行が先に発車します
       </div>
-      <div class="specs-area">
-        <div class="cars-box">5 両</div>
-        <div class="doors-badge">3ドア</div>
-      </div>
-      <div class="time-area">15:53</div>
     </div>
-  </div>
 
-  <!-- 3本目：特急 大牟田 (3文字・そのまま) -->
-  <div class="train-item">
-    <div class="train-row">
-      <div class="type-area">
-        <div class="type-badge ltd-exp">特 急</div>
-        <div class="type-en">Ltd.Exp</div>
+    <!-- 3本目：普通 筑紫 (4両 4ドア) -->
+    <div class="train-row-container">
+      <div class="train-main">
+        <div class="type-area">
+          <div class="type-badge local">普 通</div>
+          <div class="type-en">Local</div>
+        </div>
+        <div class="dest-area">
+          <div class="dest-main">筑紫</div>
+          <div class="dest-en">Chikushi</div>
+        </div>
+        <div class="specs-area">
+          <div class="cars-box">4 両</div>
+          <div class="doors-badge">4ドア</div>
+        </div>
+        <div class="time-area">10:20</div>
       </div>
-      <div class="dest-area">
-        <div class="dest-main">大牟田</div>
-        <div class="dest-en">Ōmuta</div>
+      <div class="notice-row">
+        <span class="notice-badge">接続案内</span>
+        春日原であとの特急に追い越されます
       </div>
-      <div class="specs-area">
-        <div class="cars-box">7 両</div>
-        <div class="doors-badge">3ドア</div>
-      </div>
-      <div class="time-area">16:00</div>
     </div>
-    <div class="notice-row">
-      <span class="notice-badge">接続案内</span>
-      二日市、久留米、大善寺、柳川で普通電車に接続します
-    </div>
-  </div>
 
+  </div>
 </div>
 
 </body>
