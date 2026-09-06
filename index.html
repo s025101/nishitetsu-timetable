@@ -59,7 +59,7 @@
     align-items: center;
     padding: 14px 20px;
   }
-  /* 種別エリア */
+  /* 種別エリア（白囲みスタイル） */
   .type-area {
     display: flex;
     flex-direction: column;
@@ -68,6 +68,8 @@
     min-width: 100px;
   }
   .type-badge {
+    background-color: transparent;
+    border: 2px solid #ffffff;
     color: #ffffff;
     font-size: 26px;
     font-weight: bold;
@@ -76,17 +78,13 @@
     text-align: center;
     letter-spacing: 2px;
   }
-  .type-badge.express { background-color: #2e7d32; } /* 急行：緑 */
-  .type-badge.local { background-color: #1565c0; }   /* 普通：青 */
-  .type-badge.ltd-exp { background-color: #d32f2f; } /* 特急：赤 */
-  
   .type-en {
     font-size: 14px;
     color: #ffffff;
     margin-top: 4px;
     letter-spacing: 1px;
   }
-  /* 行先エリア */
+  /* 行先エリア（2文字でも3文字分の幅・文字間隔を維持） */
   .dest-area {
     display: flex;
     flex-direction: column;
@@ -96,6 +94,8 @@
     font-size: 38px;
     font-weight: bold;
     letter-spacing: 6px;
+    width: 260px; /* 3文字分の固定幅を確保して揃える */
+    white-space: nowrap;
   }
   .dest-en {
     font-size: 16px;
@@ -173,11 +173,11 @@
     <span class="direction-subtitle">Omuta</span>
   </div>
 
-  <!-- 1本目：急行 花畑 -->
+  <!-- 1本目：急行 花畑 (2文字) -->
   <div class="train-item">
     <div class="train-row">
       <div class="type-area">
-        <div class="type-badge express">急 行</div>
+        <div class="type-badge">急 行</div>
         <div class="type-en">Express</div>
       </div>
       <div class="dest-area">
@@ -196,11 +196,11 @@
     </div>
   </div>
 
-  <!-- 2本目：普通 大善寺 -->
+  <!-- 2本目：普通 大善寺 (3文字) -->
   <div class="train-item">
     <div class="train-row">
       <div class="type-area">
-        <div class="type-badge local">普 通</div>
+        <div class="type-badge">普 通</div>
         <div class="type-en">Local</div>
       </div>
       <div class="dest-area">
@@ -213,14 +213,13 @@
       </div>
       <div class="time-area">15:53</div>
     </div>
-    <!-- 備考がない場合はこの .notice-row ごと省略可能 -->
   </div>
 
-  <!-- 3本目：特急 大牟田 -->
+  <!-- 3本目：特急 大牟田 (3文字) -->
   <div class="train-item">
     <div class="train-row">
       <div class="type-area">
-        <div class="type-badge ltd-exp">特 急</div>
+        <div class="type-badge">特 急</div>
         <div class="type-en">Ltd.Exp</div>
       </div>
       <div class="dest-area">
