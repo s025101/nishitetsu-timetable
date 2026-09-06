@@ -88,7 +88,7 @@
     margin-top: 4px;
     letter-spacing: 1px;
   }
-  /* 行先エリア（すべての行で同じ幅・文字配置に統一） */
+  /* 行先エリア */
   .dest-area {
     display: flex;
     flex-direction: column;
@@ -139,14 +139,15 @@
     font-weight: bold;
     letter-spacing: 2px;
   }
-  /* 2行目：黒から青へのグラデーション背景 */
+  /* 2行目：黒から青へのグラデーション背景（1行目と左右のパディングを完全に一致させて幅を合わせる） */
   .notice-row {
     background: linear-gradient(to bottom, #000000, #0a2347);
     color: #ffffff;
     font-size: 13px;
-    padding: 6px 20px 8px 20px;
+    padding: 8px 20px;
     display: flex;
     align-items: center;
+    box-sizing: border-box;
     border-top: 1px solid #112544;
   }
   .notice-badge {
