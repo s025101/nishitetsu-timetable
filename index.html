@@ -90,7 +90,7 @@
     flex-direction: column;
     align-items: center;
     width: 110px;
-    margin-right: 40px;
+    margin-right: 30px;
     flex-shrink: 0;
   }
 
@@ -121,12 +121,13 @@
     font-family: 'Roboto', sans-serif;
   }
 
-  /* 行先エリア */
+  /* 行先エリア（幅を狭く調整） */
   .dest-area {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
-    min-width: 0;
+    flex-grow: 0; /* 広がりすぎないように変更 */
+    min-width: 150px; /* 最低限の幅を確保 */
+    margin-right: auto; /* 余白を右側に逃がす */
   }
   .dest-main {
     font-size: 34px;
@@ -143,7 +144,7 @@
     text-indent: 0;
   }
 
-  /* 行先の英字（中央寄せに変更） */
+  /* 行先の英字（左寄せに戻す） */
   .dest-sub {
     font-size: 12px;
     font-weight: 700;
@@ -151,7 +152,7 @@
     margin-top: 2px;
     letter-spacing: 0.5px;
     font-family: 'Roboto', sans-serif;
-    text-align: center;
+    text-align: left;
   }
 
   /* 右側グループ */
