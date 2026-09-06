@@ -12,17 +12,22 @@
     color: #ffffff;
     font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
     margin: 0;
-    padding: 0;
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* 縦方向は上に寄せる */
+    justify-content: flex-start;
+    /* 横方向は中央揃え */
     align-items: center;
     min-height: 100vh;
+    box-sizing: border-box;
     overflow-x: hidden;
   }
 
-  /* 上部コントロールパネル（ファイル切り替え用） */
+  /* 上部コントロールパネル（左寄せに変更） */
   .control-panel {
+    width: 100%;
+    max-width: 720px;
     margin-bottom: 15px;
     background: #1a1a1a;
     padding: 10px 15px;
@@ -31,6 +36,8 @@
     gap: 10px;
     align-items: center;
     font-size: 14px;
+    box-sizing: border-box;
+    /* 左に寄せるため、余分なマージンを自動にしない */
   }
   .control-panel select {
     background: #333;
@@ -97,16 +104,15 @@
     border-radius: 3px;
     text-align: center;
     letter-spacing: 3px;
-    border: 2px solid #ffffff; /* 枠はすべて白 */
+    border: 2px solid #ffffff;
     line-height: 1.2;
     width: 100%;
     box-sizing: border-box;
     color: #ffffff;
   }
-  /* 西鉄の種別カラーに合わせた背景設定（枠は白） */
-  .type-badge.local { background-color: #002b80; }   /* 普通：青 */
-  .type-badge.express { background-color: #008000; }/* 急行：緑 */
-  .type-badge.limited { background-color: #cc0000; }/* 特急：赤 */
+  .type-badge.local { background-color: #002b80; }
+  .type-badge.express { background-color: #008000; }
+  .type-badge.limited { background-color: #cc0000; }
 
   .type-sub {
     font-size: 12px;
@@ -117,7 +123,7 @@
     font-family: 'Roboto', sans-serif;
   }
 
-  /* 行先エリア（もっと右側にスペースを活かす） */
+  /* 行先エリア */
   .dest-area {
     display: flex;
     flex-direction: column;
@@ -140,7 +146,7 @@
     font-family: 'Roboto', sans-serif;
   }
 
-  /* 右側グループ（両数・ドア数を左側に寄せ、時刻とのバランスを調整） */
+  /* 右側グループ */
   .right-group {
     display: flex;
     align-items: center;
@@ -231,7 +237,6 @@
 </head>
 <body>
 
-<!-- 表示データ切り替え用のコントロール -->
 <div class="control-panel">
   <label for="fileSelect">ダイヤ選択:</label>
   <select id="fileSelect">
@@ -246,8 +251,7 @@
 
 <div class="monitor-frame">
   <div class="screen" id="train-screen">
-    <!-- JavaScriptによって動的に列車データが挿入されます -->
-  </div>
+    </div>
 </div>
 
 <script>
