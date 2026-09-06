@@ -42,7 +42,7 @@
     font-size: 14px;
   }
 
-  /* iPad miniの画面横幅（768px基準やタブレット表示）にジャストフィットさせる外枠 */
+  /* iPad miniの画面横幅にジャストフィットさせる外枠 */
   .monitor-frame {
     width: 100%;
     max-width: 720px;
@@ -86,7 +86,7 @@
     flex-direction: column;
     align-items: center;
     width: 100px;
-    margin-right: 18px;
+    margin-right: 14px;
     flex-shrink: 0;
   }
 
@@ -97,15 +97,16 @@
     border-radius: 3px;
     text-align: center;
     letter-spacing: 3px;
-    border: 2px solid #ffffff;
+    border: 2px solid #ffffff; /* 枠はすべて白 */
     line-height: 1.2;
     width: 100%;
     box-sizing: border-box;
+    color: #ffffff;
   }
-  /* 種別ごとの色分け */
-  .type-badge.local { background-color: #002b80; color: #ffffff; border-color: #ffffff; }
-  .type-badge.express { background-color: #b35900; color: #ffffff; border-color: #ff9933; }
-  .type-badge.limited { background-color: #b30000; color: #ffffff; border-color: #ff4d4d; }
+  /* 西鉄の種別カラーに合わせた背景設定（枠は白） */
+  .type-badge.local { background-color: #002b80; }   /* 普通：青 */
+  .type-badge.express { background-color: #008000; }/* 急行：緑 */
+  .type-badge.limited { background-color: #cc0000; }/* 特急：赤 */
 
   .type-sub {
     font-size: 12px;
@@ -116,7 +117,7 @@
     font-family: 'Roboto', sans-serif;
   }
 
-  /* 行先エリア */
+  /* 行先エリア（もっと右側にスペースを活かす） */
   .dest-area {
     display: flex;
     flex-direction: column;
@@ -139,13 +140,13 @@
     font-family: 'Roboto', sans-serif;
   }
 
-  /* 両数・ドア数・時刻の右側グループ */
+  /* 右側グループ（両数・ドア数を左側に寄せ、時刻とのバランスを調整） */
   .right-group {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 22px; /* 時刻との距離感調整 */
     flex-shrink: 0;
-    margin-left: 12px;
+    margin-left: 8px; /* 行先との距離を詰めて左側に寄せる */
   }
 
   /* 両数・ドア数エリア */
@@ -230,7 +231,7 @@
 </head>
 <body>
 
-<!-- 表示データ切り替え用のコントロール（必要に応じて消去・変更可能） -->
+<!-- 表示データ切り替え用のコントロール -->
 <div class="control-panel">
   <label for="fileSelect">ダイヤ選択:</label>
   <select id="fileSelect">
@@ -259,7 +260,7 @@
     return { en: 'Local', cls: 'local' };
   }
 
-  // 英語の行先マッピング（必要に応じて追加できます）
+  // 英語の行先マッピング
   const destEnglish = {
     "筑紫": "Chikushi",
     "大善寺": "Daizenji",
@@ -294,7 +295,6 @@
     const currentMinute = now.getMinutes();
     const currentTimeValue = currentHour * 60 + currentMinute;
 
-    // 全時間帯の列車を1つの配列に展開する
     let allTrains = [];
     currentTimetableData.timetable.forEach(slot => {
       if (slot.trains) {
@@ -312,7 +312,6 @@
       }
     });
 
-    // 現在時刻以降の列車をフィルタリングし、上位3本を抽出
     const upcomingTrains = allTrains.filter(train => {
       const trainTimeValue = train.hour * 60 + train.minute;
       return trainTimeValue >= currentTimeValue;
@@ -326,13 +325,11 @@
       return;
     }
 
-    // 3本分のHTMLを組み立てて流し込む
     upcomingTrains.forEach(train => {
       const typeInfo = getTypeInfo(train.type);
       const timeStr = `${String(train.hour).padStart(2, '0')}:${String(train.minute).padStart(2, '0')}`;
       const destEn = destEnglish[train.destination] || train.destination;
 
-      // 2行目のnoticeエリア（備考欄がある場合のみ表示）
       let noticeHtml = '';
       if (train.note) {
         noticeHtml = `
@@ -347,6 +344,7 @@
 
       const rowHtml = `
         <div class="train-row">
+          種別エリアや行先のバランス、両数・ドア数の配置を調整
           <div class="train-main">
             <div class="type-area">
               <div class="type-badge ${typeInfo.cls}">${train.type}</div>
@@ -371,16 +369,12 @@
     });
   }
 
-  // セレクトボックスでファイルが切り替わったときの処理
   const fileSelect = document.getElementById('fileSelect');
   fileSelect.addEventListener('change', (e) => {
     loadTimetable(e.target.value);
   });
 
-  // 初期読み込み（セレクトボックスの初期値）
   loadTimetable(fileSelect.value);
-
-  // 10秒ごとに時刻表表示を更新（リアルタイム追従）
   setInterval(updateDisplay, 10000);
 </script>
 
