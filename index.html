@@ -58,15 +58,15 @@
     display: flex;
     align-items: center;
     background-color: #000000;
-    padding: 14px 20px;
+    padding: 12px 20px;
   }
   /* 種別エリア */
   .type-area {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-right: 30px;
-    min-width: 100px;
+    margin-right: 25px;
+    min-width: 95px;
   }
   .type-badge {
     font-size: 26px;
@@ -77,7 +77,7 @@
     letter-spacing: 2px;
     border: 2px solid #ffffff;
   }
-  /* 種別ごとの色（普通は青、急行は緑、特急は赤） */
+  /* 種別ごとの色 */
   .type-badge.express { background-color: #2e7d32; color: #ffffff; }
   .type-badge.local   { background-color: #1565c0; color: #ffffff; }
   .type-badge.ltd-exp { background-color: #d32f2f; color: #ffffff; }
@@ -88,7 +88,7 @@
     margin-top: 4px;
     letter-spacing: 1px;
   }
-  /* 行先エリア */
+  /* 行先エリア（幅をスリムに調整） */
   .dest-area {
     display: flex;
     flex-direction: column;
@@ -97,13 +97,12 @@
   .dest-main {
     font-size: 38px;
     font-weight: bold;
-    width: 280px;
+    width: 200px; /* 幅を狭めてすっきりさせる */
     white-space: nowrap;
   }
-  /* 2文字の場合、3文字分の幅いっぱいに文字間を広げる */
-  .dest-main.two-chars {
-    display: flex;
-    justify-content: space-between;
+  /* 2文字の場合は間にスペースを空けて3文字分ほどの幅感にする */
+  .dest-main.spaced {
+    letter-spacing: 24px;
   }
   .dest-en {
     font-size: 16px;
@@ -116,7 +115,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-right: 40px;
+    margin-right: 35px;
     gap: 6px;
   }
   .cars-box {
@@ -144,12 +143,12 @@
     font-weight: bold;
     letter-spacing: 2px;
   }
-  /* 2行目：黒から青へのグラデーション背景 */
+  /* 2行目：黒から青へのグラデーション背景（1行目と全く同じ高さをキープ） */
   .notice-row {
     background: linear-gradient(to bottom, #000000, #0a2347);
     color: #ffffff;
     font-size: 13px;
-    padding: 8px 20px;
+    padding: 12px 20px; /* 1行目のtrain-rowと上下パディングを完全に一致 */
     display: flex;
     align-items: center;
     box-sizing: border-box;
@@ -182,7 +181,7 @@
     <span class="direction-subtitle">Omuta</span>
   </div>
 
-  <!-- 1本目：急行 花畑 (2文字・文字間を広げる) -->
+  <!-- 1本目：急行 花畑 (2文字・間にスペース) -->
   <div class="train-item">
     <div class="train-row">
       <div class="type-area">
@@ -190,7 +189,7 @@
         <div class="type-en">Express</div>
       </div>
       <div class="dest-area">
-        <div class="dest-main two-chars"><span>花</span><span>畑</span></div>
+        <div class="dest-main spaced">花畑</div>
         <div class="dest-en">Hanabatake</div>
       </div>
       <div class="specs-area">
@@ -205,7 +204,7 @@
     </div>
   </div>
 
-  <!-- 2本目：普通 大善寺 (3文字) -->
+  <!-- 2本目：普通 大善寺 (3文字・そのまま) -->
   <div class="train-item">
     <div class="train-row">
       <div class="type-area">
@@ -224,7 +223,7 @@
     </div>
   </div>
 
-  <!-- 3本目：特急 大牟田 (3文字) -->
+  <!-- 3本目：特急 大牟田 (3文字・そのまま) -->
   <div class="train-item">
     <div class="train-row">
       <div class="type-area">
