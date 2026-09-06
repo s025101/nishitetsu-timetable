@@ -248,8 +248,8 @@
 <div class="control-panel">
   <label for="fileSelect">ダイヤ選択:</label>
   <select id="fileSelect">
-    <option value="T01_omuta_timetable_weekday.json">T01: 大牟田方面 平日</option>
-    <option value="T01_omuta_timetable_holiday.json">T01: 大牟田方面 休日</option>
+    <option value="T01_omuta_timetable_weekday.json">T01 福岡(天神) 大牟田方面 平日</option>
+    <option value="T01_omuta_timetable_holiday.json">T01 福岡(天神) 大牟田方面 休日</option>
   </select>
 </div>
 
@@ -262,7 +262,7 @@
   let currentTimetableData = null;
 
   function getTypeInfo(type) {
-    if (type === '特急') return { en: 'Limited Exp.', cls: 'limited' };
+    if (type === '特急') return { en: 'Ltd.Exp.', cls: 'limited' };
     if (type === '急行') return { en: 'Express', cls: 'express' };
     return { en: 'Local', cls: 'local' };
   }
@@ -272,10 +272,10 @@
     "大善寺": "Daizenji",
     "花畑": "Hanabatake",
     "大牟田": "Omuta",
-    "西鉄二日市": "Nishitetsu Futsukaichi",
-    "西鉄小郡": "Nishitetsu Ogori",
+    "二日市": "Futsukaichi",
+    "小郡": "Ogori",
     "太宰府": "Dazaifu",
-    "西鉄柳川": "Nishitetsu Yanagawa",
+    "柳川": "Yanagawa",
     "久留米": "Kurume"
   };
 
@@ -360,7 +360,7 @@
         noticeHtml = `
           <div class="notice-row">
             <div class="notice-line">
-              <span class="notice-badge">案内</span>
+              <span class="notice-badge">接続案内</span>
               ${train.note}
             </div>
           </div>
