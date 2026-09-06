@@ -1,382 +1,150 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <title>西鉄電車 発車案内ディスプレイ</title>
-    <style>
-        body {
-            background-color: #050508;
-            color: #ffffff;
-            font-family: "BIZ UDPGothic", "Meiryo", "Hiragino Kaku Gothic ProN", sans-serif;
-            margin: 0;
-            padding: 20px;
-            box-sizing: border-box;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        .main-board {
-            width: 100%;
-            max-width: 900px;
-            margin: 0 auto;
-            border: 4px solid #1a1a1a;
-            background-color: #000000;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-        }
-
-        .board-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #000000;
-            padding: 10px 15px;
-            border-bottom: 3px solid #333;
-            gap: 10px;
-        }
-
-        .select-group {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .select-label {
-            font-size: 11pt;
-            color: #aaa;
-        }
-
-        .station-select {
-            background-color: #111;
-            color: #fff;
-            border: 1px solid #666;
-            font-size: 14pt;
-            padding: 4px 8px;
-            border-radius: 4px;
-        }
-
-        .board-top-title {
-            background-color: #000000;
-            text-align: center;
-            padding: 10px 0 6px 0;
-            border-bottom: 2px solid #222;
-        }
-
-        .direction-ja {
-            font-size: 18pt;
-            font-weight: 700;
-            letter-spacing: 4px;
-            color: #ffffff;
-        }
-
-        .direction-en {
-            font-size: 10pt;
-            color: #888;
-            letter-spacing: 1px;
-            margin-top: 2px;
-            font-family: "Consolas", "Courier New", monospace;
-        }
-
-        .train-block {
-            border-bottom: 3px solid #222;
-        }
-
-        .train-row {
-            display: grid;
-            grid-template-columns: 145px 1fr auto;
-            align-items: center;
-            background: linear-gradient(to bottom, #001133 0%, #000822 100%);
-            padding: 14px 15px;
-            border-top: 2px solid #002266;
-            gap: 15px;
-        }
-
-        .type-area {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .train-type {
-            font-size: 26pt;
-            font-weight: 700;
-            padding: 1px 2px 1px 8px;
-            text-align: center;
-            border: 2px solid #ffffff;
-            border-radius: 4px;
-            width: 115px;
-            letter-spacing: 12px;
-        }
-
-        .type-limited { background-color: #e60012; color: #ffffff; }
-        .type-express { background-color: #009944; color: #ffffff; }
-        .type-local   { background-color: #0044cc; color: #ffffff; }
-
-        .sub-type {
-            font-size: 13pt;
-            color: #ffffff;
-            letter-spacing: 1px;
-            font-weight: bold;
-            text-align: center;
-            width: 100%;
-        }
-
-        .destination-area {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
-            gap: 2px;
-        }
-
-        .destination {
-            font-size: 32pt;
-            font-weight: 700;
-            white-space: nowrap;
-            letter-spacing: 16px;
-            margin-left: 8px;
-        }
-
-        .destination.len-2 {
-            letter-spacing: 72px;
-            margin-right: -72px;
-        }
-
-        .sub-destination {
-            font-size: 13pt;
-            color: #ffffff;
-            letter-spacing: 1px;
-            text-align: left;
-            margin-left: 8px;
-        }
-
-        .info-area {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-        }
-
-        .time {
-            font-size: 38pt;
-            font-weight: 700;
-            font-family: "Consolas", "Courier New", monospace;
-            letter-spacing: 1px;
-        }
-
-        .error-message {
-            color: #ff3333;
-            text-align: center;
-            font-size: 18pt;
-            padding: 40px;
-        }
-    </style>
+<meta charset="UTF-8">
+<title>西鉄福岡(天神) 発車標</title>
+<style>
+  body {
+    background-color: #0b1d3a;
+    color: #ffffff;
+    font-family: sans-serif;
+    margin: 0;
+    padding: 20px;
+  }
+  .board {
+    width: 800px;
+    background-color: #050d1a;
+    border: 2px solid #2e4a7d;
+    padding: 10px;
+  }
+  .train-row {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(to bottom, #0d2347, #061226);
+    border-bottom: 2px solid #1a365d;
+    padding: 10px 15px;
+    position: relative;
+  }
+  /* 種別バッジ */
+  .type-badge {
+    background-color: #d32f2f; /* 特急は赤、急行は緑などに調整可 */
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 4px 12px;
+    border-radius: 4px;
+    text-align: center;
+    min-width: 90px;
+    margin-right: 20px;
+  }
+  .type-badge.express {
+    background-color: #2e7d32; /* 急行用 */
+  }
+  /* 行先 */
+  .destination {
+    font-size: 36px;
+    font-weight: bold;
+    letter-spacing: 4px;
+    flex-grow: 1;
+  }
+  /* 両数・ドア数エリア */
+  .specs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 30px;
+    gap: 4px;
+  }
+  .cars-box {
+    background-color: #ffffff;
+    color: #000000;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 2px;
+    border: 1px solid #ccc;
+  }
+  .doors-badge {
+    background-color: #d32f2f;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 2px 10px;
+    border-radius: 20px; /* 楕円囲み */
+    text-align: center;
+  }
+  /* 発車時刻 */
+  .time {
+    font-size: 40px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-right: 20px;
+  }
+  /* のりば */
+  .platform {
+    background-color: #ffffff;
+    color: #000000;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 4px 10px;
+    border-radius: 4px;
+  }
+  /* 下段：接続案内（備考） */
+  .notice-row {
+    background-color: #091933;
+    color: #ffffff;
+    font-size: 14px;
+    padding: 6px 15px 8px 15px;
+    border-bottom: 3px solid #1a365d;
+    display: flex;
+    align-items: center;
+  }
+  .notice-badge {
+    background-color: #1565c0;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-right: 10px;
+  }
+</style>
 </head>
 <body>
 
-    <div class="main-board">
-        <div class="board-header">
-            <div class="select-group">
-                <span class="select-label">駅:</span>
-                <select id="stationSelect" class="station-select" onchange="loadTimetable()">
-                    <option value="T01" selected>T01: 西鉄福岡(天神)</option>
-                    <option value="T11">T11: 都府楼前</option>
-                </select>
-            </div>
-            <div class="select-group">
-                <span class="select-label">方面:</span>
-                <select id="directionSelect" class="station-select" onchange="loadTimetable()">
-                    <option value="fukuoka">福岡(天神) 方面</option>
-                    <option value="omuta" selected>大牟田 方面</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="board-top-title">
-            <div id="dirTitleJa" class="direction-ja">読み込み中...</div>
-            <div id="dirTitleEn" class="direction-en">--</div>
-        </div>
-
-        <div id="boardContent"></div>
+<div class="board">
+  <!-- 1本目：特急 大牟田 -->
+  <div class="train-row">
+    <div class="type-badge">特 急</div>
+    <div class="destination">大牟田</div>
+    <div class="specs">
+      <div class="cars-box">6 両</div>
+      <div class="doors-badge">3ドア</div>
     </div>
+    <div class="time">10:30</div>
+    <div class="platform">3 <span style="font-size:12px;">のりば</span></div>
+  </div>
+  <div class="notice-row">
+    <span class="notice-badge">接続案内</span>
+    二日市、久留米、大善寺、柳川で普通電車に接続します
+  </div>
 
-    <script>
-        let currentTimetableData = null;
+  <!-- 2本目：急行 花畑 -->
+  <div class="train-row">
+    <div class="type-badge express">急 行</div>
+    <div class="destination">花 畑</div>
+    <div class="specs">
+      <div class="cars-box">5 両</div>
+      <div class="doors-badge">3ドア</div>
+    </div>
+    <div class="time">10:38</div>
+    <div class="platform">1 <span style="font-size:12px;">のりば</span></div>
+  </div>
+  <div class="notice-row">
+    <span class="notice-badge">接続案内</span>
+    大橋、二日市、小郡、花畑で普通電車に接続します
+  </div>
+</div>
 
-        function convertBrackets(str) {
-            if (!str) return '';
-            return str.replace(/（/g, '(').replace(/）/g, ')');
-        }
-
-        async function loadTimetable() {
-            const stationCode = document.getElementById('stationSelect').value;
-            const directionVal = document.getElementById('directionSelect').value; 
-            
-            const now = new Date();
-            const dayOfWeek = now.getDay();
-            const dayType = (dayOfWeek === 0 || dayOfWeek === 6) ? 'holiday' : 'weekday';
-            
-            const filename = `${stationCode}_${directionVal}_timetable_${dayType}.json`;
-
-            try {
-                const response = await fetch(filename);
-                if (!response.ok) throw new Error("ファイルが見つかりません: " + filename);
-                
-                currentTimetableData = await response.json();
-                renderBoard(currentTimetableData);
-            } catch (error) {
-                console.error(error);
-                currentTimetableData = null;
-                document.getElementById('boardContent').innerHTML = `
-                    <div class="error-message">ファイルが見つかりません (${filename})</div>
-                `;
-                document.getElementById('dirTitleJa').textContent = 'データなし';
-                document.getElementById('dirTitleEn').textContent = 'No Data';
-            }
-        }
-
-        function getSubType(type) {
-            if (type === '特急') return 'Ltd.Exp';
-            if (type === '急行') return 'Express';
-            if (type === '普通') return 'Local';
-            return '';
-        }
-
-        function getSubDestination(dest) {
-            const map = {
-                '大牟田': 'Ōmuta',
-                '西鉄柳川': 'Yanagawa',
-                '柳川': 'Yanagawa',
-                '花畑': 'Hanabatake',
-                '大善寺': 'Daizenji',
-                '津福': 'Tsubuku',
-                '小郡': 'Ogōri',
-                '筑紫': 'Chikushi',
-                '西鉄二日市': 'Futsukaichi',
-                '二日市': 'Futsukaichi',
-                '太宰府': 'Dazaifu',
-                '福岡(天神)': 'Fukuoka(Tenjin)',
-                '西鉄福岡': 'Fukuoka(Tenjin)',
-                '西鉄福岡(天神)': 'Fukuoka(Tenjin)',
-                '西鉄福岡（天神）': 'Fukuoka(Tenjin)'
-            };
-            return map[dest] || '';
-        }
-
-        function renderBoard(data) {
-            const container = document.getElementById('boardContent');
-            let html = '';
-
-            const titleJa = document.getElementById('dirTitleJa');
-            const titleEn = document.getElementById('dirTitleEn');
-            
-            let rawDir = data.direction || '方面別案内';
-            rawDir = rawDir.replace('西鉄福岡', '福岡');
-            titleJa.textContent = convertBrackets(rawDir);
-            titleEn.textContent = data.directionEn || '';
-
-            let rawTimetable = null;
-            if (data.schedules) {
-                const now = new Date();
-                const isWeekend = (now.getDay() === 0 || now.getDay() === 6);
-                rawTimetable = isWeekend ? data.schedules.weekend : data.schedules.weekday;
-            } else if (data.timetable) {
-                rawTimetable = data.timetable;
-            }
-
-            let trains = [];
-            if (rawTimetable) {
-                rawTimetable.forEach(hourGroup => {
-                    const h = hourGroup.hour;
-                    if (hourGroup.trains) {
-                        hourGroup.trains.forEach(dep => {
-                            const minStr = String(dep.minute).padStart(2, '0');
-                            const hourStr = String(h).padStart(2, '0');
-                            trains.push({
-                                type: dep.type || '普通',
-                                destination: dep.destination,
-                                time: `${hourStr}:${minStr}`
-                            });
-                        });
-                    }
-                });
-            }
-
-            if (trains.length > 0) {
-                const now = new Date();
-                const currentMinutes = now.getHours() * 60 + now.getMinutes();
-
-                let upcomingTrains = trains.filter(train => {
-                    const parts = train.time.split(':');
-                    if (parts.length !== 2) return false;
-                    const trainMinutes = parseInt(parts[0], 10) * 60 + parseInt(parts[1], 10);
-                    return trainMinutes >= currentMinutes;
-                });
-
-                if (upcomingTrains.length === 0) {
-                    upcomingTrains = trains;
-                }
-
-                const targetTrains = upcomingTrains.slice(0, 3);
-
-                targetTrains.forEach(train => {
-                    let typeClass = 'type-local';
-                    if (train.type === '特急') typeClass = 'type-limited';
-                    else if (train.type === '急行') typeClass = 'type-express';
-
-                    let dest = train.destination;
-                    
-                    if (dest && dest.includes('西鉄福岡')) {
-                        dest = '福岡(天神)';
-                    }
-                    if (dest && dest.includes('西鉄柳川')) {
-                        dest = '柳川';
-                    }
-                    if (dest && dest.includes('西鉄小郡')) {
-                        dest = '小郡';
-                    }
-
-                    dest = convertBrackets(dest);
-
-                    const subType = getSubType(train.type);
-                    const subDest = getSubDestination(dest);
-                    const lenClass = (dest && dest.length === 2) ? 'len-2' : '';
-
-                    html += `
-                        <div class="train-block">
-                            <div class="train-row">
-                                <div class="type-area">
-                                    <div class="train-type ${typeClass}">${train.type}</div>
-                                    <div class="sub-type">${subType}</div>
-                                </div>
-
-                                <div class="destination-area">
-                                    <div class="destination ${lenClass}">${dest}</div>
-                                    <div class="sub-destination">${subDest}</div>
-                                </div>
-
-                                <div class="info-area">
-                                    <div class="time">${train.time}</div>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                });
-            } else {
-                html = `<div class="error-message">本日のダイヤはありません</div>`;
-            }
-
-            container.innerHTML = html;
-        }
-
-        window.onload = function() {
-            loadTimetable();
-
-            setInterval(() => {
-                if (currentTimetableData) {
-                    renderBoard(currentTimetableData);
-                }
-            }, 10000);
-        };
-    </script>
 </body>
 </html>
