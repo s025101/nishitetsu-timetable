@@ -88,7 +88,7 @@
     margin-top: 4px;
     letter-spacing: 1px;
   }
-  /* 行先エリア */
+  /* 行先エリア（すべての行で同じ幅・文字配置に統一） */
   .dest-area {
     display: flex;
     flex-direction: column;
@@ -99,11 +99,6 @@
     font-weight: bold;
     width: 280px;
     white-space: nowrap;
-  }
-  /* 2文字のときのみ3文字分の幅（均等配置）にするクラス */
-  .dest-main.two-chars {
-    display: flex;
-    justify-content: space-between;
   }
   .dest-en {
     font-size: 16px;
@@ -181,7 +176,7 @@
     <span class="direction-subtitle">Omuta</span>
   </div>
 
-  <!-- 1本目：急行 花畑 (2文字なので幅を調整) -->
+  <!-- 1本目：急行 花畑 -->
   <div class="train-item">
     <div class="train-row">
       <div class="type-area">
@@ -189,7 +184,7 @@
         <div class="type-en">Express</div>
       </div>
       <div class="dest-area">
-        <div class="dest-main two-chars"><span>花</span><span>畑</span></div>
+        <div class="dest-main">花畑</div>
         <div class="dest-en">Hanabatake</div>
       </div>
       <div class="specs-area">
@@ -204,7 +199,7 @@
     </div>
   </div>
 
-  <!-- 2本目：普通 大善寺 (3文字は調整なし) -->
+  <!-- 2本目：普通 大善寺 -->
   <div class="train-item">
     <div class="train-row">
       <div class="type-area">
@@ -223,7 +218,7 @@
     </div>
   </div>
 
-  <!-- 3本目：特急 大牟田 (3文字は調整なし) -->
+  <!-- 3本目：特急 大牟田 -->
   <div class="train-item">
     <div class="train-row">
       <div class="type-area">
