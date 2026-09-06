@@ -15,16 +15,14 @@
     padding: 20px;
     display: flex;
     flex-direction: column;
-    /* 縦方向は上に寄せる */
     justify-content: flex-start;
-    /* 横方向は中央揃え */
     align-items: center;
     min-height: 100vh;
     box-sizing: border-box;
     overflow-x: hidden;
   }
 
-  /* 上部コントロールパネル（左寄せに変更） */
+  /* 上部コントロールパネル */
   .control-panel {
     width: 100%;
     max-width: 720px;
@@ -37,7 +35,6 @@
     align-items: center;
     font-size: 14px;
     box-sizing: border-box;
-    /* 左に寄せるため、余分なマージンを自動にしない */
   }
   .control-panel select {
     background: #333;
@@ -92,8 +89,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100px;
-    margin-right: 14px;
+    width: 110px;
+    margin-right: 28px; /* 種別と行先の間隔を広げる */
     flex-shrink: 0;
   }
 
@@ -103,7 +100,8 @@
     padding: 2px 6px;
     border-radius: 3px;
     text-align: center;
-    letter-spacing: 3px;
+    letter-spacing: 6px; /* 種別の文字間にスペースを空ける */
+    text-indent: 6px;    /* 全体が中央に寄る微調整 */
     border: 2px solid #ffffff;
     line-height: 1.2;
     width: 100%;
@@ -133,7 +131,8 @@
   .dest-main {
     font-size: 34px;
     font-weight: 900;
-    letter-spacing: 6px;
+    letter-spacing: 6px; /* 行先の文字間にスペースを空ける */
+    text-indent: 6px;
     white-space: nowrap;
     line-height: 1.1;
   }
@@ -160,222 +159,4 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 52px;
-    gap: 3px;
-    flex-shrink: 0;
-  }
-  .cars-box {
-    background-color: #ffffff;
-    color: #000000;
-    font-size: 13px;
-    font-weight: 900;
-    padding: 1px 6px;
-    border-radius: 2px;
-    letter-spacing: 1px;
-    white-space: nowrap;
-  }
-  .doors-badge {
-    background-color: #cc0000;
-    color: #ffffff;
-    font-size: 11px;
-    font-weight: 900;
-    padding: 1px 6px;
-    border-radius: 10px;
-    white-space: nowrap;
-    letter-spacing: 0.5px;
-    border: 1px solid #ff4d4d;
-  }
-
-  /* 時刻エリア */
-  .time-area {
-    font-size: 38px;
-    font-weight: 900;
-    letter-spacing: 1.5px;
-    font-family: 'Roboto', Arial, sans-serif;
-  }
-
-  /* 2行目（お知らせ・接続案内行） */
-  .notice-row {
-    background: transparent;
-    padding: 12px 16px 14px 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .notice-line {
-    display: flex;
-    align-items: center;
-    font-size: 13px;
-    font-weight: 700;
-    color: #ffffff;
-    letter-spacing: 0.5px;
-    line-height: 1.4;
-  }
-
-  .notice-badge {
-    background-color: #002b80;
-    color: #ffffff;
-    font-size: 10px;
-    font-weight: 700;
-    padding: 2px 8px;
-    border-radius: 2px;
-    margin-right: 10px;
-    border: 1px solid #4da6ff;
-    letter-spacing: 1px;
-    flex-shrink: 0;
-  }
-
-  .no-trains {
-    padding: 30px;
-    text-align: center;
-    font-size: 18px;
-    color: #888;
-    font-weight: bold;
-  }
-</style>
-</head>
-<body>
-
-<div class="control-panel">
-  <label for="fileSelect">ダイヤ選択:</label>
-  <select id="fileSelect">
-    <option value="T11_fukuoka_timetable_weekday.json">T11: 福岡(天神) 平日</option>
-    <option value="T11_fukuoka_timetable_holiday.json">T11: 福岡(天神) 休日</option>
-    <option value="T11_omuta_timetable_weekday.json">T11: 大牟田方面 平日</option>
-    <option value="T11_omuta_timetable_holiday.json">T11: 大牟田方面 休日</option>
-    <option value="T01_omuta_timetable_weekday.json">T01: 大牟田方面 平日</option>
-    <option value="T01_omuta_timetable_holiday.json">T01: 大牟田方面 休日</option>
-  </select>
-</div>
-
-<div class="monitor-frame">
-  <div class="screen" id="train-screen">
-    </div>
-</div>
-
-<script>
-  let currentTimetableData = null;
-
-  function getTypeInfo(type) {
-    if (type === '特急') return { en: 'Limited Exp.', cls: 'limited' };
-    if (type === '急行') return { en: 'Express', cls: 'express' };
-    return { en: 'Local', cls: 'local' };
-  }
-
-  const destEnglish = {
-    "筑紫": "Chikushi",
-    "大善寺": "Daizenji",
-    "花畑": "Hanabatake",
-    "大牟田": "Omuta",
-    "西鉄二日市": "Nishitetsu Futsukaichi",
-    "西鉄小郡": "Nishitetsu Ogori",
-    "太宰府": "Dazaifu",
-    "西鉄柳川": "Nishitetsu Yanagawa",
-    "久留米": "Kurume"
-  };
-
-  async function loadTimetable(filename) {
-    try {
-      const response = await fetch(filename);
-      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-      currentTimetableData = await response.json();
-      updateDisplay();
-    } catch (e) {
-      console.error('JSON読み込みエラー:', e);
-      document.getElementById('train-screen').innerHTML = `<div class="no-trains">データの読み込みに失敗しました<br><small>${filename}</small></div>`;
-    }
-  }
-
-  function updateDisplay() {
-    if (!currentTimetableData || !currentTimetableData.timetable) return;
-
-    const now = new Date();
-    const currentHour = now.getHours();
-    const currentMinute = now.getMinutes();
-    const currentTimeValue = currentHour * 60 + currentMinute;
-
-    let allTrains = [];
-    currentTimetableData.timetable.forEach(slot => {
-      if (slot.trains) {
-        slot.trains.forEach(train => {
-          allTrains.push({
-            hour: slot.hour,
-            minute: train.minute,
-            type: train.type,
-            destination: train.destination,
-            cars: train.cars,
-            doors: train.doors,
-            note: train.note
-          });
-        });
-      }
-    });
-
-    const upcomingTrains = allTrains.filter(train => {
-      const trainTimeValue = train.hour * 60 + train.minute;
-      return trainTimeValue >= currentTimeValue;
-    }).slice(0, 3);
-
-    const screenContainer = document.getElementById('train-screen');
-    screenContainer.innerHTML = '';
-
-    if (upcomingTrains.length === 0) {
-      screenContainer.innerHTML = '<div class="no-trains">本日の運行は終了しました</div>';
-      return;
-    }
-
-    upcomingTrains.forEach(train => {
-      const typeInfo = getTypeInfo(train.type);
-      const timeStr = `${String(train.hour).padStart(2, '0')}:${String(train.minute).padStart(2, '0')}`;
-      const destEn = destEnglish[train.destination] || train.destination;
-
-      let noticeHtml = '';
-      if (train.note) {
-        noticeHtml = `
-          <div class="notice-row">
-            <div class="notice-line">
-              <span class="notice-badge">案内</span>
-              ${train.note}
-            </div>
-          </div>
-        `;
-      }
-
-      const rowHtml = `
-        <div class="train-row">
-          <div class="train-main">
-            <div class="type-area">
-              <div class="type-badge ${typeInfo.cls}">${train.type}</div>
-              <div class="type-sub">${typeInfo.en}</div>
-            </div>
-            <div class="dest-area">
-              <div class="dest-main">${train.destination}</div>
-              <div class="dest-sub">${destEn}</div>
-            </div>
-            <div class="right-group">
-              <div class="specs-area">
-                <div class="cars-box">${train.cars} 両</div>
-                <div class="doors-badge">${train.doors || 3}ドア</div>
-              </div>
-              <div class="time-area">${timeStr}</div>
-            </div>
-          </div>
-          ${noticeHtml}
-        </div>
-      `;
-      screenContainer.innerHTML += rowHtml;
-    });
-  }
-
-  const fileSelect = document.getElementById('fileSelect');
-  fileSelect.addEventListener('change', (e) => {
-    loadTimetable(e.target.value);
-  });
-
-  loadTimetable(fileSelect.value);
-  setInterval(updateDisplay, 10000);
-</script>
-
-</body>
-</html>
+    width: 52px
