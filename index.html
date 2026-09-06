@@ -1,287 +1,91 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>西鉄電車 発車標レプリカ - iPad mini最適化</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&family=Roboto:wght@700;900&display=swap');
-
-  body {
-    background-color: #121212;
-    color: #ffffff;
-    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-
-  /* iPad miniの画面横幅（768px基準やタブレット表示）にジャストフィットさせる外枠 */
-  .monitor-frame {
-    width: 100%;
-    max-width: 720px;
-    background-color: #080808;
-    border: 6px solid #1a1a1a;
-    border-radius: 4px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.9), inset 0 0 10px rgba(0,0,0,0.9);
-    overflow: hidden;
-    box-sizing: border-box;
-  }
-
-  /* 画面ディスプレイ部分 */
-  .screen {
-    background: linear-gradient(to bottom, #001254 0%, #000a33 45%, #000312 80%, #000000 100%);
-    display: flex;
-    flex-direction: column;
-    border: 2px solid #001a66;
-  }
-
-  /* 1列車分のブロック */
-  .train-row {
-    border-bottom: 2px solid #001855;
-    display: flex;
-    flex-direction: column;
-  }
-  .train-row:last-child {
-    border-bottom: none;
-  }
-
-  /* 1行目（メイン情報） */
-  .train-main {
-    background-color: #000000;
-    display: flex;
-    align-items: center;
-    padding: 10px 16px;
-  }
-
-  /* 種別エリア */
-  .type-area {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100px;
-    margin-right: 18px;
-    flex-shrink: 0;
-  }
-
-  .type-badge {
-    font-size: 26px;
-    font-weight: 900;
-    padding: 2px 6px;
-    border-radius: 3px;
-    text-align: center;
-    letter-spacing: 3px;
-    border: 2px solid #ffffff;
-    line-height: 1.2;
-    width: 100%;
-    box-sizing: border-box;
-  }
-  .type-badge.local { background-color: #002b80; color: #ffffff; border-color: #ffffff; }
-
-  .type-sub {
-    font-size: 12px;
-    font-weight: 700;
-    color: #ffffff;
-    margin-top: 2px;
-    letter-spacing: 0.5px;
-    font-family: 'Roboto', sans-serif;
-  }
-
-  /* 行先エリア */
-  .dest-area {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    min-width: 0;
-  }
-  .dest-main {
-    font-size: 34px;
-    font-weight: 900;
-    letter-spacing: 6px;
-    white-space: nowrap;
-    line-height: 1.1;
-  }
-  .dest-sub {
-    font-size: 12px;
-    font-weight: 700;
-    color: #ffffff;
-    margin-top: 2px;
-    letter-spacing: 0.5px;
-    font-family: 'Roboto', sans-serif;
-  }
-
-  /* 両数・ドア数・時刻の右側グループ（行先との絶妙な間隔） */
-  .right-group {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    flex-shrink: 0;
-    margin-left: 12px;
-  }
-
-  /* 両数・ドア数エリア */
-  .specs-area {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 52px;
-    gap: 3px;
-    flex-shrink: 0;
-  }
-  .cars-box {
-    background-color: #ffffff;
-    color: #000000;
-    font-size: 13px;
-    font-weight: 900;
-    padding: 1px 6px;
-    border-radius: 2px;
-    letter-spacing: 1px;
-  }
-  .doors-badge {
-    background-color: #cc0000; /* 赤色固定 */
-    color: #ffffff;
-    font-size: 11px;
-    font-weight: 900;
-    padding: 1px 6px;
-    border-radius: 10px;
-    white-space: nowrap;
-    letter-spacing: 0.5px;
-    border: 1px solid #ff4d4d;
-  }
-
-  /* 時刻エリア */
-  .time-area {
-    font-size: 38px;
-    font-weight: 900;
-    letter-spacing: 1.5px;
-    font-family: 'Roboto', Arial, sans-serif;
-  }
-
-  /* 2行目（お知らせ・接続案内行：ゆったりとした高さ） */
-  .notice-row {
-    background: transparent;
-    padding: 12px 16px 14px 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .notice-line {
-    display: flex;
-    align-items: center;
-    font-size: 13px;
-    font-weight: 700;
-    color: #ffffff;
-    letter-spacing: 0.5px;
-    line-height: 1.4;
-  }
-
-  .notice-badge {
-    background-color: #002b80;
-    color: #ffffff;
-    font-size: 10px;
-    font-weight: 700;
-    padding: 2px 8px;
-    border-radius: 2px;
-    margin-right: 10px;
-    border: 1px solid #4da6ff;
-    letter-spacing: 1px;
-    flex-shrink: 0;
-  }
-</style>
+    <meta charset="UTF-8">
+    <title>西鉄電車 駅時刻表</title>
+    <!-- スタイルシートの記述は省略・お好みで -->
 </head>
 <body>
 
-<div class="monitor-frame">
-  <div class="screen">
-
-    <!-- 1本目：普通 筑紫 (7両 3ドア) -->
-    <div class="train-row">
-      <div class="train-main">
-        <div class="type-area">
-          <div class="type-badge local">普 通</div>
-          <div class="type-sub">Local</div>
+    <div class="card">
+        <h1 id="station-info">読み込み中...</h1>
+        <div class="clock" id="clock">--:--:--</div>
+        
+        <!-- 切り替えボタンなどの例 -->
+        <div style="margin-top: 10px;">
+            <select id="jsonSelector">
+                <option value="T11_fukuoka_timetable_weekday.json">天神駅発 平日</option>
+                <option value="T11_fukuoka_timetable_holiday.json">天神駅発 休日</option>
+                <!-- 必要に応じて他のファイルも選択肢に追加できます -->
+            </select>
         </div>
-        <div class="dest-area">
-          <div class="dest-main">筑 紫</div>
-          <div class="dest-sub">Chikushi</div>
-        </div>
-        <div class="right-group">
-          <div class="specs-area">
-            <div class="cars-box">7 両</div>
-            <div class="doors-badge">3ドア</div>
-          </div>
-          <div class="time-area">10:02</div>
-        </div>
-      </div>
-      <div class="notice-row">
-        <div class="notice-line">
-          <span class="notice-badge">追越案内</span>
-          大橋であとの急行が先に発車します
-        </div>
-      </div>
     </div>
 
-    <!-- 2本目：普通 大善寺 (4両 3ドア) -->
-    <div class="train-row">
-      <div class="train-main">
-        <div class="type-area">
-          <div class="type-badge local">普 通</div>
-          <div class="type-sub">Local</div>
-        </div>
-        <div class="dest-area">
-          <div class="dest-main">大善寺</div>
-          <div class="dest-sub">Daizenji</div>
-        </div>
-        <div class="right-group">
-          <div class="specs-area">
-            <div class="cars-box">4 両</div>
-            <div class="doors-badge">3ドア</div>
-          </div>
-          <div class="time-area">10:11</div>
-        </div>
-      </div>
-      <div class="notice-row">
-        <div class="notice-line">
-          <span class="notice-badge">追越案内</span>
-          大橋であとの急行が先に発車します
-        </div>
-      </div>
+    <div class="card">
+        <h2>直近の発車予定</h2>
+        <ul class="train-list" id="train-list"></ul>
     </div>
 
-    <!-- 3本目：普通 筑紫 (4両 4ドア) -->
-    <div class="train-row">
-      <div class="train-main">
-        <div class="type-area">
-          <div class="type-badge local">普 通</div>
-          <div class="type-sub">Local</div>
-        </div>
-        <div class="dest-area">
-          <div class="dest-main">筑 紫</div>
-          <div class="dest-sub">Chikushi</div>
-        </div>
-        <div class="right-group">
-          <div class="specs-area">
-            <div class="cars-box">4 両</div>
-            <div class="doors-badge">3ドア</div>
-          </div>
-          <div class="time-area">10:20</div>
-        </div>
-      </div>
-      <div class="notice-row">
-        <div class="notice-line">
-          <span class="notice-badge">追越案内</span>
-          春日原であとの特急に追越されます
-        </div>
-      </div>
-    </div>
+    <script>
+        let timetableData = null;
 
-  </div>
-</div>
+        async function loadTimetable(filename) {
+            try {
+                const response = await fetch(filename);
+                if (!response.ok) throw new Error('ファイルの読み込みに失敗しました');
+                timetableData = await response.json();
 
+                document.getElementById('station-info').innerText = 
+                    `${timetableData.station} (${timetableData.direction})`;
+                updateTimetable();
+            } catch (error) {
+                console.error(error);
+                document.getElementById('station-info').innerText = '読み込みエラー';
+            }
+        }
+
+        function updateTimetable() {
+            if (!timetableData) return;
+            const now = new Date();
+            const currentHour = now.getHours();
+            const currentMinute = now.getMinutes();
+
+            document.getElementById('clock').innerText = now.toTimeString().split(' ')[0];
+
+            let allTrains = [];
+            timetableData.timetable.forEach(slot => {
+                slot.trains.forEach(train => {
+                    allTrains.push({ hour: slot.hour, ...train });
+                });
+            });
+
+            const currentTimeValue = currentHour * 60 + currentMinute;
+            const upcoming = allTrains.filter(t => (t.hour * 60 + t.minute) >= currentTimeValue).slice(0, 5);
+
+            const list = document.getElementById('train-list');
+            list.innerHTML = '';
+            
+            if (upcoming.length === 0) {
+                list.innerHTML = '<li>本日の運行は終了しました</li>';
+                return;
+            }
+
+            upcoming.forEach(train => {
+                const li = document.createElement('li');
+                li.innerHTML = `<strong>${String(train.hour).padStart(2, '0')}:${String(train.minute).padStart(2, '0')}</strong> [${train.type}] ${train.destination}行 (${train.cars}両)`;
+                list.appendChild(li);
+            });
+        }
+
+        // セレクトボックスでファイルが変更されたら再読み込み
+        const selector = document.getElementById('jsonSelector');
+        selector.addEventListener('change', (e) => {
+            loadTimetable(e.target.value);
+        });
+
+        // 初期読み込み（最初はセレクトボックスの選択値を使用）
+        loadTimetable(selector.value);
+        setInterval(updateTimetable, 1000);
+    </script>
 </body>
 </html>
