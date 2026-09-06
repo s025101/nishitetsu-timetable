@@ -1,198 +1,284 @@
 {
-  "station": "都府楼前駅",
-  "direction": "大牟田方面",
-  "directionEn": "Omuta",
-  "day_type": "休日",
   "timetable": [
     {
       "hour": 5,
       "trains": [
-        { "minute": 35, "type": "普通", "destination": "大牟田", "note": null },
-        { "minute": 55, "type": "普通", "destination": "花畑", "note": null }
+        { "minute": 12, "type": "普通", "destination": "筑紫", "cars": 5, "doors": 3 },
+        { "minute": 32, "type": "普通", "destination": "筑紫", "cars": 7, "doors": 3 },
+        { "minute": 56, "type": "普通", "destination": "花畑", "cars": 4, "doors": 4 }
       ]
     },
     {
       "hour": 6,
       "trains": [
-        { "minute": 19, "type": "普通", "destination": "花畑", "note": null },
-        { "minute": 36, "type": "普通", "destination": "花畑", "note": null },
-        { "minute": 52, "type": "普通", "destination": "西鉄小郡", "note": null }
+        { "minute": 13, "type": "普通", "destination": "花畑", "cars": 4, "doors": 4 },
+        { "minute": 25, "type": "普通", "destination": "小郡", "cars": 4, "doors": 4 },
+        { "minute": 30, "type": "特急", "destination": "大牟田", "cars": 6, "doors": 3 },
+        { "minute": 44, "type": "急行", "destination": "筑紫", "cars": 7, "doors": 4, "note": "二日市から普通になります" },
+        { "minute": 46, "type": "普通", "destination": "大善寺", "cars": 4, "doors": 4 }
       ]
     },
     {
       "hour": 7,
       "trains": [
-        { "minute": 10, "type": "普通", "destination": "大善寺", "note": null },
-        { "minute": 30, "type": "普通", "destination": "筑紫", "note": null },
-        { "minute": 40, "type": "普通", "destination": "大善寺", "note": null },
-        { "minute": 57, "type": "普通", "destination": "西鉄小郡", "note": null }
+        { "minute": 0, "type": "特急", "destination": "大牟田", "cars": 7, "doors": 3 },
+        { "minute": 3, "type": "普通", "destination": "筑紫", "cars": 6, "doors": 3 },
+        { "minute": 7, "type": "急行", "destination": "花畑", "cars": 7, "doors": 3 },
+        { "minute": 16, "type": "普通", "destination": "大善寺", "cars": 4, "doors": 3 },
+        { "minute": 25, "type": "普通", "destination": "小郡", "cars": 5, "doors": 3 },
+        { "minute": 30, "type": "特急", "destination": "大牟田", "cars": 6, "doors": 3 },
+        { "minute": 37, "type": "急行", "destination": "花畑", "cars": 6, "doors": 3 },
+        { "minute": 40, "type": "普通", "destination": "筑紫", "cars": 7, "doors": 3 },
+        { "minute": 46, "type": "普通", "destination": "大善寺", "cars": 4, "doors": 4 },
+        { "minute": 55, "type": "普通", "destination": "小郡", "cars": 5, "doors": 3 }
       ]
     },
     {
       "hour": 8,
       "trains": [
-        { "minute": 3, "type": "普通", "destination": "筑紫", "note": null },
-        { "minute": 10, "type": "普通", "destination": "大善寺", "note": null },
-        { "minute": 27, "type": "普通", "destination": "西鉄小郡", "note": null },
-        { "minute": 34, "type": "普通", "destination": "筑紫", "note": null },
-        { "minute": 39, "type": "普通", "destination": "大善寺", "note": null },
-        { "minute": 57, "type": "普通", "destination": "西鉄小郡", "note": null }
+        { "minute": 0, "type": "特急", "destination": "大牟田", "cars": 6, "doors": 3 },
+        { "minute": 7, "type": "急行", "destination": "花畑", "cars": 6, "doors": 4 },
+        { "minute": 11, "type": "普通", "destination": "筑紫", "cars": 7, "doors": 4 },
+        { "minute": 16, "type": "普通", "destination": "筑紫", "cars": 6, "doors": 3 },
+        { "minute": 25, "type": "普通", "destination": "小郡", "cars": 5, "doors": 3 },
+        { "minute": 30, "type": "特急", "destination": "大牟田", "cars": 7, "doors": 4 },
+        { "minute": 37, "type": "急行", "destination": "花畑", "cars": 6, "doors": 3 },
+        { "minute": 42, "type": "普通", "destination": "二日市", "cars": 5, "doors": 3 },
+        { "minute": 46, "type": "普通", "destination": "大善寺", "cars": 4, "doors": 4 },
+        { "minute": 55, "type": "普通", "destination": "小郡", "cars": 5, "doors": 3 }
       ]
     },
     {
       "hour": 9,
       "trains": [
-        { "minute": 5, "type": "普通", "destination": "西鉄二日市", "note": null },
-        { "minute": 9, "type": "普通", "destination": "大善寺", "note": null },
-        { "minute": 27, "type": "普通", "destination": "西鉄小郡", "note": null },
-        { "minute": 36, "type": "普通", "destination": "西鉄二日市", "note": null },
-        { "minute": 40, "type": "普通", "destination": "大善寺", "note": null },
-        { "minute": 55, "type": "普通", "destination": "筑紫", "note": null }
+        { "minute": 0, "type": "特急", "destination": "大牟田", "cars": 6, "doors": 3 },
+        { "minute": 2, "type": "普通", "destination": "二日市", "cars": 4, "doors": 4 },
+        { "minute": 7, "type": "急行", "destination": "花畑", "cars": 7, "doors": 3 },
+        { "minute": 14, "type": "普通", "destination": "大善寺", "cars": 4, "doors": 4 },
+        { "minute": 18, "type": "急行", "destination": "太宰府", "cars": 5, "doors": 3 },
+        { "minute": 25, "type": "普通", "destination": "筑紫", "cars": 6, "doors": 3 },
+        { "minute": 30, "type": "特急", "destination": "大牟田", "cars": 6, "doors": 3 },
+        { "minute": 32, "type": "普通", "destination": "筑紫", "cars": 7, "doors": 3 },
+        { "minute": 37, "type": "急行", "destination": "花畑", "cars": 5, "doors": 3 },
+        { "minute": 44, "type": "普通", "destination": "大善寺", "cars": 4, "doors": 4 },
+        { "minute": 48, "type": "急行", "destination": "太宰府", "cars": 5, "doors": 3 },
+        { "minute": 55, "type": "普通", "destination": "筑紫", "cars": 6, "doors": 4 }
       ]
     },
     {
       "hour": 10,
       "trains": [
-        { "minute": 6, "type": "普通", "destination": "筑紫", "note": null },
-        { "minute": 10, "type": "普通", "destination": "大善寺", "note": null },
-        { "minute": 25, "type": "普通", "destination": "筑紫", "note": null },
-        { "minute": 36, "type": "普通", "destination": "西鉄二日市", "note": null },
-        { "minute": 40, "type": "普通", "destination": "大善寺", "note": null },
-        { "minute": 55, "type": "普通", "destination": "筑紫", "note": null }
+        { "minute": 0, "type": "特急", "destination": "大牟田", "cars": 6, "doors": 3 },
+        { "minute": 2, "type": "普通", "destination": "二日市", "cars": 4, "doors": 3 },
+        { "minute": 7, "type": "急行", "destination": "花畑", "cars": 5, "doors": 3 },
+        { "minute": 14, "type": "普通", "destination": "大善寺", "cars": 4, "doors": 4 },
+        { "minute": 18, "type": "急行", "destination": "太宰府", "cars": 5, "doors": 3 },
+        { "minute": 25, "type": "普通", "destination": "筑紫", "cars": 6, "doors": 3 },
+        { "minute": 30, "type": "特急", "destination": "大牟田", "cars": 6, "doors": 3 },
+        { "minute": 32, "type": "普通", "destination": "二日市", "cars": 4, "doors": 4 },
+        { "minute": 37, "type": "急行", "destination": "花畑", "cars": 5, "doors": 4 },
+        { "minute": 44, "type": "普通", "destination": "大善寺", "cars": 4, "doors": 3 },
+        { "minute": 48, "type": "急行", "destination": "太宰府", "cars": 5, "doors": 3 },
+        { "minute": 55, "type": "普通", "destination": "筑紫", "cars": 7, "doors": 3 }
       ]
     },
     {
       "hour": 11,
       "trains": [
-        { "minute": 10, "type": "普通", "destination": "大善寺", "note": null },
-        { "minute": 25, "type": "普通", "destination": "筑紫", "note": null },
-        { "minute": 36, "type": "普通", "destination": "筑紫", "note": null },
-        { "minute": 40, "type": "普通", "destination": "大善寺", "note": null },
-        { "minute": 55, "type": "普通", "destination": "筑紫", "note": null }
+        { "minute": 0, "type": "特急", "destination": "大牟田", "cars": 6, "doors": 3 },
+        { "minute": 2, "type": "普通", "destination": "筑紫", "cars": 7, "doors": 4 },
+        { "minute": 7, "type": "急行", "destination": "花畑", "cars": 5, "doors": 3 },
+        { "minute": 14, "type": "普通", "destination": "大善寺", "cars": 4, "doors": 4 },
+        { "minute": 18, "type": "急行", "destination": "太宰府", "cars": 5, "doors": 3 },
+        { "minute": 25, "type": "普通", "destination": "筑紫", "cars": 4, "doors": 3 },
+        { "minute": 30, "type": "特急", "destination": "大牟田", "cars": 6, "doors": 3 },
+        { "minute": 32, "type": "普通", "destination": "二日市", "cars": 4, "doors": 3 },
+        { "minute": 37, "type": "急行", "destination": "花畑", "cars": 5, "doors": 3 },
+        { "minute": 44, "type": "普通", "destination": "大善寺", "cars": 4, "doors": 4 },
+        { "minute": 48, "type": "急行", "destination": "太宰府", "cars": 5, "doors": 3 },
+        { "minute": 55, "type": "普通", "destination": "筑紫", "cars": 4, "doors": 4 }
       ]
     },
     {
       "hour": 12,
       "trains": [
-        { "minute": 6, "type": "普通", "destination": "西鉄二日市", "note": null },
-        { "minute": 10, "type": "普通", "destination": "大善寺", "note": null },
-        { "minute": 25, "type": "普通", "destination": "筑紫", "note": null },
-        { "minute": 36, "type": "普通", "destination": "西鉄二日市", "note": null },
-        { "minute": 40, "type": "普通", "destination": "大善寺", "note": null },
-        { "minute": 55, "type": "普通", "destination": "筑紫", "note": null }
+        { "minute": 0, "type": "特急", "destination": "大牟田", "cars": 6, "doors": 3 },
+        { "minute": 2, "type": "普通", "destination": "二日市", "cars": 4, "doors": 3 },
+        { "minute": 7, "type": "急行", "destination": "花畑", "cars": 5, "doors": 3 },
+        { "minute": 14, "type": "普通", "destination": "大善寺", "cars": 4, "doors": 4 },
+        { "minute": 18, "type": "急行", "destination": "小郡", "cars": 5, "doors": 3, "note": "筑紫から普通になります" },
+        { "minute": 25, "type": "普通", "destination": "筑紫", "cars": 4, "doors": 3 },
+        { "minute": 30, "type": "特急", "destination": "大牟田", "cars": 6, "doors": 3 },
+        { "minute": 32, "type": "普通", "destination": "二日市", "cars": 4, "doors": 3 },
+        { "minute": 37, "type": "急行", "destination": "花畑", "cars": 5, "doors": 4 },
+        { "minute": 44, "type": "普通", "destination": "大善寺", "cars": 4, "doors": 4 },
+        { "minute": 48, "type": "急行", "destination": "小郡", "cars": 5, "doors": 3, "note": "筑紫から普通になります" },
+        { "minute": 55, "type": "普通", "destination": "筑紫", "cars": 4, "doors": 3 }
       ]
     },
     {
       "hour": 13,
       "trains": [
-        { "minute": 6, "type": "普通", "destination": "西鉄二日市", "note": null },
-        { "minute": 10, "type": "普通", "destination": "大善寺", "note": null },
-        { "minute": 25, "type": "普通", "destination": "筑紫", "note": null },
-        { "minute": 36, "type": "普通", "destination": "西鉄二日市", "note": null },
-        { "minute": 40, "type": "普通", "destination": "大善寺", "note": null },
-        { "minute": 55, "type": "普通", "destination": "筑紫", "note": null }
+        { "minute": 0, "type": "特急", "destination": "大牟田", "cars": 6, "doors": 3 },
+        { "minute": 2, "type": "普通", "destination": "二日市", "cars": 4, "doors": 3 },
+        { "minute": 7, "type": "急行", "destination": "花畑", "cars": 5, "doors": 3 },
+        { "minute": 14, "type": "普通", "destination": "大善寺", "cars": 4, "doors": 4 },
+        { "minute": 18, "type": "急行", "destination": "小郡", "cars": 5, "doors": 3, "note": "筑紫から普通になります" },
+        { "minute": 25, "type": "普通", "destination": "筑紫", "cars": 4, "doors": 3 },
+        { "minute": 30, "type": "特急", "destination": "大牟田", "cars": 6, "doors": 3 },
+        { "minute": 32, "type": "普通", "destination": "二日市", "cars": 4, "doors": 4 },
+        { "minute": 37, "type": "急行", "destination": "花畑", "cars": 5, "doors": 3 },
+        { "minute": 44, "type": "普通", "destination": "大善寺", "cars": 4, "doors": 4 },
+        { "minute": 48, "type": "急行", "destination": "小郡", "cars": 5, "doors": 3, "note": "筑紫から普通になります" },
+        { "minute": 55, "type": "普通", "destination": "筑紫", "cars": 4, "doors": 3 }
       ]
     },
     {
       "hour": 14,
       "trains": [
-        { "minute": 6, "type": "普通", "destination": "西鉄二日市", "note": null },
-        { "minute": 10, "type": "普通", "destination": "大善寺", "note": null },
-        { "minute": 25, "type": "普通", "destination": "筑紫", "note": null },
-        { "minute": 36, "type": "普通", "destination": "西鉄二日市", "note": null },
-        { "minute": 40, "type": "普通", "destination": "大善寺", "note": null },
-        { "minute": 55, "type": "普通", "destination": "筑紫", "note": null }
+        { "minute": 0, "type": "特急", "destination": "大牟田", "cars": 6, "doors": 3 },
+        { "minute": 2, "type": "普通", "destination": "二日市", "cars": 4, "doors": 3 },
+        { "minute": 7, "type": "急行", "destination": "花畑", "cars": 5, "doors": 3 },
+        { "minute": 14, "type": "普通", "destination": "大善寺", "cars": 4, "doors": 3 },
+        { "minute": 18, "type": "急行", "destination": "小郡", "cars": 5, "doors": 3, "note": "筑紫から普通になります" },
+        { "minute": 25, "type": "普通", "destination": "筑紫", "cars": 4, "doors": 3 },
+        { "minute": 30, "type": "特急", "destination": "大牟田", "cars": 6, "doors": 3 },
+        { "minute": 32, "type": "普通", "destination": "二日市", "cars": 4, "doors": 3 },
+        { "minute": 37, "type": "急行", "destination": "花畑", "cars": 5, "doors": 4 },
+        { "minute": 44, "type": "普通", "destination": "大善寺", "cars": 4, "doors": 4 },
+        { "minute": 48, "type": "急行", "destination": "小郡", "cars": 5, "doors": 3, "note": "筑紫から普通になります" },
+        { "minute": 55, "type": "普通", "destination": "筑紫", "cars": 4, "doors": 4 }
       ]
     },
     {
       "hour": 15,
       "trains": [
-        { "minute": 6, "type": "普通", "destination": "西鉄二日市", "note": null },
-        { "minute": 10, "type": "普通", "destination": "大善寺", "note": null },
-        { "minute": 25, "type": "普通", "destination": "筑紫", "note": null },
-        { "minute": 36, "type": "普通", "destination": "西鉄二日市", "note": null },
-        { "minute": 40, "type": "普通", "destination": "大善寺", "note": null },
-        { "minute": 55, "type": "普通", "destination": "筑紫", "note": null }
+        { "minute": 0, "type": "特急", "destination": "大牟田", "cars": 6, "doors": 3 },
+        { "minute": 2, "type": "普通", "destination": "二日市", "cars": 4, "doors": 3 },
+        { "minute": 7, "type": "急行", "destination": "花畑", "cars": 5, "doors": 3 },
+        { "minute": 14, "type": "普通", "destination": "大善寺", "cars": 4, "doors": 4 },
+        { "minute": 18, "type": "急行", "destination": "小郡", "cars": 5, "doors": 3, "note": "筑紫から普通になります" },
+        { "minute": 25, "type": "普通", "destination": "筑紫", "cars": 4, "doors": 3 },
+        { "minute": 30, "type": "特急", "destination": "大牟田", "cars": 6, "doors": 3 },
+        { "minute": 32, "type": "普通", "destination": "二日市", "cars": 4, "doors": 3 },
+        { "minute": 37, "type": "急行", "destination": "花畑", "cars": 5, "doors": 3 },
+        { "minute": 44, "type": "普通", "destination": "大善寺", "cars": 4, "doors": 4 },
+        { "minute": 48, "type": "急行", "destination": "小郡", "cars": 9, "doors": 3, "note": "筑紫から普通になります" },
+        { "minute": 55, "type": "普通", "destination": "筑紫", "cars": 4, "doors": 3 }
       ]
     },
     {
       "hour": 16,
       "trains": [
-        { "minute": 6, "type": "普通", "destination": "西鉄二日市", "note": null },
-        { "minute": 10, "type": "普通", "destination": "大善寺", "note": null },
-        { "minute": 25, "type": "普通", "destination": "筑紫", "note": null },
-        { "minute": 36, "type": "普通", "destination": "西鉄二日市", "note": null },
-        { "minute": 40, "type": "普通", "destination": "大善寺", "note": null },
-        { "minute": 55, "type": "普通", "destination": "筑紫", "note": null }
+        { "minute": 0, "type": "特急", "destination": "大牟田", "cars": 6, "doors": 3 },
+        { "minute": 2, "type": "普通", "destination": "二日市", "cars": 4, "doors": 3 },
+        { "minute": 7, "type": "急行", "destination": "花畑", "cars": 5, "doors": 3 },
+        { "minute": 14, "type": "普通", "destination": "大善寺", "cars": 4, "doors": 4 },
+        { "minute": 18, "type": "急行", "destination": "小郡", "cars": 5, "doors": 3, "note": "筑紫から普通になります" },
+        { "minute": 25, "type": "普通", "destination": "筑紫", "cars": 4, "doors": 3 },
+        { "minute": 30, "type": "特急", "destination": "大牟田", "cars": 6, "doors": 3 },
+        { "minute": 32, "type": "普通", "destination": "二日市", "cars": 4, "doors": 4 },
+        { "minute": 37, "type": "急行", "destination": "花畑", "cars": 5, "doors": 4 },
+        { "minute": 44, "type": "普通", "destination": "筑紫", "cars": 4, "doors": 4 },
+        { "minute": 48, "type": "急行", "destination": "小郡", "cars": 9, "doors": 3, "note": "筑紫から普通になります" },
+        { "minute": 55, "type": "普通", "destination": "筑紫", "cars": 4, "doors": 3 }
       ]
     },
     {
       "hour": 17,
       "trains": [
-        { "minute": 6, "type": "普通", "destination": "西鉄二日市", "note": null },
-        { "minute": 10, "type": "普通", "destination": "筑紫", "note": null },
-        { "minute": 25, "type": "普通", "destination": "筑紫", "note": null },
-        { "minute": 36, "type": "普通", "destination": "大善寺", "note": null },
-        { "minute": 40, "type": "普通", "destination": "筑紫", "note": null },
-        { "minute": 55, "type": "普通", "destination": "筑紫", "note": null }
+        { "minute": 0, "type": "特急", "destination": "大牟田", "cars": 6, "doors": 3 },
+        { "minute": 2, "type": "普通", "destination": "大善寺", "cars": 5, "doors": 3 },
+        { "minute": 7, "type": "急行", "destination": "花畑", "cars": 6, "doors": 3 },
+        { "minute": 14, "type": "普通", "destination": "筑紫", "cars": 4, "doors": 4 },
+        { "minute": 18, "type": "急行", "destination": "小郡", "cars": 9, "doors": 3, "note": "筑紫から普通になります" },
+        { "minute": 25, "type": "普通", "destination": "筑紫", "cars": 4, "doors": 3 },
+        { "minute": 30, "type": "特急", "destination": "大牟田", "cars": 6, "doors": 3 },
+        { "minute": 32, "type": "普通", "destination": "二日市", "cars": 5, "doors": 3 },
+        { "minute": 37, "type": "急行", "destination": "花畑", "cars": 6, "doors": 3 },
+        { "minute": 44, "type": "普通", "destination": "大善寺", "cars": 4, "doors": 3 },
+        { "minute": 48, "type": "急行", "destination": "小郡", "cars": 5, "doors": 3, "note": "筑紫から普通になります" },
+        { "minute": 55, "type": "普通", "destination": "筑紫", "cars": 5, "doors": 3 }
       ]
     },
     {
       "hour": 18,
       "trains": [
-        { "minute": 10, "type": "普通", "destination": "大善寺", "note": null },
-        { "minute": 25, "type": "普通", "destination": "筑紫", "note": null },
-        { "minute": 36, "type": "普通", "destination": "筑紫", "note": null },
-        { "minute": 40, "type": "普通", "destination": "大善寺", "note": null },
-        { "minute": 55, "type": "普通", "destination": "筑紫", "note": null }
+        { "minute": 0, "type": "特急", "destination": "大牟田", "cars": 6, "doors": 3 },
+        { "minute": 2, "type": "普通", "destination": "筑紫", "cars": 4, "doors": 4 },
+        { "minute": 7, "type": "急行", "destination": "花畑", "cars": 6, "doors": 4 },
+        { "minute": 14, "type": "普通", "destination": "大善寺", "cars": 4, "doors": 4 },
+        { "minute": 18, "type": "急行", "destination": "小郡", "cars": 9, "doors": 3, "note": "筑紫から普通になります" },
+        { "minute": 25, "type": "普通", "destination": "筑紫", "cars": 5, "doors": 4 },
+        { "minute": 30, "type": "特急", "destination": "大牟田", "cars": 6, "doors": 3 },
+        { "minute": 32, "type": "普通", "destination": "筑紫", "cars": 4, "doors": 3 },
+        { "minute": 37, "type": "急行", "destination": "花畑", "cars": 7, "doors": 4 },
+        { "minute": 44, "type": "普通", "destination": "大善寺", "cars": 4, "doors": 4 },
+        { "minute": 48, "type": "急行", "destination": "小郡", "cars": 9, "doors": 3, "note": "筑紫から普通になります" },
+        { "minute": 55, "type": "普通", "destination": "小郡", "cars": 5, "doors": 3 }
       ]
     },
     {
       "hour": 19,
       "trains": [
-        { "minute": 6, "type": "普通", "destination": "筑紫", "note": null },
-        { "minute": 10, "type": "普通", "destination": "大善寺", "note": null },
-        { "minute": 25, "type": "普通", "destination": "西鉄小郡", "note": null },
-        { "minute": 31, "type": "普通", "destination": "筑紫", "note": null },
-        { "minute": 38, "type": "普通", "destination": "大善寺", "note": null },
-        { "minute": 55, "type": "普通", "destination": "西鉄小郡", "note": null }
+        { "minute": 0, "type": "特急", "destination": "大牟田", "cars": 6, "doors": 3 },
+        { "minute": 3, "type": "普通", "destination": "筑紫", "cars": 6, "doors": 3 },
+        { "minute": 7, "type": "急行", "destination": "花畑", "cars": 6, "doors": 3 },
+        { "minute": 15, "type": "普通", "destination": "大善寺", "cars": 4, "doors": 4 },
+        { "minute": 25, "type": "普通", "destination": "小郡", "cars": 6, "doors": 3 },
+        { "minute": 30, "type": "特急", "destination": "大牟田", "cars": 6, "doors": 3 },
+        { "minute": 33, "type": "普通", "destination": "筑紫", "cars": 5, "doors": 3 },
+        { "minute": 37, "type": "急行", "destination": "花畑", "cars": 7, "doors": 3 },
+        { "minute": 45, "type": "普通", "destination": "大善寺", "cars": 4, "doors": 4 }
       ]
     },
     {
       "hour": 20,
       "trains": [
-        { "minute": 1, "type": "普通", "destination": "筑紫", "note": null },
-        { "minute": 8, "type": "普通", "destination": "大善寺", "note": null },
-        { "minute": 28, "type": "普通", "destination": "西鉄小郡", "note": null },
-        { "minute": 38, "type": "普通", "destination": "大善寺", "note": null },
-        { "minute": 58, "type": "普通", "destination": "西鉄小郡", "note": null }
+        { "minute": 0, "type": "特急", "destination": "大牟田", "cars": 7, "doors": 4 },
+        { "minute": 2, "type": "普通", "destination": "小郡", "cars": 6, "doors": 3 },
+        { "minute": 6, "type": "急行", "destination": "花畑", "cars": 6, "doors": 4 },
+        { "minute": 15, "type": "普通", "destination": "大善寺", "cars": 5, "doors": 3 },
+        { "minute": 30, "type": "特急", "destination": "大牟田", "cars": 7, "doors": 3 },
+        { "minute": 32, "type": "普通", "destination": "小郡", "cars": 6, "doors": 3 },
+        { "minute": 36, "type": "急行", "destination": "花畑", "cars": 7, "doors": 4 },
+        { "minute": 45, "type": "普通", "destination": "花畑", "cars": 5, "doors": 3 }
       ]
     },
     {
       "hour": 21,
       "trains": [
-        { "minute": 8, "type": "普通", "destination": "花畑", "note": null },
-        { "minute": 28, "type": "普通", "destination": "西鉄小郡", "note": null },
-        { "minute": 38, "type": "普通", "destination": "花畑", "note": null },
-        { "minute": 58, "type": "普通", "destination": "西鉄小郡", "note": null }
+        { "minute": 0, "type": "特急", "destination": "大牟田", "cars": 7, "doors": 3 },
+        { "minute": 2, "type": "普通", "destination": "小郡", "cars": 6, "doors": 3 },
+        { "minute": 6, "type": "急行", "destination": "花畑", "cars": 6, "doors": 3 },
+        { "minute": 15, "type": "普通", "destination": "花畑", "cars": 4, "doors": 3 },
+        { "minute": 30, "type": "特急", "destination": "大牟田", "cars": 7, "doors": 4 },
+        { "minute": 32, "type": "普通", "destination": "小郡", "cars": 6, "doors": 3 },
+        { "minute": 40, "type": "急行", "destination": "柳川", "cars": 7, "doors": 3 },
+        { "minute": 45, "type": "普通", "destination": "柳川", "cars": 4, "doors": 4 }
       ]
     },
     {
       "hour": 22,
       "trains": [
-        { "minute": 8, "type": "普通", "destination": "西鉄柳川", "note": null },
-        { "minute": 25, "type": "普通", "destination": "筑紫", "note": null },
-        { "minute": 40, "type": "普通", "destination": "西鉄小郡", "note": null },
-        { "minute": 55, "type": "普通", "destination": "西鉄柳川", "note": null }
+        { "minute": 0, "type": "特急", "destination": "大牟田", "cars": 7, "doors": 3 },
+        { "minute": 2, "type": "普通", "destination": "筑紫", "cars": 6, "doors": 4 },
+        { "minute": 15, "type": "急行", "destination": "大牟田", "cars": 6, "doors": 3 },
+        { "minute": 17, "type": "普通", "destination": "小郡", "cars": 4, "doors": 4 },
+        { "minute": 30, "type": "急行", "destination": "柳川", "cars": 7, "doors": 4 },
+        { "minute": 32, "type": "普通", "destination": "柳川", "cars": 5, "doors": 3 },
+        { "minute": 45, "type": "急行", "destination": "大牟田", "cars": 7, "doors": 4 },
+        { "minute": 48, "type": "普通", "destination": "花畑", "cars": 4, "doors": 4 }
       ]
     },
     {
       "hour": 23,
       "trains": [
-        { "minute": 11, "type": "普通", "destination": "花畑", "note": null },
-        { "minute": 28, "type": "普通", "destination": "筑紫", "note": null },
-        { "minute": 40, "type": "普通", "destination": "筑紫", "note": null },
-        { "minute": 58, "type": "普通", "destination": "筑紫", "note": null }
+        { "minute": 0, "type": "急行", "destination": "柳川", "cars": 6, "doors": 3 },
+        { "minute": 5, "type": "普通", "destination": "筑紫", "cars": 6, "doors": 3 },
+        { "minute": 17, "type": "普通", "destination": "筑紫", "cars": 4, "doors": 4 },
+        { "minute": 30, "type": "急行", "destination": "花畑", "cars": 7, "doors": 3 },
+        { "minute": 35, "type": "普通", "destination": "筑紫", "cars": 6, "doors": 3 }
       ]
     }
   ]
