@@ -144,9 +144,9 @@
   .right-group {
     display: flex;
     align-items: center;
-    gap: 22px; /* 時刻との距離感調整 */
+    gap: 22px;
     flex-shrink: 0;
-    margin-left: 8px; /* 行先との距離を詰めて左側に寄せる */
+    margin-left: 8px;
   }
 
   /* 両数・ドア数エリア */
@@ -253,14 +253,12 @@
 <script>
   let currentTimetableData = null;
 
-  // 種別に応じた英語表記やCSSクラスを返すヘルパー
   function getTypeInfo(type) {
     if (type === '特急') return { en: 'Limited Exp.', cls: 'limited' };
     if (type === '急行') return { en: 'Express', cls: 'express' };
     return { en: 'Local', cls: 'local' };
   }
 
-  // 英語の行先マッピング
   const destEnglish = {
     "筑紫": "Chikushi",
     "大善寺": "Daizenji",
@@ -273,7 +271,6 @@
     "久留米": "Kurume"
   };
 
-  // 外部JSONファイルを読み込む関数
   async function loadTimetable(filename) {
     try {
       const response = await fetch(filename);
@@ -286,7 +283,6 @@
     }
   }
 
-  // 発車標の表示を現在時刻に合わせて更新する関数
   function updateDisplay() {
     if (!currentTimetableData || !currentTimetableData.timetable) return;
 
@@ -344,7 +340,6 @@
 
       const rowHtml = `
         <div class="train-row">
-          種別エリアや行先のバランス、両数・ドア数の配置を調整
           <div class="train-main">
             <div class="type-area">
               <div class="type-badge ${typeInfo.cls}">${train.type}</div>
