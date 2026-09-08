@@ -1,0 +1,1760 @@
+{
+  "station": "西鉄福岡(天神)",
+  "direction": "大牟田方面",
+  "directionEn": "Omuta",
+  "timetable": [
+    {
+      "hour": 5,
+      "trains": [
+        {
+          "minute": 12,
+          "trainNumber": "4051",
+          "type": "普通",
+          "destination": "筑紫",
+          "model": "3000形",
+          "cars": 5,
+          "doors": 3,
+          "note": "筑紫で大牟田行に接続"
+        },
+        {
+          "minute": 32,
+          "trainNumber": "2051",
+          "type": "普通",
+          "destination": "筑紫",
+          "model": "5000形",
+          "cars": 7,
+          "doors": 3,
+          "note": "筑紫で花畑行に車両取替"
+        },
+        {
+          "minute": 56,
+          "trainNumber": "2053",
+          "type": "普通",
+          "destination": "花畑",
+          "model": "6000形",
+          "cars": 4,
+          "doors": 4
+        }
+      ]
+    },
+    {
+      "hour": 6,
+      "trains": [
+        {
+          "minute": 13,
+          "trainNumber": "2061",
+          "type": "普通",
+          "destination": "花畑",
+          "model": "6000形",
+          "cars": 4,
+          "doors": 4
+        },
+        {
+          "minute": 25,
+          "trainNumber": "3061",
+          "type": "普通",
+          "destination": "小郡",
+          "model": "6000形",
+          "cars": 4,
+          "doors": 4
+        },
+        {
+          "minute": 30,
+          "trainNumber": "A061",
+          "type": "特急",
+          "destination": "大牟田",
+          "model": "3000形",
+          "cars": 6,
+          "doors": 3
+        },
+        {
+          "minute": 44,
+          "trainNumber": "K061",
+          "type": "急行",
+          "destination": "筑紫",
+          "model": "6000形",
+          "cars": 7,
+          "doors": 4
+        },
+        {
+          "minute": 46,
+          "trainNumber": "2063",
+          "type": "普通",
+          "destination": "大善寺",
+          "model": "6000形",
+          "cars": 4,
+          "doors": 4
+        }
+      ]
+    },
+    {
+      "hour": 7,
+      "trains": [
+        {
+          "minute": 0,
+          "trainNumber": "A071",
+          "type": "特急",
+          "destination": "大牟田",
+          "model": "5000形",
+          "cars": 7,
+          "doors": 3
+        },
+        {
+          "minute": 3,
+          "trainNumber": "4071",
+          "type": "普通",
+          "destination": "筑紫",
+          "model": "9000形",
+          "cars": 6,
+          "doors": 4
+        },
+        {
+          "minute": 7,
+          "trainNumber": "G071",
+          "type": "急行",
+          "destination": "花畑",
+          "model": "5000形",
+          "cars": 7,
+          "doors": 3
+        },
+        {
+          "minute": 16,
+          "trainNumber": "2071",
+          "type": "普通",
+          "destination": "大善寺",
+          "model": "5000形",
+          "cars": 4,
+          "doors": 3
+        },
+        {
+          "minute": 25,
+          "trainNumber": "3071",
+          "type": "普通",
+          "destination": "小郡",
+          "model": "3000形",
+          "cars": 5,
+          "doors": 3
+        },
+        {
+          "minute": 30,
+          "trainNumber": "A073",
+          "type": "特急",
+          "destination": "大牟田",
+          "model": "3000形",
+          "cars": 6,
+          "doors": 3
+        },
+        {
+          "minute": 37,
+          "trainNumber": "G073",
+          "type": "急行",
+          "destination": "花畑",
+          "model": "3000形",
+          "cars": 6,
+          "doors": 3
+        },
+        {
+          "minute": 40,
+          "trainNumber": "4073",
+          "type": "普通",
+          "destination": "筑紫",
+          "model": "9000形",
+          "cars": 7,
+          "doors": 4
+        },
+        {
+          "minute": 46,
+          "trainNumber": "2073",
+          "type": "普通",
+          "destination": "大善寺",
+          "model": "5000形",
+          "cars": 4,
+          "doors": 3
+        },
+        {
+          "minute": 55,
+          "trainNumber": "3073",
+          "type": "普通",
+          "destination": "小郡",
+          "model": "3000形（旅人）",
+          "cars": 5,
+          "doors": 3
+        }
+      ]
+    },
+    {
+      "hour": 8,
+      "trains": [
+        {
+          "minute": 0,
+          "trainNumber": "A081",
+          "type": "特急",
+          "destination": "大牟田",
+          "model": "3000形（水都）",
+          "cars": 6,
+          "doors": 3
+        },
+        {
+          "minute": 7,
+          "trainNumber": "G081",
+          "type": "急行",
+          "destination": "花畑",
+          "model": "6000形",
+          "cars": 6,
+          "doors": 4
+        },
+        {
+          "minute": 11,
+          "trainNumber": "4081",
+          "type": "普通",
+          "destination": "筑紫",
+          "model": "6000形",
+          "cars": 7,
+          "doors": 4
+        },
+        {
+          "minute": 16,
+          "trainNumber": "4083",
+          "type": "普通",
+          "destination": "筑紫",
+          "model": "9000形",
+          "cars": 6,
+          "doors": 4
+        },
+        {
+          "minute": 25,
+          "trainNumber": "3081",
+          "type": "普通",
+          "destination": "小郡",
+          "model": "9000形",
+          "cars": 5,
+          "doors": 4
+        },
+        {
+          "minute": 30,
+          "trainNumber": "A083",
+          "type": "特急",
+          "destination": "大牟田",
+          "model": "6000形",
+          "cars": 7,
+          "doors": 4
+        },
+        {
+          "minute": 37,
+          "trainNumber": "G083",
+          "type": "急行",
+          "destination": "花畑",
+          "model": "5000形",
+          "cars": 6,
+          "doors": 3
+        },
+        {
+          "minute": 42,
+          "trainNumber": "5081",
+          "type": "普通",
+          "destination": "二日市",
+          "model": "3000形",
+          "cars": 5,
+          "doors": 3
+        },
+        {
+          "minute": 46,
+          "trainNumber": "2083",
+          "type": "普通",
+          "destination": "大善寺",
+          "model": "6000形",
+          "cars": 4,
+          "doors": 4
+        },
+        {
+          "minute": 55,
+          "trainNumber": "3083",
+          "type": "普通",
+          "destination": "小郡",
+          "model": "9000形",
+          "cars": 5,
+          "doors": 4
+        }
+      ]
+    },
+    {
+      "hour": 9,
+      "trains": [
+        {
+          "minute": 0,
+          "trainNumber": "A091",
+          "type": "特急",
+          "destination": "大牟田",
+          "model": "3000形",
+          "cars": 6,
+          "doors": 3
+        },
+        {
+          "minute": 2,
+          "trainNumber": "5091",
+          "type": "普通",
+          "destination": "二日市",
+          "model": "6000形",
+          "cars": 4,
+          "doors": 4
+        },
+        {
+          "minute": 7,
+          "trainNumber": "G091",
+          "type": "急行",
+          "destination": "花畑",
+          "model": "5000形",
+          "cars": 7,
+          "doors": 3
+        },
+        {
+          "minute": 14,
+          "trainNumber": "2091",
+          "type": "普通",
+          "destination": "大善寺",
+          "model": "6000形",
+          "cars": 4,
+          "doors": 4
+        },
+        {
+          "minute": 18,
+          "trainNumber": "L091",
+          "type": "急行",
+          "destination": "太宰府",
+          "model": "3000形",
+          "cars": 5,
+          "doors": 3
+        },
+        {
+          "minute": 25,
+          "trainNumber": "4091",
+          "type": "普通",
+          "destination": "筑紫",
+          "model": "3000形",
+          "cars": 6,
+          "doors": 3
+        },
+        {
+          "minute": 30,
+          "trainNumber": "A093",
+          "type": "特急",
+          "destination": "大牟田",
+          "model": "3000形",
+          "cars": 6,
+          "doors": 3
+        },
+        {
+          "minute": 32,
+          "trainNumber": "4093",
+          "type": "普通",
+          "destination": "筑紫",
+          "model": "5000形",
+          "cars": 7,
+          "doors": 3
+        },
+        {
+          "minute": 37,
+          "trainNumber": "G093",
+          "type": "急行",
+          "destination": "花畑",
+          "model": "3000形",
+          "cars": 5,
+          "doors": 3
+        },
+        {
+          "minute": 44,
+          "trainNumber": "2093",
+          "type": "普通",
+          "destination": "大善寺",
+          "model": "5000形",
+          "cars": 4,
+          "doors": 3
+        },
+        {
+          "minute": 48,
+          "trainNumber": "L093",
+          "type": "急行",
+          "destination": "太宰府",
+          "model": "3000形（旅人）",
+          "cars": 5,
+          "doors": 3
+        },
+        {
+          "minute": 55,
+          "trainNumber": "4095",
+          "type": "普通",
+          "destination": "筑紫",
+          "model": "6000形",
+          "cars": 6,
+          "doors": 4
+        }
+      ]
+    },
+    {
+      "hour": 10,
+      "trains": [
+        {
+          "minute": 0,
+          "trainNumber": "A101",
+          "type": "特急",
+          "destination": "大牟田",
+          "model": "3000形",
+          "cars": 6,
+          "doors": 3
+        },
+        {
+          "minute": 2,
+          "trainNumber": "5101",
+          "type": "普通",
+          "destination": "二日市",
+          "model": "9000形",
+          "cars": 4,
+          "doors": 4
+        },
+        {
+          "minute": 7,
+          "trainNumber": "G101",
+          "type": "急行",
+          "destination": "花畑",
+          "model": "3000形",
+          "cars": 5,
+          "doors": 3
+        },
+        {
+          "minute": 14,
+          "trainNumber": "2101",
+          "type": "普通",
+          "destination": "大善寺",
+          "model": "6000形",
+          "cars": 4,
+          "doors": 4
+        },
+        {
+          "minute": 18,
+          "trainNumber": "L101",
+          "type": "急行",
+          "destination": "太宰府",
+          "model": "9000形",
+          "cars": 5,
+          "doors": 4
+        },
+        {
+          "minute": 25,
+          "trainNumber": "4101",
+          "type": "普通",
+          "destination": "筑紫",
+          "model": "5000形",
+          "cars": 6,
+          "doors": 3
+        },
+        {
+          "minute": 30,
+          "trainNumber": "A103",
+          "type": "特急",
+          "destination": "大牟田",
+          "model": "3000形（水都）",
+          "cars": 6,
+          "doors": 3
+        },
+        {
+          "minute": 32,
+          "trainNumber": "5103",
+          "type": "普通",
+          "destination": "二日市",
+          "model": "6000形",
+          "cars": 4,
+          "doors": 4
+        },
+        {
+          "minute": 37,
+          "trainNumber": "G103",
+          "type": "急行",
+          "destination": "花畑",
+          "model": "6000形3連+7000形2連",
+          "cars": 5,
+          "doors": 4
+        },
+        {
+          "minute": 44,
+          "trainNumber": "2103",
+          "type": "普通",
+          "destination": "大善寺",
+          "model": "5000形",
+          "cars": 4,
+          "doors": 3
+        },
+        {
+          "minute": 48,
+          "trainNumber": "L103",
+          "type": "急行",
+          "destination": "太宰府",
+          "model": "9000形",
+          "cars": 5,
+          "doors": 4
+        },
+        {
+          "minute": 55,
+          "trainNumber": "4103",
+          "type": "普通",
+          "destination": "筑紫",
+          "model": "5000形",
+          "cars": 7,
+          "doors": 3
+        }
+      ]
+    },
+    {
+      "hour": 11,
+      "trains": [
+        {
+          "minute": 0,
+          "trainNumber": "A111",
+          "type": "特急",
+          "destination": "大牟田",
+          "model": "3000形",
+          "cars": 6,
+          "doors": 3
+        },
+        {
+          "minute": 2,
+          "trainNumber": "4111",
+          "type": "普通",
+          "destination": "筑紫",
+          "model": "6000形",
+          "cars": 7,
+          "doors": 4
+        },
+        {
+          "minute": 7,
+          "trainNumber": "G111",
+          "type": "急行",
+          "destination": "花畑",
+          "model": "3000形",
+          "cars": 5,
+          "doors": 3
+        },
+        {
+          "minute": 14,
+          "trainNumber": "2111",
+          "type": "普通",
+          "destination": "大善寺",
+          "model": "5000形",
+          "cars": 4,
+          "doors": 3
+        },
+        {
+          "minute": 18,
+          "trainNumber": "L111",
+          "type": "急行",
+          "destination": "太宰府",
+          "model": "3000形",
+          "cars": 5,
+          "doors": 3
+        },
+        {
+          "minute": 25,
+          "trainNumber": "4113",
+          "type": "普通",
+          "destination": "筑紫",
+          "model": "9000形",
+          "cars": 4,
+          "doors": 4
+        },
+        {
+          "minute": 30,
+          "trainNumber": "A113",
+          "type": "特急",
+          "destination": "大牟田",
+          "model": "3000形",
+          "cars": 6,
+          "doors": 3
+        },
+        {
+          "minute": 32,
+          "trainNumber": "5111",
+          "type": "普通",
+          "destination": "二日市",
+          "model": "5000形",
+          "cars": 4,
+          "doors": 3
+        },
+        {
+          "minute": 37,
+          "trainNumber": "G113",
+          "type": "急行",
+          "destination": "花畑",
+          "model": "3000形",
+          "cars": 5,
+          "doors": 3
+        },
+        {
+          "minute": 44,
+          "trainNumber": "2113",
+          "type": "普通",
+          "destination": "大善寺",
+          "model": "6000形",
+          "cars": 4,
+          "doors": 4
+        },
+        {
+          "minute": 48,
+          "trainNumber": "L113",
+          "type": "急行",
+          "destination": "太宰府",
+          "model": "3000形（旅人）",
+          "cars": 5,
+          "doors": 3
+        },
+        {
+          "minute": 55,
+          "trainNumber": "4115",
+          "type": "普通",
+          "destination": "筑紫",
+          "model": "6000形",
+          "cars": 4,
+          "doors": 4
+        }
+      ]
+    },
+    {
+      "hour": 12,
+      "trains": [
+        {
+          "minute": 0,
+          "trainNumber": "A121",
+          "type": "特急",
+          "destination": "大牟田",
+          "model": "3000形",
+          "cars": 6,
+          "doors": 3
+        },
+        {
+          "minute": 2,
+          "trainNumber": "5121",
+          "type": "普通",
+          "destination": "二日市",
+          "model": "5000形",
+          "cars": 4,
+          "doors": 3
+        },
+        {
+          "minute": 7,
+          "trainNumber": "G121",
+          "type": "急行",
+          "destination": "花畑",
+          "model": "3000形",
+          "cars": 5,
+          "doors": 3
+        },
+        {
+          "minute": 14,
+          "trainNumber": "2121",
+          "type": "普通",
+          "destination": "大善寺",
+          "model": "6000形",
+          "cars": 4,
+          "doors": 4
+        },
+        {
+          "minute": 18,
+          "trainNumber": "J121",
+          "type": "急行",
+          "destination": "小郡",
+          "model": "9000形",
+          "cars": 5,
+          "doors": 4
+        },
+        {
+          "minute": 25,
+          "trainNumber": "4121",
+          "type": "普通",
+          "destination": "筑紫",
+          "model": "5000形",
+          "cars": 4,
+          "doors": 3
+        },
+        {
+          "minute": 30,
+          "trainNumber": "A123",
+          "type": "特急",
+          "destination": "大牟田",
+          "model": "3000形",
+          "cars": 6,
+          "doors": 3
+        },
+        {
+          "minute": 32,
+          "trainNumber": "5123",
+          "type": "普通",
+          "destination": "二日市",
+          "model": "9000形",
+          "cars": 4,
+          "doors": 4
+        },
+        {
+          "minute": 37,
+          "trainNumber": "G123",
+          "type": "急行",
+          "destination": "花畑",
+          "model": "6000形3連+7000形2連",
+          "cars": 5,
+          "doors": 4
+        },
+        {
+          "minute": 44,
+          "trainNumber": "2123",
+          "type": "普通",
+          "destination": "大善寺",
+          "model": "6000形",
+          "cars": 4,
+          "doors": 4
+        },
+        {
+          "minute": 48,
+          "trainNumber": "J123",
+          "type": "急行",
+          "destination": "小郡",
+          "model": "9000形",
+          "cars": 5,
+          "doors": 4
+        },
+        {
+          "minute": 55,
+          "trainNumber": "4123",
+          "type": "普通",
+          "destination": "筑紫",
+          "model": "5000形",
+          "cars": 4,
+          "doors": 3
+        }
+      ]
+    },
+    {
+      "hour": 13,
+      "trains": [
+        {
+          "minute": 0,
+          "trainNumber": "A131",
+          "type": "特急",
+          "destination": "大牟田",
+          "model": "3000形（水都）",
+          "cars": 6,
+          "doors": 3
+        },
+        {
+          "minute": 2,
+          "trainNumber": "5131",
+          "type": "普通",
+          "destination": "二日市",
+          "model": "5000形",
+          "cars": 4,
+          "doors": 3
+        },
+        {
+          "minute": 7,
+          "trainNumber": "G131",
+          "type": "急行",
+          "destination": "花畑",
+          "model": "3000形",
+          "cars": 5,
+          "doors": 3
+        },
+        {
+          "minute": 14,
+          "trainNumber": "2131",
+          "type": "普通",
+          "destination": "大善寺",
+          "model": "5000形",
+          "cars": 4,
+          "doors": 3
+        },
+        {
+          "minute": 18,
+          "trainNumber": "J131",
+          "type": "急行",
+          "destination": "小郡",
+          "model": "3000形",
+          "cars": 5,
+          "doors": 3
+        },
+        {
+          "minute": 25,
+          "trainNumber": "4131",
+          "type": "普通",
+          "destination": "筑紫",
+          "model": "5000形",
+          "cars": 4,
+          "doors": 3
+        },
+        {
+          "minute": 30,
+          "trainNumber": "A133",
+          "type": "特急",
+          "destination": "大牟田",
+          "model": "3000形",
+          "cars": 6,
+          "doors": 3
+        },
+        {
+          "minute": 32,
+          "trainNumber": "5133",
+          "type": "普通",
+          "destination": "二日市",
+          "model": "6000形",
+          "cars": 4,
+          "doors": 4
+        },
+        {
+          "minute": 37,
+          "trainNumber": "G133",
+          "type": "急行",
+          "destination": "花畑",
+          "model": "3000形",
+          "cars": 5,
+          "doors": 3
+        },
+        {
+          "minute": 44,
+          "trainNumber": "2133",
+          "type": "普通",
+          "destination": "大善寺",
+          "model": "6000形",
+          "cars": 4,
+          "doors": 4
+        },
+        {
+          "minute": 48,
+          "trainNumber": "J133",
+          "type": "急行",
+          "destination": "小郡",
+          "model": "9000形",
+          "cars": 5,
+          "doors": 4
+        },
+        {
+          "minute": 55,
+          "trainNumber": "4133",
+          "type": "普通",
+          "destination": "筑紫",
+          "model": "9000形",
+          "cars": 4,
+          "doors": 4
+        }
+      ]
+    },
+    {
+      "hour": 14,
+      "trains": [
+        {
+          "minute": 0,
+          "trainNumber": "A141",
+          "type": "特急",
+          "destination": "大牟田",
+          "model": "3000形",
+          "cars": 6,
+          "doors": 3
+        },
+        {
+          "minute": 2,
+          "trainNumber": "5141",
+          "type": "普通",
+          "destination": "二日市",
+          "model": "5000形",
+          "cars": 4,
+          "doors": 3
+        },
+        {
+          "minute": 7,
+          "trainNumber": "G141",
+          "type": "急行",
+          "destination": "花畑",
+          "model": "3000形",
+          "cars": 5,
+          "doors": 3
+        },
+        {
+          "minute": 14,
+          "trainNumber": "2141",
+          "type": "普通",
+          "destination": "大善寺",
+          "model": "5000形",
+          "cars": 4,
+          "doors": 3
+        },
+        {
+          "minute": 18,
+          "trainNumber": "J141",
+          "type": "急行",
+          "destination": "小郡",
+          "model": "9000形",
+          "cars": 5,
+          "doors": 4
+        },
+        {
+          "minute": 25,
+          "trainNumber": "4141",
+          "type": "普通",
+          "destination": "筑紫",
+          "model": "5000形",
+          "cars": 4,
+          "doors": 3
+        },
+        {
+          "minute": 30,
+          "trainNumber": "A143",
+          "type": "特急",
+          "destination": "大牟田",
+          "model": "3000形",
+          "cars": 6,
+          "doors": 3
+        },
+        {
+          "minute": 32,
+          "trainNumber": "5143",
+          "type": "普通",
+          "destination": "二日市",
+          "model": "5000形",
+          "cars": 4,
+          "doors": 3
+        },
+        {
+          "minute": 37,
+          "trainNumber": "G143",
+          "type": "急行",
+          "destination": "花畑",
+          "model": "6000形3連+7000形2連",
+          "cars": 5,
+          "doors": 4
+        },
+        {
+          "minute": 44,
+          "trainNumber": "2143",
+          "type": "普通",
+          "destination": "大善寺",
+          "model": "5000形",
+          "cars": 4,
+          "doors": 3
+        },
+        {
+          "minute": 48,
+          "trainNumber": "J143",
+          "type": "急行",
+          "destination": "小郡",
+          "model": "3000形",
+          "cars": 5,
+          "doors": 3
+        },
+        {
+          "minute": 55,
+          "trainNumber": "4143",
+          "type": "普通",
+          "destination": "筑紫",
+          "model": "6000形",
+          "cars": 4,
+          "doors": 4
+        }
+      ]
+    },
+    {
+      "hour": 15,
+      "trains": [
+        {
+          "minute": 0,
+          "trainNumber": "A151",
+          "type": "特急",
+          "destination": "大牟田",
+          "model": "3000形",
+          "cars": 6,
+          "doors": 3
+        },
+        {
+          "minute": 2,
+          "trainNumber": "5151",
+          "type": "普通",
+          "destination": "二日市",
+          "model": "5000形",
+          "cars": 4,
+          "doors": 3
+        },
+        {
+          "minute": 7,
+          "trainNumber": "G151",
+          "type": "急行",
+          "destination": "花畑",
+          "model": "3000形",
+          "cars": 5,
+          "doors": 3
+        },
+        {
+          "minute": 14,
+          "trainNumber": "2151",
+          "type": "普通",
+          "destination": "大善寺",
+          "model": "6000形",
+          "cars": 4,
+          "doors": 4
+        },
+        {
+          "minute": 18,
+          "trainNumber": "J151",
+          "type": "急行",
+          "destination": "小郡",
+          "model": "9000形",
+          "cars": 5,
+          "doors": 4
+        },
+        {
+          "minute": 25,
+          "trainNumber": "4151",
+          "type": "普通",
+          "destination": "筑紫",
+          "model": "5000形",
+          "cars": 4,
+          "doors": 3
+        },
+        {
+          "minute": 30,
+          "trainNumber": "A153",
+          "type": "特急",
+          "destination": "大牟田",
+          "model": "3000形（水都）",
+          "cars": 6,
+          "doors": 3
+        },
+        {
+          "minute": 32,
+          "trainNumber": "5153",
+          "type": "普通",
+          "destination": "二日市",
+          "model": "9000形",
+          "cars": 4,
+          "doors": 4
+        },
+        {
+          "minute": 37,
+          "trainNumber": "G153",
+          "type": "急行",
+          "destination": "花畑",
+          "model": "3000形",
+          "cars": 5,
+          "doors": 3
+        },
+        {
+          "minute": 44,
+          "trainNumber": "2153",
+          "type": "普通",
+          "destination": "大善寺",
+          "model": "6000形",
+          "cars": 4,
+          "doors": 4
+        },
+        {
+          "minute": 48,
+          "trainNumber": "J153",
+          "type": "急行",
+          "destination": "小郡",
+          "model": "9000形",
+          "cars": 5,
+          "doors": 4
+        },
+        {
+          "minute": 55,
+          "trainNumber": "4153",
+          "type": "普通",
+          "destination": "筑紫",
+          "model": "5000形",
+          "cars": 4,
+          "doors": 3
+        }
+      ]
+    },
+    {
+      "hour": 16,
+      "trains": [
+        {
+          "minute": 0,
+          "trainNumber": "A161",
+          "type": "特急",
+          "destination": "大牟田",
+          "model": "3000形",
+          "cars": 6,
+          "doors": 3
+        },
+        {
+          "minute": 2,
+          "trainNumber": "5161",
+          "type": "普通",
+          "destination": "二日市",
+          "model": "5000形",
+          "cars": 4,
+          "doors": 3
+        },
+        {
+          "minute": 7,
+          "trainNumber": "G161",
+          "type": "急行",
+          "destination": "花畑",
+          "model": "3000形",
+          "cars": 5,
+          "doors": 3
+        },
+        {
+          "minute": 14,
+          "trainNumber": "2161",
+          "type": "普通",
+          "destination": "大善寺",
+          "model": "6000形",
+          "cars": 4,
+          "doors": 4
+        },
+        {
+          "minute": 18,
+          "trainNumber": "J161",
+          "type": "急行",
+          "destination": "小郡",
+          "model": "3000形",
+          "cars": 5,
+          "doors": 3
+        },
+        {
+          "minute": 25,
+          "trainNumber": "4161",
+          "type": "普通",
+          "destination": "筑紫",
+          "model": "5000形",
+          "cars": 4,
+          "doors": 3
+        },
+        {
+          "minute": 30,
+          "trainNumber": "A163",
+          "type": "特急",
+          "destination": "大牟田",
+          "model": "3000形",
+          "cars": 6,
+          "doors": 3
+        },
+        {
+          "minute": 32,
+          "trainNumber": "5163",
+          "type": "普通",
+          "destination": "二日市",
+          "model": "6000形",
+          "cars": 4,
+          "doors": 4
+        },
+        {
+          "minute": 37,
+          "trainNumber": "G163",
+          "type": "急行",
+          "destination": "花畑",
+          "model": "6000形3連+7000形2連",
+          "cars": 5,
+          "doors": 4
+        },
+        {
+          "minute": 44,
+          "trainNumber": "4163",
+          "type": "普通",
+          "destination": "筑紫",
+          "model": "5000形",
+          "cars": 4,
+          "doors": 3
+        },
+        {
+          "minute": 48,
+          "trainNumber": "J163",
+          "type": "急行",
+          "destination": "小郡",
+          "model": "9000形",
+          "cars": 5,
+          "doors": 4
+        },
+        {
+          "minute": 55,
+          "trainNumber": "4165",
+          "type": "普通",
+          "destination": "筑紫",
+          "model": "9000形",
+          "cars": 4,
+          "doors": 4
+        }
+      ]
+    },
+    {
+      "hour": 17,
+      "trains": [
+        {
+          "minute": 0,
+          "trainNumber": "A171",
+          "type": "特急",
+          "destination": "大牟田",
+          "model": "3000形",
+          "cars": 6,
+          "doors": 3
+        },
+        {
+          "minute": 2,
+          "trainNumber": "2171",
+          "type": "普通",
+          "destination": "大善寺",
+          "model": "3000形",
+          "cars": 5,
+          "doors": 3
+        },
+        {
+          "minute": 7,
+          "trainNumber": "G171",
+          "type": "急行",
+          "destination": "花畑",
+          "model": "5000形",
+          "cars": 6,
+          "doors": 3
+        },
+        {
+          "minute": 15,
+          "trainNumber": "5171",
+          "type": "普通",
+          "destination": "二日市",
+          "model": "3000形",
+          "cars": 5,
+          "doors": 3
+        },
+        {
+          "minute": 25,
+          "trainNumber": "4171",
+          "type": "普通",
+          "destination": "筑紫",
+          "model": "6000形",
+          "cars": 4,
+          "doors": 4
+        },
+        {
+          "minute": 30,
+          "trainNumber": "A173",
+          "type": "特急",
+          "destination": "大牟田",
+          "model": "3000形",
+          "cars": 6,
+          "doors": 3
+        },
+        {
+          "minute": 37,
+          "trainNumber": "G173",
+          "type": "急行",
+          "destination": "花畑",
+          "model": "9000形",
+          "cars": 6,
+          "doors": 4
+        },
+        {
+          "minute": 44,
+          "trainNumber": "2173",
+          "type": "普通",
+          "destination": "大善寺",
+          "model": "5000形",
+          "cars": 4,
+          "doors": 3
+        },
+        {
+          "minute": 48,
+          "trainNumber": "J173",
+          "type": "急行",
+          "destination": "小郡",
+          "model": "3000形",
+          "cars": 5,
+          "doors": 3
+        },
+        {
+          "minute": 55,
+          "trainNumber": "4175",
+          "type": "普通",
+          "destination": "筑紫",
+          "model": "3000形",
+          "cars": 5,
+          "doors": 3
+        }
+      ]
+    },
+    {
+      "hour": 18,
+      "trains": [
+        {
+          "minute": 0,
+          "trainNumber": "A181",
+          "type": "特急",
+          "destination": "大牟田",
+          "model": "3000形（水都）",
+          "cars": 6,
+          "doors": 3
+        },
+        {
+          "minute": 2,
+          "trainNumber": "4181",
+          "type": "普通",
+          "destination": "筑紫",
+          "model": "6000形",
+          "cars": 4,
+          "doors": 4
+        },
+        {
+          "minute": 7,
+          "trainNumber": "G181",
+          "type": "急行",
+          "destination": "花畑",
+          "model": "6000形",
+          "cars": 6,
+          "doors": 4
+        },
+        {
+          "minute": 14,
+          "trainNumber": "2181",
+          "type": "普通",
+          "destination": "大善寺",
+          "model": "5000形",
+          "cars": 4,
+          "doors": 3
+        },
+        {
+          "minute": 18,
+          "trainNumber": "J181",
+          "type": "急行",
+          "destination": "小郡",
+          "model": "9000形",
+          "cars": 5,
+          "doors": 4
+        },
+        {
+          "minute": 25,
+          "trainNumber": "4183",
+          "type": "普通",
+          "destination": "筑紫",
+          "model": "6000形3連+7000形2連",
+          "cars": 5,
+          "doors": 4
+        },
+        {
+          "minute": 30,
+          "trainNumber": "A183",
+          "type": "特急",
+          "destination": "大牟田",
+          "model": "3000形",
+          "cars": 6,
+          "doors": 3
+        },
+        {
+          "minute": 32,
+          "trainNumber": "4185",
+          "type": "普通",
+          "destination": "筑紫",
+          "model": "9000形",
+          "cars": 4,
+          "doors": 4
+        },
+        {
+          "minute": 37,
+          "trainNumber": "G183",
+          "type": "急行",
+          "destination": "花畑",
+          "model": "6000形",
+          "cars": 7,
+          "doors": 4
+        },
+        {
+          "minute": 44,
+          "trainNumber": "2183",
+          "type": "普通",
+          "destination": "大善寺",
+          "model": "6000形",
+          "cars": 4,
+          "doors": 4
+        },
+        {
+          "minute": 48,
+          "trainNumber": "J183",
+          "type": "急行",
+          "destination": "小郡",
+          "model": "9000形",
+          "cars": 5,
+          "doors": 4
+        },
+        {
+          "minute": 55,
+          "trainNumber": "3181",
+          "type": "普通",
+          "destination": "小郡",
+          "model": "3000形",
+          "cars": 5,
+          "doors": 3
+        }
+      ]
+    },
+    {
+      "hour": 19,
+      "trains": [
+        {
+          "minute": 0,
+          "trainNumber": "A191",
+          "type": "特急",
+          "destination": "大牟田",
+          "model": "3000形",
+          "cars": 6,
+          "doors": 3
+        },
+        {
+          "minute": 3,
+          "trainNumber": "4191",
+          "type": "普通",
+          "destination": "筑紫",
+          "model": "9000形",
+          "cars": 6,
+          "doors": 4
+        },
+        {
+          "minute": 7,
+          "trainNumber": "G191",
+          "type": "急行",
+          "destination": "花畑",
+          "model": "5000形",
+          "cars": 6,
+          "doors": 3
+        },
+        {
+          "minute": 15,
+          "trainNumber": "2191",
+          "type": "普通",
+          "destination": "大善寺",
+          "model": "6000形",
+          "cars": 4,
+          "doors": 4
+        },
+        {
+          "minute": 25,
+          "trainNumber": "3191",
+          "type": "普通",
+          "destination": "小郡",
+          "model": "9000形",
+          "cars": 6,
+          "doors": 4
+        },
+        {
+          "minute": 30,
+          "trainNumber": "A193",
+          "type": "特急",
+          "destination": "大牟田",
+          "model": "3000形",
+          "cars": 6,
+          "doors": 3
+        },
+        {
+          "minute": 33,
+          "trainNumber": "4193",
+          "type": "普通",
+          "destination": "筑紫",
+          "model": "3000形",
+          "cars": 5,
+          "doors": 3
+        },
+        {
+          "minute": 37,
+          "trainNumber": "G193",
+          "type": "急行",
+          "destination": "花畑",
+          "model": "5000形",
+          "cars": 7,
+          "doors": 3
+        },
+        {
+          "minute": 45,
+          "trainNumber": "2193",
+          "type": "普通",
+          "destination": "大善寺",
+          "model": "6000形",
+          "cars": 4,
+          "doors": 4
+        }
+      ]
+    },
+    {
+      "hour": 20,
+      "trains": [
+        {
+          "minute": 0,
+          "trainNumber": "A201",
+          "type": "特急",
+          "destination": "大牟田",
+          "model": "6000形",
+          "cars": 7,
+          "doors": 4
+        },
+        {
+          "minute": 2,
+          "trainNumber": "3201",
+          "type": "普通",
+          "destination": "小郡",
+          "model": "3000形",
+          "cars": 6,
+          "doors": 3
+        },
+        {
+          "minute": 6,
+          "trainNumber": "G201",
+          "type": "急行",
+          "destination": "花畑",
+          "model": "6000形",
+          "cars": 6,
+          "doors": 4
+        },
+        {
+          "minute": 15,
+          "trainNumber": "2201",
+          "type": "普通",
+          "destination": "大善寺",
+          "model": "3000形（旅人）",
+          "cars": 5,
+          "doors": 3
+        },
+        {
+          "minute": 30,
+          "trainNumber": "A203",
+          "type": "特急",
+          "destination": "大牟田",
+          "model": "5000形",
+          "cars": 7,
+          "doors": 3
+        },
+        {
+          "minute": 32,
+          "trainNumber": "3203",
+          "type": "普通",
+          "destination": "小郡",
+          "model": "3000形（水都）",
+          "cars": 6,
+          "doors": 3
+        },
+        {
+          "minute": 36,
+          "trainNumber": "G203",
+          "type": "急行",
+          "destination": "花畑",
+          "model": "6000形",
+          "cars": 7,
+          "doors": 4
+        },
+        {
+          "minute": 45,
+          "trainNumber": "2203",
+          "type": "普通",
+          "destination": "花畑",
+          "model": "3000形",
+          "cars": 5,
+          "doors": 3
+        }
+      ]
+    },
+    {
+      "hour": 21,
+      "trains": [
+        {
+          "minute": 0,
+          "trainNumber": "A211",
+          "type": "特急",
+          "destination": "大牟田",
+          "model": "5000形",
+          "cars": 7,
+          "doors": 3
+        },
+        {
+          "minute": 2,
+          "trainNumber": "3211",
+          "type": "普通",
+          "destination": "小郡",
+          "model": "3000形",
+          "cars": 6,
+          "doors": 3
+        },
+        {
+          "minute": 6,
+          "trainNumber": "G211",
+          "type": "急行",
+          "destination": "花畑",
+          "model": "5000形",
+          "cars": 6,
+          "doors": 3
+        },
+        {
+          "minute": 15,
+          "trainNumber": "2211",
+          "type": "普通",
+          "destination": "花畑",
+          "model": "5000形",
+          "cars": 4,
+          "doors": 3
+        },
+        {
+          "minute": 30,
+          "trainNumber": "A213",
+          "type": "特急",
+          "destination": "大牟田",
+          "model": "6000形",
+          "cars": 7,
+          "doors": 4
+        },
+        {
+          "minute": 32,
+          "trainNumber": "3213",
+          "type": "普通",
+          "destination": "小郡",
+          "model": "3000形",
+          "cars": 6,
+          "doors": 3
+        },
+        {
+          "minute": 40,
+          "trainNumber": "G213",
+          "type": "急行",
+          "destination": "柳川",
+          "model": "5000形",
+          "cars": 7,
+          "doors": 3
+        },
+        {
+          "minute": 45,
+          "trainNumber": "1211",
+          "type": "普通",
+          "destination": "柳川",
+          "model": "5000形",
+          "cars": 4,
+          "doors": 3
+        }
+      ]
+    },
+    {
+      "hour": 22,
+      "trains": [
+        {
+          "minute": 0,
+          "trainNumber": "A221",
+          "type": "特急",
+          "destination": "大牟田",
+          "model": "9000形",
+          "cars": 7,
+          "doors": 4
+        },
+        {
+          "minute": 2,
+          "trainNumber": "4221",
+          "type": "普通",
+          "destination": "筑紫",
+          "model": "6000形",
+          "cars": 6,
+          "doors": 4
+        },
+        {
+          "minute": 15,
+          "trainNumber": "G221",
+          "type": "急行",
+          "destination": "大牟田",
+          "model": "3000形",
+          "cars": 6,
+          "doors": 3
+        },
+        {
+          "minute": 17,
+          "trainNumber": "3221",
+          "type": "普通",
+          "destination": "小郡",
+          "model": "6000形",
+          "cars": 4,
+          "doors": 4
+        },
+        {
+          "minute": 30,
+          "trainNumber": "G223",
+          "type": "急行",
+          "destination": "柳川",
+          "model": "6000形",
+          "cars": 7,
+          "doors": 4
+        },
+        {
+          "minute": 32,
+          "trainNumber": "1221",
+          "type": "普通",
+          "destination": "柳川",
+          "model": "3000形",
+          "cars": 5,
+          "doors": 3
+        },
+        {
+          "minute": 45,
+          "trainNumber": "G225",
+          "type": "急行",
+          "destination": "大牟田",
+          "model": "6000形",
+          "cars": 7,
+          "doors": 4
+        },
+        {
+          "minute": 48,
+          "trainNumber": "2221",
+          "type": "普通",
+          "destination": "花畑",
+          "model": "6000形",
+          "cars": 4,
+          "doors": 4
+        }
+      ]
+    },
+    {
+      "hour": 23,
+      "trains": [
+        {
+          "minute": 0,
+          "trainNumber": "G231",
+          "type": "急行",
+          "destination": "柳川",
+          "model": "5000形",
+          "cars": 6,
+          "doors": 3
+        },
+        {
+          "minute": 5,
+          "trainNumber": "4231",
+          "type": "普通",
+          "destination": "筑紫",
+          "model": "3000形",
+          "cars": 6,
+          "doors": 3
+        },
+        {
+          "minute": 17,
+          "trainNumber": "4233",
+          "type": "普通",
+          "destination": "筑紫",
+          "model": "6000形",
+          "cars": 4,
+          "doors": 4
+        },
+        {
+          "minute": 30,
+          "trainNumber": "G233",
+          "type": "急行",
+          "destination": "花畑",
+          "model": "5000形",
+          "cars": 7,
+          "doors": 3
+        },
+        {
+          "minute": 35,
+          "trainNumber": "4235",
+          "type": "普通",
+          "destination": "筑紫",
+          "model": "3000形",
+          "cars": 6,
+          "doors": 3
+        }
+      ]
+    }
+  ]
+}
