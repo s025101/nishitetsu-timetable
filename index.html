@@ -227,13 +227,14 @@
     -webkit-text-stroke: 0.3px #ffffff;
   }
 
-  /* 2行目（お知らせ・接続案内行） */
+  /* 2行目（お知らせ・接続案内行：常に高さを確保） */
   .notice-row {
     background: transparent;
     padding-top: 6px;
     display: flex;
     flex-direction: column;
     gap: 4px;
+    min-height: 22px; /* 接続案内がない場合でも高さを維持 */
   }
 
   .notice-line {
@@ -407,14 +408,12 @@
       const destObj = formatDestination(train.destination);
       const destClass = destObj.isSpaced ? 'dest-main spaced' : 'dest-main normal';
 
-      let noticeHtml = '';
+      let noticeContent = '';
       if (train.note) {
-        noticeHtml = `
-          <div class="notice-row">
-            <div class="notice-line">
-              <span class="notice-badge">接続案内</span>
-              ${train.note}
-            </div>
+        noticeContent = `
+          <div class="notice-line">
+            <span class="notice-badge">接続案内</span>
+            ${train.note}
           </div>
         `;
       }
@@ -438,7 +437,9 @@
               <div class="time-area">${timeStr}</div>
             </div>
           </div>
-          ${noticeHtml}
+          <div class="notice-row">
+            ${noticeContent}
+          </div>
         </div>
       `;
       screenContainer.innerHTML += rowHtml;
