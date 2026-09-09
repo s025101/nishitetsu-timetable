@@ -96,14 +96,14 @@
   .type-area {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 80px;
-    margin-right: 12px;
+    align-items: flex-start; /* 左側に揃える */
+    width: 84px;
+    margin-right: 10px;
     flex-shrink: 0;
   }
 
   .type-badge {
-    font-size: 20px;
+    font-size: 21px;
     font-weight: 900;
     padding: 2px 4px;
     border-radius: 3px;
@@ -121,13 +121,16 @@
   .type-badge.express { background-color: #15803d; }
   .type-badge.limited { background-color: #b91c1c; }
 
+  /* ローマ字は細く小さく、左寄せ */
   .type-sub {
-    font-size: 10px;
-    font-weight: 700;
-    color: #e2e8f0;
+    font-size: 9.5px;
+    font-weight: 500;
+    color: #cbd5e1;
     margin-top: 3px;
     letter-spacing: 0.5px;
     font-family: 'Roboto', sans-serif;
+    text-align: left;
+    width: 100%;
   }
 
   /* 行先エリア */
@@ -139,15 +142,15 @@
     margin-right: 8px;
   }
   .dest-main {
-    font-size: 26px;
+    font-size: 27px;
     font-weight: 900;
     white-space: nowrap;
     line-height: 1.1;
     text-shadow: 0 2px 4px rgba(0,0,0,0.6);
   }
   .dest-main.spaced {
-    letter-spacing: 4px;
-    text-indent: 4px;
+    letter-spacing: 5px;
+    text-indent: 5px;
   }
   .dest-main.normal {
     letter-spacing: 1px;
@@ -156,8 +159,8 @@
 
   /* 行先の英字・かな */
   .dest-sub {
-    font-size: 10px;
-    font-weight: 700;
+    font-size: 9.5px;
+    font-weight: 500;
     color: #cbd5e1;
     margin-top: 3px;
     letter-spacing: 0.5px;
@@ -169,7 +172,7 @@
   .right-group {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 14px; /* アイコンと時刻の間隔を少し広げる */
     flex-shrink: 0;
     margin-left: auto;
   }
@@ -179,7 +182,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 48px; /* 幅を固定して揃える */
+    width: 48px;
     gap: 3px;
     flex-shrink: 0;
   }
@@ -210,13 +213,14 @@
     box-sizing: border-box;
   }
 
-  /* 時刻エリア */
+  /* 時刻エリア（さらに太く、力強く） */
   .time-area {
-    font-size: 32px;
+    font-size: 34px;
     font-weight: 900;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
     font-family: 'Roboto', Arial, sans-serif;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+    text-shadow: 0 2px 5px rgba(0,0,0,0.7);
+    -webkit-text-stroke: 0.3px #ffffff; /* 輪郭を強調してより太く見せる */
   }
 
   /* 2行目（お知らせ・接続案内行） */
