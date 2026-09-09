@@ -329,7 +329,9 @@
     "柳川": ["Yanagawa", "柳川", "야나가와"],
     "久留米": ["Kurume", "久留米", "구루메"],
     "西鉄福岡（天神）": ["Fukuoka (Tenjin)", "福冈(天神)", "후쿠오카(텐진)"],
-    "福岡（天神）": ["Fukuoka (Tenjin)", "福冈(天神)", "후쿠오카(텐진)"]
+    "西鉄福岡(天神)": ["Fukuoka (Tenjin)", "福冈(天神)", "후쿠오카(텐진)"],
+    "福岡（天神）": ["Fukuoka (Tenjin)", "福冈(天神)", "후쿠오카(텐진)"],
+    "福岡(天神)": ["Fukuoka (Tenjin)", "福冈(天神)", "후쿠오카(텐진)"]
   };
 
   function formatType(str) {
@@ -340,9 +342,9 @@
   function formatDestination(str) {
     if (!str) return { text: '', isSpaced: false };
     
-    // 表示名を「西鉄福岡（天神）」から「福岡（天神）」に置換
+    // 表示名を「西鉄福岡（天神）」「西鉄福岡(天神)」から「福岡（天神）」に置換
     let displayText = str;
-    if (str === "西鉄福岡（天神）") {
+    if (str === "西鉄福岡（天神）" || str === "西鉄福岡(天神)" || str === "福岡(天神)") {
       displayText = "福岡（天神）";
     }
 
@@ -413,7 +415,9 @@
     upcomingTrains.forEach((train, index) => {
       const typeData = typeMultilingual[train.type] || { cls: "local", langs: ["Local", "普通", "보통"] };
       const timeStr = `${String(train.hour).padStart(2, '0')}:${String(train.minute).padStart(2, '0')}`;
-      const destLangs = destMultilingual[train.destination] || destMultilingual["福岡（天神）"] || [train.destination, train.destination, train.destination];
+      
+      // 行先の多言語データを安全に取得（完全一致しない場合はデフォルトで福岡（天神）用を利用）
+      const destLangs = destMultilingual[train.destination] || destMultilingual["福岡（天神）"];
 
       const formattedType = formatType(train.type);
       const destObj = formatDestination(train.destination);
