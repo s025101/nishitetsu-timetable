@@ -117,22 +117,21 @@
     color: #ffffff;
     box-shadow: 0 2px 4px rgba(0,0,0,0.5);
   }
-  
-  /* 本物の色合いに合わせた配色（少し深みと重みのあるカラー） */
-  .type-badge.local { background-color: #10439f; }     /* 普通：落ち着いた青 */
-  .type-badge.express { background-color: #0d6e3c; }   /* 急行：深い緑 */
-  .type-badge.limited { background-color: #a81c1c; }   /* 特急：重厚感のある赤 */
+  .type-badge.local { background-color: #10439f; }
+  .type-badge.express { background-color: #0d6e3c; }
+  .type-badge.limited { background-color: #a81c1c; }
 
-  /* 種別のローマ字も中央揃え */
+  /* 種別のサブ言語表示 */
   .type-sub {
     font-size: 9.5px;
     font-weight: 500;
     color: #cbd5e1;
     margin-top: 3px;
     letter-spacing: 0.5px;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto', 'Noto Sans JP', sans-serif;
     text-align: center;
     width: 100%;
+    min-height: 14px;
   }
 
   /* 行先エリア（中央揃え） */
@@ -161,15 +160,16 @@
     text-indent: 0;
   }
 
-  /* 行先のローマ字（中央揃え） */
+  /* 行先のサブ言語表示 */
   .dest-sub {
     font-size: 9.5px;
     font-weight: 500;
     color: #cbd5e1;
     margin-top: 3px;
     letter-spacing: 0.5px;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto', 'Noto Sans JP', sans-serif;
     text-align: center;
+    min-height: 14px;
   }
 
   /* 右側グループ */
@@ -304,23 +304,27 @@
   window.addEventListener('DOMContentLoaded', adjustScale);
 
   let currentTimetableData = null;
+  let languageIndex = 0; // 0: 英語, 1: 中国語, 2: 韓国語
+  let languageTimer = null;
 
-  function getTypeInfo(type) {
-    if (type === '特急') return { en: 'Ltd.Exp.', cls: 'limited' };
-    if (type === '急行') return { en: 'Express', cls: 'express' };
-    return { en: 'Local', cls: 'local' };
-  }
+  // 種別の多言語データ
+  const typeMultilingual = {
+    "特急": { cls: "limited", langs: ["Ltd.Exp.", "特快", "특급"] },
+    "急行": { cls: "express", langs: ["Express", "快车", "급행"] },
+    "普通": { cls: "local", langs: ["Local", "普通", "보통"] }
+  };
 
-  const destEnglish = {
-    "筑紫": "Chikushi",
-    "大善寺": "Daizenji",
-    "花畑": "Hanabatake",
-    "大牟田": "Omuta",
-    "二日市": "Futsukaichi",
-    "小郡": "Ogori",
-    "太宰府": "Dazaifu",
-    "柳川": "Yanagawa",
-    "久留米": "Kurume"
+  // 行先の多言語データ (英語, 中国語, 韓国語)
+  const destMultilingual = {
+    "筑紫": ["Chikushi", "筑紫", "치쿠시"],
+    "大善寺": ["Daizenji", "大善寺", "다이젠지"],
+    "花畑": ["Hanabatake", "花畑", "하나바타케"],
+    "大牟田": ["Omuta", "大牟田", "오무타"],
+    "二日市": ["Futsukaichi", "二日市", "후츠카이치"],
+    "小郡": ["Ogori", "小郡", "오고리"],
+    "太宰府": ["Dazaifu", "太宰府", "다자이후"],
+    "柳川": ["Yanagawa", "柳川", "야나가와"],
+    "久留米": ["Kurume", "久留米", "구루메"]
   };
 
   function formatType(str) {
@@ -342,6 +346,14 @@
       if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
       currentTimetableData = await response.json();
       updateDisplay();
+      
+      // 言語切り替えタイマーの再設定（4秒ごとに切り替え）
+      if (languageTimer) clearInterval(languageTimer);
+      languageTimer = setInterval(() => {
+        languageIndex = (languageIndex + 1) % 3;
+        updateSubLanguages();
+      }, 4000);
+
     } catch (e) {
       console.error('JSON読み込みエラー:', e);
       document.getElementById('train-screen').innerHTML = `<div class="no-trains">データの読み込みに失敗しました<br><small>${filename}</small></div>`;
@@ -386,10 +398,10 @@
       return;
     }
 
-    upcomingTrains.forEach(train => {
-      const typeInfo = getTypeInfo(train.type);
+    upcomingTrains.forEach((train, index) => {
+      const typeData = typeMultilingual[train.type] || { cls: "local", langs: ["Local", "普通", "보통"] };
       const timeStr = `${String(train.hour).padStart(2, '0')}:${String(train.minute).padStart(2, '0')}`;
-      const destEn = destEnglish[train.destination] || train.destination;
+      const destLangs = destMultilingual[train.destination] || [train.destination, train.destination, train.destination];
 
       const formattedType = formatType(train.type);
       const destObj = formatDestination(train.destination);
@@ -408,15 +420,15 @@
       }
 
       const rowHtml = `
-        <div class="train-row">
+        <div class="train-row" data-train-index="${index}">
           <div class="train-main">
             <div class="type-area">
-              <div class="type-badge ${typeInfo.cls}">${formattedType}</div>
-              <div class="type-sub">${typeInfo.en}</div>
+              <div class="type-badge ${typeData.cls}">${formattedType}</div>
+              <div class="type-sub" data-type-langs='${JSON.stringify(typeData.langs)}'>${typeData.langs[languageIndex]}</div>
             </div>
             <div class="dest-area">
               <div class="${destClass}">${destObj.text}</div>
-              <div class="dest-sub">${destEn}</div>
+              <div class="dest-sub" data-dest-langs='${JSON.stringify(destLangs)}'>${destLangs[languageIndex]}</div>
             </div>
             <div class="right-group">
               <div class="specs-area">
@@ -433,13 +445,29 @@
     });
   }
 
+  // サブ言語の表示のみを定期的に書き換える関数
+  function updateSubLanguages() {
+    const typeSubs = document.querySelectorAll('.type-sub');
+    const destSubs = document.querySelectorAll('.dest-sub');
+
+    typeSubs.forEach(el => {
+      const langs = JSON.parse(el.getAttribute('data-type-langs'));
+      el.textContent = langs[languageIndex];
+    });
+
+    destSubs.forEach(el => {
+      const langs = JSON.parse(el.getAttribute('data-dest-langs'));
+      el.textContent = langs[languageIndex];
+    });
+  }
+
   const fileSelect = document.getElementById('fileSelect');
   fileSelect.addEventListener('change', (e) => {
     loadTimetable(e.target.value);
   });
 
   loadTimetable(fileSelect.value);
-  setInterval(updateDisplay, 10000);
+  setInterval(updateDisplay, 10000); // 10秒ごとに発車時刻の更新チェック
 </script>
 
 </body>
