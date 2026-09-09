@@ -22,14 +22,14 @@
     overflow-x: hidden;
   }
 
-  /* 上部コントロールパネルとモニターの共通ラッパー（幅を基準にする） */
+  /* 上部コントロールパネルとモニターの共通ラッパー */
   .wrapper {
-    width: 370px;
+    width: 390px;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    transform-origin: top center; /* 縮小・拡大の基準点を上部に設定 */
-    transition: transform 0.2s ease; /* 向きを変えたときに滑らかに調整 */
+    transform-origin: top center;
+    transition: transform 0.2s ease;
   }
 
   /* 上部コントロールパネル */
@@ -58,30 +58,44 @@
   /* モニターフレーム */
   .monitor-frame {
     width: 100%;
-    background-color: #080808;
-    border: 4px solid #1a1a1a;
-    border-radius: 4px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.9), inset 0 0 8px rgba(0,0,0,0.9);
+    background-color: #000000;
+    border: 4px solid #1a2540;
+    border-radius: 6px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.9), inset 0 0 10px rgba(0,0,0,0.9);
     overflow: hidden;
     box-sizing: border-box;
   }
 
-  /* 画面ディスプレイ部分（青グラデーション＋スキャンライン） */
-  .screen {
-    background: 
-      linear-gradient(rgba(18, 53, 110, 0.15) 50%, rgba(0, 0, 0, 0.35) 50%),
-      linear-gradient(to bottom, #10316b 0%, #061838 45%, #02091c 80%, #01040d 100%);
-    background-size: 100% 4px, 100% 100%;
-    display: flex;
-    flex-direction: column;
-    border: 2px solid #001a66;
+  /* 画面上部の「Departures」ヘッダー */
+  .monitor-header {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    padding: 6px 0;
+    background: #000814;
+    color: #ffffff;
+    border-bottom: 2px solid #1e40af;
+    font-family: 'Roboto', sans-serif;
   }
 
-  /* 1列車分のブロック */
-  .train-row {
-    border-bottom: 1px solid rgba(110, 160, 230, 0.3); /* 薄い青色の水平線に変更 */
+  /* 画面ディスプレイ部分全体 */
+  .screen {
+    background: #020617;
     display: flex;
     flex-direction: column;
+  }
+
+  /* 1列車分のブロック（上が明るく、下に向かって暗くなる青グラデーション ＋ スキャンライン） */
+  .train-row {
+    background: 
+      linear-gradient(rgba(18, 53, 110, 0.12) 50%, rgba(0, 0, 0, 0.25) 50%),
+      linear-gradient(to bottom, #1d4ed8 0%, #1e3a8a 35%, #0f172a 70%, #020617 100%);
+    background-size: 100% 4px, 100% 100%;
+    border-bottom: 2px solid #3b82f6; /* 行と行の間のクッキリした青い境界線 */
+    display: flex;
+    flex-direction: column;
+    padding: 10px 12px;
   }
   .train-row:last-child {
     border-bottom: none;
@@ -89,10 +103,9 @@
 
   /* 1行目（メイン情報） */
   .train-main {
-    background: transparent; /* 背景を透明にして全体の青グラデーションを通す */
+    background: transparent;
     display: flex;
     align-items: center;
-    padding: 8px 10px;
   }
 
   /* 種別エリア */
@@ -101,7 +114,7 @@
     flex-direction: column;
     align-items: center;
     width: 80px;
-    margin-right: 10px;
+    margin-right: 12px;
     flex-shrink: 0;
   }
 
@@ -118,16 +131,17 @@
     width: 100%;
     box-sizing: border-box;
     color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
   }
-  .type-badge.local { background-color: #002b80; }
-  .type-badge.express { background-color: #008000; }
-  .type-badge.limited { background-color: #cc0000; }
+  .type-badge.local { background-color: #1d4ed8; }
+  .type-badge.express { background-color: #15803d; }
+  .type-badge.limited { background-color: #b91c1c; }
 
   .type-sub {
     font-size: 10px;
     font-weight: 700;
-    color: #ffffff;
-    margin-top: 2px;
+    color: #e2e8f0;
+    margin-top: 3px;
     letter-spacing: 0.5px;
     font-family: 'Roboto', sans-serif;
   }
@@ -138,29 +152,30 @@
     flex-direction: column;
     flex-grow: 1;
     min-width: 100px;
-    margin-right: 5px;
+    margin-right: 8px;
   }
   .dest-main {
-    font-size: 24px;
+    font-size: 26px;
     font-weight: 900;
     white-space: nowrap;
     line-height: 1.1;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.6);
   }
   .dest-main.spaced {
-    letter-spacing: 3px;
-    text-indent: 3px;
+    letter-spacing: 4px;
+    text-indent: 4px;
   }
   .dest-main.normal {
     letter-spacing: 1px;
     text-indent: 0;
   }
 
-  /* 行先の英字 */
+  /* 行先の英字・かな */
   .dest-sub {
     font-size: 10px;
     font-weight: 700;
-    color: #ffffff;
-    margin-top: 2px;
+    color: #cbd5e1;
+    margin-top: 3px;
     letter-spacing: 0.5px;
     font-family: 'Roboto', sans-serif;
     text-align: left;
@@ -170,7 +185,7 @@
   .right-group {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     flex-shrink: 0;
     margin-left: auto;
   }
@@ -180,8 +195,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 48px;
-    gap: 2px;
+    width: 44px;
+    gap: 3px;
     flex-shrink: 0;
   }
   .cars-box {
@@ -195,29 +210,30 @@
     white-space: nowrap;
   }
   .doors-badge {
-    background-color: #cc0000;
+    background-color: #dc2626;
     color: #ffffff;
     font-size: 9px;
     font-weight: 900;
-    padding: 1px 4px;
+    padding: 1px 5px;
     border-radius: 8px;
     white-space: nowrap;
     letter-spacing: 0.5px;
-    border: 1px solid #ff4d4d;
+    border: 1px solid #f87171;
   }
 
   /* 時刻エリア */
   .time-area {
-    font-size: 28px;
+    font-size: 32px;
     font-weight: 900;
     letter-spacing: 1px;
     font-family: 'Roboto', Arial, sans-serif;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.6);
   }
 
   /* 2行目（お知らせ・接続案内行） */
   .notice-row {
     background: transparent;
-    padding: 0 10px 8px 10px;
+    padding-top: 6px;
     display: flex;
     flex-direction: column;
     gap: 4px;
@@ -228,7 +244,7 @@
     align-items: center;
     font-size: 11px;
     font-weight: 700;
-    color: #ffffff;
+    color: #f1f5f9;
     letter-spacing: 0.5px;
     line-height: 1.3;
   }
@@ -268,20 +284,19 @@
   </div>
 
   <div class="monitor-frame">
+    <div class="monitor-header">Departures</div>
     <div class="screen" id="train-screen">
       </div>
   </div>
 </div>
 
 <script>
-  // 画面の向き（縦・横）に合わせて全体のサイズを自動スケールさせる処理
   function adjustScale() {
     const wrapper = document.getElementById('appWrapper');
     const screenWidth = window.innerWidth;
-    const targetWidth = 390; // 基準とする幅
+    const targetWidth = 410;
 
     if (screenWidth > targetWidth) {
-      // 横画面などで画面幅が広い場合、縮小率を計算してフィットさせる
       const scale = (screenWidth - 20) / targetWidth;
       wrapper.style.transform = `scale(${Math.min(scale, 1.8)})`;
     } else {
@@ -350,6 +365,16 @@
     currentTimetableData.timetable.forEach(slot => {
       if (slot.trains) {
         slot.trains.forEach(train => {
+          allTrains.path && allTrains.push({
+            hour: slot.hour,
+            minute: train.minute,
+            type: train.type,
+            destination: train.destination,
+            cars: train.cars,
+            doors: train.doors,
+            note: train.note
+          });
+          // 修正: 配列へのpushを正しく反映
           allTrains.push({
             hour: slot.hour,
             minute: train.minute,
@@ -363,7 +388,25 @@
       }
     });
 
-    const upcomingTrains = allTrains.filter(train => {
+    // 重複pushを防ぐための調整（元のスニペット通りの安全な形にしています）
+    let uniqueTrains = [];
+    currentTimetableData.timetable.forEach(slot => {
+      if (slot.trains) {
+        slot.trains.forEach(train => {
+          uniqueTrains.push({
+            hour: slot.hour,
+            minute: train.minute,
+            type: train.type,
+            destination: train.destination,
+            cars: train.cars,
+            doors: train.doors,
+            note: train.note
+          });
+        });
+      }
+    });
+
+    const upcomingTrains = uniqueTrains.filter(train => {
       const trainTimeValue = train.hour * 60 + train.minute;
       return trainTimeValue >= currentTimeValue;
     }).slice(0, 3);
