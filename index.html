@@ -227,14 +227,14 @@
     -webkit-text-stroke: 0.3px #ffffff;
   }
 
-  /* 2行目（お知らせ・接続案内行：常に高さを確保） */
+  /* 2行目（お知らせ・接続案内行） */
   .notice-row {
     background: transparent;
     padding-top: 6px;
     display: flex;
     flex-direction: column;
     gap: 4px;
-    min-height: 22px; /* 接続案内がない場合でも高さを維持 */
+    min-height: 22px;
   }
 
   .notice-line {
@@ -408,6 +408,19 @@
       const destObj = formatDestination(train.destination);
       const destClass = destObj.isSpaced ? 'dest-main spaced' : 'dest-main normal';
 
+      // 両数やドア数がある場合のみ表示用のHTMLを組み立てる
+      let specsHtml = '';
+      if (train.cars || train.doors) {
+        let carsPart = train.cars ? `<div class="cars-box">${train.cars}両</div>` : '';
+        let doorsPart = train.doors ? `<div class="doors-badge">${train.doors}ドア</div>` : '';
+        specsHtml = `
+          <div class="specs-area">
+            ${carsPart}
+            ${doorsPart}
+          </div>
+        `;
+      }
+
       let noticeContent = '';
       if (train.note) {
         noticeContent = `
@@ -430,10 +443,7 @@
               <div class="dest-sub" data-dest-langs='${JSON.stringify(destLangs)}'>${destLangs[languageIndex]}</div>
             </div>
             <div class="right-group">
-              <div class="specs-area">
-                <div class="cars-box">${train.cars}両</div>
-                <div class="doors-badge">${train.doors || 3}ドア</div>
-              </div>
+              ${specsHtml}
               <div class="time-area">${timeStr}</div>
             </div>
           </div>
