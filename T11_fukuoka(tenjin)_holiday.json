@@ -1,0 +1,209 @@
+{
+  "station": "都府楼前",
+  "dayType": "holiday",
+  "direction": "福岡（天神）方面",
+  "directionEn": "Fukuoka(Tenjin)",
+  "timetable": [
+    {
+      "hour": 5,
+      "trains": [
+        { "minute": 23, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 37, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 49, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 54, "type": "普通", "destination": "西鉄福岡(天神)" }
+      ]
+    },
+    {
+      "hour": 6,
+      "trains": [
+        { "minute": 4, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 16, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 27, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 38, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 47, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 56, "type": "普通", "destination": "西鉄福岡(天神)" }
+      ]
+    },
+    {
+      "hour": 7,
+      "trains": [
+        { "minute": 5, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 15, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 24, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 34, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 44, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 54, "type": "普通", "destination": "西鉄福岡(天神)" }
+      ]
+    },
+    {
+      "hour": 8,
+      "trains": [
+        { "minute": 4, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 14, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 24, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 34, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 44, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 54, "type": "普通", "destination": "西鉄福岡(天神)" }
+      ]
+    },
+    {
+      "hour": 9,
+      "trains": [
+        { "minute": 4, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 14, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 24, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 34, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 44, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 54, "type": "普通", "destination": "西鉄福岡(天神)" }
+      ]
+    },
+    {
+      "hour": 10,
+      "trains": [
+        { "minute": 4, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 14, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 24, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 34, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 44, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 54, "type": "普通", "destination": "西鉄福岡(天神)" }
+      ]
+    },
+    {
+      "hour": 11,
+      "trains": [
+        { "minute": 4, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 14, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 24, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 34, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 44, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 54, "type": "普通", "destination": "西鉄福岡(天神)" }
+      ]
+    },
+    {
+      "hour": 12,
+      "trains": [
+        { "minute": 4, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 14, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 24, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 34, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 44, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 54, "type": "普通", "destination": "西鉄福岡(天神)" }
+      ]
+    },
+    {
+      "hour": 13,
+      "trains": [
+        { "minute": 4, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 14, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 24, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 34, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 44, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 54, "type": "普通", "destination": "西鉄福岡(天神)" }
+      ]
+    },
+    {
+      "hour": 14,
+      "trains": [
+        { "minute": 4, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 14, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 24, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 34, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 44, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 54, "type": "普通", "destination": "西鉄福岡(天神)" }
+      ]
+    },
+    {
+      "hour": 15,
+      "trains": [
+        { "minute": 4, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 14, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 24, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 34, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 44, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 54, "type": "普通", "destination": "西鉄福岡(天神)" }
+      ]
+    },
+    {
+      "hour": 16,
+      "trains": [
+        { "minute": 4, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 14, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 24, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 34, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 44, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 54, "type": "普通", "destination": "西鉄福岡(天神)" }
+      ]
+    },
+    {
+      "hour": 17,
+      "trains": [
+        { "minute": 4, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 14, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 24, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 34, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 44, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 54, "type": "普通", "destination": "西鉄福岡(天神)" }
+      ]
+    },
+    {
+      "hour": 18,
+      "trains": [
+        { "minute": 4, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 14, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 24, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 34, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 44, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 54, "type": "普通", "destination": "西鉄福岡(天神)" }
+      ]
+    },
+    {
+      "hour": 19,
+      "trains": [
+        { "minute": 4, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 14, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 24, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 34, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 44, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 54, "type": "普通", "destination": "西鉄福岡(天神)" }
+      ]
+    },
+    {
+      "hour": 20,
+      "trains": [
+        { "minute": 7, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 17, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 27, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 42, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 47, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 57, "type": "普通", "destination": "西鉄福岡(天神)" }
+      ]
+    },
+    {
+      "hour": 21,
+      "trains": [
+        { "minute": 12, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 20, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 27, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 45, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 50, "type": "普通", "destination": "西鉄福岡(天神)" }
+      ]
+    },
+    {
+      "hour": 22,
+      "trains": [
+        { "minute": 5, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 15, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 21, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 35, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 51, "type": "普通", "destination": "西鉄福岡(天神)" }
+      ]
+    },
+    {
+      "hour": 23,
+      "trains": [
+        { "minute": 4, "type": "普通", "destination": "西鉄福岡(天神)" },
+        { "minute": 29, "type": "普通", "destination": "西鉄福岡(天神)" }
+      ]
+    }
+  ]
+}
