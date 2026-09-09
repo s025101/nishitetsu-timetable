@@ -96,7 +96,7 @@
   .type-area {
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* 左側に揃える */
+    align-items: flex-start;
     width: 84px;
     margin-right: 10px;
     flex-shrink: 0;
@@ -121,7 +121,6 @@
   .type-badge.express { background-color: #15803d; }
   .type-badge.limited { background-color: #b91c1c; }
 
-  /* ローマ字は細く小さく、左寄せ */
   .type-sub {
     font-size: 9.5px;
     font-weight: 500;
@@ -133,13 +132,15 @@
     width: 100%;
   }
 
-  /* 行先エリア */
+  /* 行先エリア（中央揃えに変更） */
   .dest-area {
     display: flex;
     flex-direction: column;
+    align-items: center; /* 中央に揃える */
     flex-grow: 1;
     min-width: 100px;
     margin-right: 8px;
+    text-align: center;
   }
   .dest-main {
     font-size: 27px;
@@ -157,7 +158,7 @@
     text-indent: 0;
   }
 
-  /* 行先の英字・かな */
+  /* 行先のローマ字（中央揃え） */
   .dest-sub {
     font-size: 9.5px;
     font-weight: 500;
@@ -165,14 +166,14 @@
     margin-top: 3px;
     letter-spacing: 0.5px;
     font-family: 'Roboto', sans-serif;
-    text-align: left;
+    text-align: center;
   }
 
   /* 右側グループ */
   .right-group {
     display: flex;
     align-items: center;
-    gap: 14px; /* アイコンと時刻の間隔を少し広げる */
+    gap: 14px;
     flex-shrink: 0;
     margin-left: auto;
   }
@@ -213,14 +214,14 @@
     box-sizing: border-box;
   }
 
-  /* 時刻エリア（さらに太く、力強く） */
+  /* 時刻エリア */
   .time-area {
     font-size: 34px;
     font-weight: 900;
     letter-spacing: 1.5px;
     font-family: 'Roboto', Arial, sans-serif;
     text-shadow: 0 2px 5px rgba(0,0,0,0.7);
-    -webkit-text-stroke: 0.3px #ffffff; /* 輪郭を強調してより太く見せる */
+    -webkit-text-stroke: 0.3px #ffffff;
   }
 
   /* 2行目（お知らせ・接続案内行） */
@@ -242,7 +243,6 @@
     line-height: 1.3;
   }
 
-  /* 接続案内バッジ */
   .notice-badge {
     background-color: #ffffff;
     color: #000000;
