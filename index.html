@@ -59,7 +59,7 @@
   .monitor-frame {
     width: 100%;
     background-color: #000000;
-    border: 4px solid #1a2540;
+    border: 4px solid #141c2e;
     border-radius: 6px;
     box-shadow: 0 6px 20px rgba(0,0,0,0.9), inset 0 0 10px rgba(0,0,0,0.9);
     overflow: hidden;
@@ -73,26 +73,26 @@
     font-weight: 700;
     letter-spacing: 3px;
     padding: 6px 0;
-    background: #000814;
+    background: #000308;
     color: #ffffff;
-    border-bottom: 2px solid #1e40af;
+    border-bottom: 2px solid #2563eb;
     font-family: 'Roboto', sans-serif;
   }
 
   /* 画面ディスプレイ部分全体 */
   .screen {
-    background: #020617;
+    background: #010409;
     display: flex;
     flex-direction: column;
   }
 
-  /* 1列車分のブロック（上が明るく、下に向かって暗くなる青グラデーション ＋ スキャンライン） */
+  /* 1列車分のブロック（上部が暗く、下に向かって明るい青色になる逆グラデーション ＋ スキャンライン） */
   .train-row {
     background: 
-      linear-gradient(rgba(18, 53, 110, 0.12) 50%, rgba(0, 0, 0, 0.25) 50%),
-      linear-gradient(to bottom, #1d4ed8 0%, #1e3a8a 35%, #0f172a 70%, #020617 100%);
-    background-size: 100% 4px, 100% 100%;
-    border-bottom: 2px solid #3b82f6; /* 行と行の間のクッキリした青い境界線 */
+      linear-gradient(rgba(255, 255, 255, 0.03) 50%, rgba(0, 0, 0, 0.3) 50%),
+      linear-gradient(to bottom, #020617 0%, #0f172a 35%, #1e3a8a 70%, #1d4ed8 100%);
+    background-size: 100% 3px, 100% 100%;
+    border-bottom: 2px solid #3b82f6; /* クッキリした青い境界線 */
     display: flex;
     flex-direction: column;
     padding: 10px 12px;
@@ -361,34 +361,6 @@
     const currentMinute = now.getMinutes();
     const currentTimeValue = currentHour * 60 + currentMinute;
 
-    let allTrains = [];
-    currentTimetableData.timetable.forEach(slot => {
-      if (slot.trains) {
-        slot.trains.forEach(train => {
-          allTrains.path && allTrains.push({
-            hour: slot.hour,
-            minute: train.minute,
-            type: train.type,
-            destination: train.destination,
-            cars: train.cars,
-            doors: train.doors,
-            note: train.note
-          });
-          // 修正: 配列へのpushを正しく反映
-          allTrains.push({
-            hour: slot.hour,
-            minute: train.minute,
-            type: train.type,
-            destination: train.destination,
-            cars: train.cars,
-            doors: train.doors,
-            note: train.note
-          });
-        });
-      }
-    });
-
-    // 重複pushを防ぐための調整（元のスニペット通りの安全な形にしています）
     let uniqueTrains = [];
     currentTimetableData.timetable.forEach(slot => {
       if (slot.trains) {
