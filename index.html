@@ -275,10 +275,8 @@
   <div class="control-panel">
     <label for="fileSelect" style="flex-shrink:0;">ダイヤ:</label>
     <select id="fileSelect">
-      <option value="T01_omuta_weekday.json">T01 福岡(天神) 大牟田 平日</option>
-      <option value="T01_omuta_holiday.json">T01 福岡(天神) 大牟田 休日</option>
-      <option value="T11_fukuoka(tenjin)_weekday.json">T11 都府楼前 福岡(天神) 平日</option>
-      <option value="T11_fukuoka(tenjin)_holiday.json">T11 都府楼前 福岡(天神) 休日</option>
+      <option value="T01_omuta_timetable_weekday.json">T01 福岡(天神) 大牟田 平日</option>
+      <option value="T01_omuta_timetable_holiday.json">T01 福岡(天神) 大牟田 休日</option>
     </select>
   </div>
 
@@ -327,7 +325,9 @@
     "小郡": ["Ogori", "小郡", "오고리"],
     "太宰府": ["Dazaifu", "太宰府", "다자이후"],
     "柳川": ["Yanagawa", "柳川", "야나가와"],
-    "久留米": ["Kurume", "久留米", "구루메"]
+    "久留米": ["Kurume", "久留米", "구루메"],
+    "西鉄福岡（天神）": ["Fukuoka (Tenjin)", "福冈(天神)", "후쿠오카(텐진)"],
+    "福岡（天神）": ["Fukuoka (Tenjin)", "福冈(天神)", "후쿠오카(텐진)"]
   };
 
   function formatType(str) {
@@ -337,10 +337,17 @@
 
   function formatDestination(str) {
     if (!str) return { text: '', isSpaced: false };
-    if (str.length <= 2) {
-      return { text: str.split('').join(' '), isSpaced: true };
+    
+    // 表示名を「西鉄福岡（天神）」から「福岡（天神）」に置換
+    let displayText = str;
+    if (str === "西鉄福岡（天神）") {
+      displayText = "福岡（天神）";
     }
-    return { text: str, isSpaced: false };
+
+    if (displayText.length <= 2) {
+      return { text: displayText.split('').join(' '), isSpaced: true };
+    }
+    return { text: displayText, isSpaced: false };
   }
 
   async function loadTimetable(filename) {
@@ -404,13 +411,12 @@
     upcomingTrains.forEach((train, index) => {
       const typeData = typeMultilingual[train.type] || { cls: "local", langs: ["Local", "普通", "보통"] };
       const timeStr = `${String(train.hour).padStart(2, '0')}:${String(train.minute).padStart(2, '0')}`;
-      const destLangs = destMultilingual[train.destination] || [train.destination, train.destination, train.destination];
+      const destLangs = destMultilingual[train.destination] || destMultilingual["福岡（天神）"] || [train.destination, train.destination, train.destination];
 
       const formattedType = formatType(train.type);
       const destObj = formatDestination(train.destination);
       const destClass = destObj.isSpaced ? 'dest-main spaced' : 'dest-main normal';
 
-      // 両数やドア数がある場合のみ表示用のHTMLを組み立てる
       let specsHtml = '';
       if (train.cars || train.doors) {
         let carsPart = train.cars ? `<div class="cars-box">${train.cars}両</div>` : '';
