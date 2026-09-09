@@ -92,7 +92,7 @@
     align-items: center;
   }
 
-  /* 種別エリア（中央揃えに変更） */
+  /* 種別エリア（中央揃え） */
   .type-area {
     display: flex;
     flex-direction: column;
@@ -117,9 +117,11 @@
     color: #ffffff;
     box-shadow: 0 2px 4px rgba(0,0,0,0.5);
   }
-  .type-badge.local { background-color: #1d4ed8; }
-  .type-badge.express { background-color: #15803d; }
-  .type-badge.limited { background-color: #b91c1c; }
+  
+  /* 本物の色合いに合わせた配色（少し深みと重みのあるカラー） */
+  .type-badge.local { background-color: #10439f; }     /* 普通：落ち着いた青 */
+  .type-badge.express { background-color: #0d6e3c; }   /* 急行：深い緑 */
+  .type-badge.limited { background-color: #a81c1c; }   /* 特急：重厚感のある赤 */
 
   /* 種別のローマ字も中央揃え */
   .type-sub {
